@@ -6,11 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node ssr-server.js",
-    "build": "next build",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "serve": "node ssr-server.js",
     "export": "next export",
-    "deploy": "micro"
+    "deploy": "micro",
+    "heroku-postbuild": "next build"
   },
   "keywords": [],
   "author": "",
