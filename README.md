@@ -5,9 +5,13 @@
 # Read This! 
 * To run the whole thing with express
 ( don't forget `npm install`)
+
+* `npm run serve` this actually makes things go
+
+## If you make a new page in pages: 
 * `npm run build` this builds the app
 * `npm run export` run this if you added a page and the new page needs to be created. this makes pretty URLS
-* `npm run serve` this actually makes things go
+
 
 # Technologies
 * React
