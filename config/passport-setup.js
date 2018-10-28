@@ -1,7 +1,7 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20");
 const keys = require("./keys");
-const User = require("../models/user-model");
+const GoogleUser = require("../models/google-model");
 
 //serialize will allow the same person to login through any Oauth service without another...
 //...db entry. This will give user a uniform profile through any means of authorization
@@ -12,7 +12,7 @@ passport.serializeUser((user, done) => {
 
 //when the cookie comes back, this will take the id stored and find a user based on the id
 passport.deserializeUser((id, done) => {
-    User.findById(id).then((user) => {
+    GoogleUser.findById(id).then((user) => {
         done(null, user);
     });
 });
@@ -27,14 +27,14 @@ passport.use(
     },
     (accessToken, refreshToken, profile, done) => {
       //check if user already exists in db
-      User.findOne({ googleId: profile.id }).then(currentUser => {
+      GoogleUser.findOne({ googleId: profile.id }).then(currentUser => {
         if (currentUser) {
           //already have the user
           console.log(`user is: ${currentUser}`);
           done(null, currentUser);
         } else {
           //if not, create user in our db
-          new User({
+          new GoogleUser({
             username: profile.displayName,
             googleId: profile.id,
             gender: profile.gender,

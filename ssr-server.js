@@ -4,6 +4,11 @@ const next = require('next')
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
+
+const authRoutes = require("./routes/auth-routes");
+const passportSetup = require("./config/passport-setup");
+const mongoose = require("mongoose");
+const keys = require("./config/keys");
     
 app.prepare()
 .then(() => {

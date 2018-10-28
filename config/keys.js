@@ -1,4 +1,3 @@
-// super sensitivte information -- be nice!
 // add this file to .gitignore before deployment
 
 module.exports = {

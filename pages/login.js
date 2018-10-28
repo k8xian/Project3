@@ -1,6 +1,6 @@
 const Login = () => (
     <div>
-     <button>Login with Twitch</button>
+     <button href='/'>Login with Twitch</button>
     </div>
   )
   
