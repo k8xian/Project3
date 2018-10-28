@@ -1,6 +1,6 @@
 const Login = () => (
     <div>
-     <button href='/'>Login with Twitch</button>
+     <button href=''>Login with Google</button>
     </div>
   )
   
