@@ -12,3 +12,8 @@ module.exports = {
         cookieKey: 'imjustgoingtosayitourprojectsarethebestones'
     }
 }
+
+// module.exports = {
+//     mongoURI: "mongodb://eric:a123456@ds243963.mlab.com:43963/proj3"
+// };
+// >>>>>>> 2ec2ba9af4ad35f09aed875bc4bdebe050e76e92
