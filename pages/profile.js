@@ -4,10 +4,9 @@ import { createGlobalStyle } from 'styled-components'
 import Link from 'next/link'
 import Photo from '../components/Profile/Photo'
 import Info from '../components/Profile/Info'
-import Detail from '../components/Profile/Detail'
 import Links from '../components/Profile/Links'
 import Embed from '../components/Profile/Embed'
-import Games from '../components/Profile/Games'
+import Game from '../components/Profile/Game'
 
 
 const GlobalStyle = createGlobalStyle`
@@ -45,6 +44,26 @@ height: calc(100vh - 200px);
 background-color: limegreen;
 `
 
+const Detail = styled.div`
+height: calc(100vh - 200px);
+width: 75%;
+float: left;
+display: block;
+`
+
+const GamesWrapper = styled.div`
+height: 160px;
+width: 100%;
+float: left;
+display: block;
+border-bottom: 1px solid rgba(0,0,0,.2);
+display: flex;
+justify-content: center;
+flex-flow: row no-wrap;
+overflow-x: scroll;
+overflow-y: hidden;
+`
+
 const Profile = () => (
   <div>
     <GlobalStyle />
@@ -55,7 +74,14 @@ const Profile = () => (
     </StyledHeader>
     <MainBody>
       <Detail>
-        <Games/>
+        <GamesWrapper>
+          <Game/>
+          <Game/>
+          <Game/>
+          <Game/>
+          <Game/>
+          <Game/>
+        </GamesWrapper>
       </Detail>
       <Embed/>
     </MainBody>
