@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{206:function(e,n,t){__NEXT_REGISTER_PAGE("/profile",function(){return e.exports=t(207),{page:e.exports.default}})},207:function(e,n,t){"use strict";t.r(n);var o=t(3),r=t.n(o);n.default=function(){return r.a.createElement("div",null,r.a.createElement("p",null,"Profile is gonna go here"))}}},[[206,1,0]]]);

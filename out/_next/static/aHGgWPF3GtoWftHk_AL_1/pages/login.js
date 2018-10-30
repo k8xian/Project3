@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{204:function(n,t,e){__NEXT_REGISTER_PAGE("/login",function(){return n.exports=e(205),{page:n.exports.default}})},205:function(n,t,e){"use strict";e.r(t);var o=e(3),u=e.n(o);t.default=function(){return u.a.createElement("div",null,u.a.createElement("button",null,"Login with Twitch"))}}},[[204,1,0]]]);
