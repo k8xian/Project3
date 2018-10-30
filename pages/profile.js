@@ -7,6 +7,7 @@ import Info from '../components/Profile/Info'
 import Detail from '../components/Profile/Detail'
 import Links from '../components/Profile/Links'
 import Embed from '../components/Profile/Embed'
+import Games from '../components/Profile/Games'
 
 
 const GlobalStyle = createGlobalStyle`
@@ -48,13 +49,15 @@ const Profile = () => (
   <div>
     <GlobalStyle />
     <StyledHeader>
-      <Photo />
-      <Info />
-      <Links />
+      <Photo/>
+      <Info/>
+      <Links/>
     </StyledHeader>
     <MainBody>
-      <Detail />
-      <Embed />
+      <Detail>
+        <Games/>
+      </Detail>
+      <Embed/>
     </MainBody>
   </div>
 )
