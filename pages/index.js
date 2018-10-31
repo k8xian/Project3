@@ -56,7 +56,7 @@ const Index = () => (
     <GlobalStyle />
     <Logo />
     <h1>ProPlayer</h1>
-    <Link href="/profile" replace>
+    <Link href="/auth/google" replace>
     <GoogleButton>Login with Google</GoogleButton>
     </Link>
     <Link href="/profile" replace>

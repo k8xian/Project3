@@ -5,46 +5,51 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-//***START OF BACKEND CHANGES ***///
-// const eApp = express();
-// const authRoutes = require("./routes/auth-routes");
-// const passportSetup = require("./config/passport-setup");
+//***Backend requires***///
+const server = express();
+const authRoutes = require("./routes/auth-routes");
+const passportSetup = require("./config/passport-setup");
 const mongoose = require("mongoose");
-// const keys = require("./config/keys");
+const keys = require("./config/keys");
+
 //cookie session is going to take user create cookie, encrypt it, then send it to the browser
-// const cookieSession = require("cookie-session");
-// //passport handles oauth
-// const passport = require('passport');
+const cookieSession = require("cookie-session");
 
-// //use cookie session
-// eApp.use(cookieSession({
-//   //age is a dimension of time [ms] = 1 day
-//   maxAge: 24 * 60 * 60 * 1000,
-//   keys: [keys.session.cookieKey]
-// }));
+//passport handles oauth
+const passport = require('passport');
 
-// //initialize passport then use cookies
-// eApp.use(passport.initialize());
-// eApp.use(passport.session());
-
-// connection to mongodb
-// mongoose.connect(keys.mongodb.dbURL, () => {
-//   console.log("connected to mongodb");
-// });
-
-// setup routes
-// eApp.use("/auth", authRoutes);
-
-// //create home route
-// eApp.get("/", (req, res) => {
-//   res.render("login");
-// });
-//***END OF BACKEND CHANGES***/// 
 
 
 app.prepare()
 .then(() => {
-  const server = express()
+
+  //** Start of backend routing **/
+
+  //use cookie session
+  server.use(cookieSession({
+    //age is a dimension of time [ms] = 1 day
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [keys.session.cookieKey]
+  }));
+
+  //initialize passport then use cookies
+  server.use(passport.initialize());
+  server.use(passport.session());
+
+  // connection to mongodb
+  mongoose.connect(keys.mongodb.dbURL, () => {
+    console.log("connected to mongodb");
+  });
+
+  // setup routes
+  server.use("/auth", authRoutes);
+
+  //create home route
+  //server.get("/", (req, res) => {
+    //res.render("login");
+  //});
+
+  //** End of backend routing **//
     
   server.get('*', (req, res) => {
     return handle(req, res)
