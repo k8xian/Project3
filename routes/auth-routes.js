@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const passport = require('passport');
+
 // auth login
 router.get('/login', (req, res) => {
     res.render('login');
@@ -21,7 +22,9 @@ router.get('/google', passport.authenticate('google', {
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
     //can comment the res.send(req.user) out once another route for profiles is created
     res.send(req.user);
-    //we can send now direct this data where we want it
+    //we can send now direct this data where we want it. Like a profile page.
+    //this is example redirect to a profile page:
+    // res.redirect('/profile/');
 });
 
 
