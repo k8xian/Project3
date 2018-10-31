@@ -28,6 +28,6 @@ router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
 });
 
 
-// auth with facebook
+// auth with twitch and facebook goes here
 
 module.exports = router;
