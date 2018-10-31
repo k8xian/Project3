@@ -8,9 +8,8 @@
     "dev": "node ssr-server.js",
     "build": "next build",
     "start": "next start",
-    "serve": "node ssr-server.js",
-    "export": "next export",
-    "deploy": "micro"
+    "deploy": "micro",
+    "heroku-postbuild": "next build"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +23,10 @@
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
     "react": "^16.6.0",
-    "react-dom": "^16.6.0"
+    "react-dom": "^16.6.0",
+    "styled-components": "^4.0.2"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.8.0"
   }
 }
