@@ -5,6 +5,7 @@
 # Read This! 
 * To run the whole thing with express
 ( don't forget `npm install`)
+* to run a local database with MLab you need you create an account and then drop your creds in Config => keys.js mongodb://<dbuser>:<dbpassword>@ds243963.mlab.com:43963/proj3
 
 ## If you make a new page in pages: 
 * `npm run build` this builds the app
