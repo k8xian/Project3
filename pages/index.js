@@ -55,7 +55,6 @@ const Index = () => (
   <LoginWrapper>
     <GlobalStyle />
     <Logo />
-    <h1>ProPlayer</h1>
     <Link href="/auth/google" replace>
     <GoogleButton>Login with Google</GoogleButton>
     </Link>
