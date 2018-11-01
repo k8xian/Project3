@@ -8,6 +8,7 @@
     "dev": "node ssr-server.js",
     "build": "next build",
     "start": "next start",
+    "now-build": "NODE_ENV=production next build",
     "now-start": "micro",
     "heroku-postbuild": "next build"
   },
@@ -29,5 +30,12 @@
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/k8xian/Project3"
+  },
+  "env": {
+    "NODE_ENV": "production"
   }
 }

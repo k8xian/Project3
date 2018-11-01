@@ -2,16 +2,14 @@ import React from "react";
 import styled from 'styled-components';
 
 const StyledLogo = styled.div`
-margin: 24px 0;
 cursor: pointer;
-background-image: url('Public/assets/logos/logo.svg')
+background-image: url(static/assets/images/logos/logo.svg);
 width: 300px;
-height: 200px;
+height: 116px;
 margin: auto;
-background-size: cover;
+background-size: contain;
 background-repeat: no-repeat;
-background-position: center;
-background-color: hotpink;
+background-position: center 64px;
 `
 
 const Logo = props =>(
