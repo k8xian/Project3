@@ -9,7 +9,9 @@
 
 
 # To run this app
-* backend and frontend are going to run separate and simultaneous instances. cd into frontend and do yarn start, cd into backend and run npm run start
+backend and frontend are going to run separate and simultaneous instances. 
+    * cd into frontend and do `yarn start`, 
+    * in a new terminal window: cd into backend and do `npm run start`
 
 # Folder Structure:
 * project
