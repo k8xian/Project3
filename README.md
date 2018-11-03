@@ -1,26 +1,23 @@
-# Project3
+# A note regarding the front end and back end
+* use config file to use fetch that references backend to keep API stuff secret, e.g. include { config } from config.js (in the root of the frontend folder, this references the backend URL)
+    * at some point, this will all get deployed with the deployment link to the backend- when that happens, this will get added to the gitignore file and then everyone will changer their local version of this config file back to whatever the localhost of their backend is. 
+# To run this app
+* backend and frontend are going to run separate and simultaneous instances. cd into frontend and do yarn start, cd into backend and run npm run start
 
-**Deployment Link**[https://out-gebzohugkn.now.sh/](https://out-gebzohugkn.now.sh/)
+# Folder Structure:
+* project
+    * frontend
+        * own now deployment
+        * static folder for assets
+        * components folder for all the components, gets referenced into pages
+        * pages folder is the stuff that renders on the frontend 
 
-# Read This! 
-* To run the whole thing with express
-( don't forget `npm install`)
-
-## If you make a new page in pages: 
-* `npm run build` this builds the app
-* `npm run dev` this runs the app
+    * backend
+        * own now deplyment
+        * routes folder, this is where api routing will go, referenced in index.js and individual folders for api routes, see [this project](https://github.com/k8xian/MongoNewsScraper/tree/master/routes/api) for structure 
+        * the models folder is where mongo / mongoose stuff will go, like [this](https://github.com/k8xian/MongoNewsScraper/tree/master/models)
+        * scripts folder for scraping junk as needed, reference this in normally
 
 
-# Technologies
-* React
-* Next
-* Styled-Components
-* Deployed with Now
-
-# Relevant Documentation
-
-* If you want to learn about how Next and Express are interacting check [here](https://blog.logrocket.com/how-to-build-a-server-rendered-react-app-with-next-express-d5a389e7ab2f)
-
-* [Next Docs](https://nextjs.org/learn/)
-
-* In case we give up and need to deploy with (Heroku)[https://github.com/mars/heroku-nextjs#production-deployment]
+# Additional Notes: 
+* get initial props is the same as component did mount
