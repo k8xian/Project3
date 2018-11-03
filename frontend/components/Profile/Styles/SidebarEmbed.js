@@ -8,8 +8,8 @@ background-color: rgba(255,255,255,.03);
 float: left;
 `
 
-const Embed = props =>(
-    <EmbedWrapper/>
+const SidebarEmbed = props =>(
+    <EmbedWrapper>{props.children}</EmbedWrapper>
 );
 
-export default Embed;
+export default SidebarEmbed;
