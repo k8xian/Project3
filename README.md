@@ -1,8 +1,8 @@
-* Frontend Deployment Link [https://proplayer.now.sh/](https://proplayer.now.sh/)
+* Frontend Deployment Link [https://proplayer.now.sh](https://proplayer.now.sh/)
 * Backend Deployment Link [proplayer-backend.now.sh](proplayer-backend.now.sh)
 
 # A note regarding deployment 
-* Everytime you deploy using now, you have to alias using now alias `<new deployment link.>` `<alias>`, feel free to just let Kate deploy
+* Everytime you deploy using now, you have to alias using `now alias <new deployment link.> <alias>`, feel free to just let Kate deploy
 
 # A note regarding the front end and back end
 * use config file to use fetch that references backend to keep API stuff secret, e.g. include { config } from config.js (in the root of the frontend folder, this references the backend URL), reference the frontend and backend with their deployed links before committing and then change your links back
