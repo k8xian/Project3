@@ -1,8 +1,17 @@
+* Frontend Deployment Link [https://proplayer.now.sh](https://proplayer.now.sh/)
+* Backend Deployment Link [proplayer-backend.now.sh](proplayer-backend.now.sh)
+
+# A note regarding deployment 
+* Everytime you deploy using now, you have to alias using `now alias <new deployment link.> <alias>`, feel free to just let Kate deploy
+
 # A note regarding the front end and back end
-* use config file to use fetch that references backend to keep API stuff secret, e.g. include { config } from config.js (in the root of the frontend folder, this references the backend URL)
-    * at some point, this will all get deployed with the deployment link to the backend- when that happens, this will get added to the gitignore file and then everyone will changer their local version of this config file back to whatever the localhost of their backend is. 
+* use config file to use fetch that references backend to keep API stuff secret, e.g. include { config } from config.js (in the root of the frontend folder, this references the backend URL), reference the frontend and backend with their deployed links before committing and then change your links back
+
+
 # To run this app
-* backend and frontend are going to run separate and simultaneous instances. cd into frontend and do yarn start, cd into backend and run npm run start
+backend and frontend are going to run separate and simultaneous instances. 
+    * cd into frontend and do `yarn start`, 
+    * in a new terminal window: cd into backend and do `npm run start`
 
 # Folder Structure:
 * project
