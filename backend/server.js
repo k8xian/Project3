@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const routes = require("./routes");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
+require('dotenv').config();
 
 //requiring routes
 const authRoutes = require("./routes/auth-routes");
@@ -40,13 +41,13 @@ mongoose.connect(keys.mongodb.dbURL, () => {
 });
 
 //setup routes
-app.use("/auth", authRoutes);
+app.use(process.env.FRONTEND_URL + "/auth", authRoutes);
 // app.use("/profile", profileRoutes);
 
 //create home route
-app.get("/", (req, res) => {
-  res.render("login");
-});
+// app.get("/", (req, res) => {
+//   res.render("login");
+// });
 
 app.listen(PORT, function() {
   console.log("Listening on port: " + PORT);
