@@ -2,10 +2,11 @@ import React from "react";
 import styled from 'styled-components';
 
 const StyledPost = styled.div`
-width: 100%;
+width: 90%;
 display: block;
 clear: both;
 align-self: flex-end;
+margin: auto;
 `
 
 const PostTitle = styled.h3`
@@ -14,7 +15,7 @@ const PostTitle = styled.h3`
 const PostDate = styled.div`
 font-size: .8rem;
 font-style: italic;
-font-color: rgba(0,0,0,.4);
+color: rgba(255,255,255,.6);
 `
 
 const PostContent = styled.div`
