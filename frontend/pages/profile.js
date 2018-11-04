@@ -2,11 +2,8 @@
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components'
 import Link from 'next/link'
-import Photo from '../components/Profile/Photo'
-import Info from '../components/Profile/Info'
-import Embed from '../components/Profile/Embed'
-import Game from '../components/Profile/Game'
-import SocialLink from '../components/Profile/Info/SocialLink'
+import {Bio, Game, Photo, SocialLink} from '../components/Profile/Detail/index'
+import {ProfileHeader, StatsWrapper, MainContent, GamesList, SidebarEmbed, LinksWrapper, ProfileContent, MainDetail} from '../components/Profile/Styles/index'
 
 
 const GlobalStyle = createGlobalStyle`
@@ -28,81 +25,37 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-const StyledHeader = styled.div`
-width: 100%;
-height: 200px;
-box-shadow: 0 3px 0 rgba(0,0,0,.3);
-display: block;
-`
 
-const MainBody = styled.div`
-width: 100%;
-`
-const Stats = styled.div`
-width: 75%;
-height: calc(100vh - 200px);
-background-color: limegreen;
-`
-
-const Detail = styled.div`
-height: calc(100vh - 200px);
-width: 75%;
-float: left;
-display: block;
-`
-
-const GamesWrapper = styled.div`
-height: 160px;
-width: 100%;
-float: left;
-display: block;
-border-bottom: 1px solid rgba(0,0,0,.2);
-display: flex;
-justify-content: center;
-flex-flow: row no-wrap;
-overflow-x: scroll;
-overflow-y: hidden;
-`
-
-const LinksWrapper = styled.div`
-height: 200px;
-width: 25%;
-float: left;
-display: flex;
-flex-flow: row wrap;
-`
-const ProfileInfo = styled.div`
-height: 200px;
-width: 50%;
-float: left;
-`
 
 const Profile = () => (
   <div>
-    <GlobalStyle />
-    <StyledHeader>
+    <GlobalStyle/>
+    <ProfileHeader>
       <Photo/>
-      <Info/>
+      <ProfileContent>
+        <Bio/>
+      </ProfileContent>
       <LinksWrapper>
         <SocialLink />
         <SocialLink />
         <SocialLink />
         <SocialLink />
       </LinksWrapper>
-    </StyledHeader>
-    <MainBody>
-      <Detail>
-        <GamesWrapper>
+    </ProfileHeader>
+    <MainContent>
+      <MainDetail>
+        <GamesList>
           <Game/>
           <Game/>
           <Game/>
           <Game/>
           <Game/>
           <Game/>
-        </GamesWrapper>
-      </Detail>
-      <Embed/>
-    </MainBody>
+        </GamesList>
+        <StatsWrapper />
+      </MainDetail>
+      <SidebarEmbed/>
+    </MainContent>
   </div>
 )
 
