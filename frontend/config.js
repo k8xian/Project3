@@ -1,5 +1,5 @@
-export const Config = {apiURL: "proplayer-backend.now.sh"};
-//export const Config = {apiURL: "http://localhost/8080"};
+//export const Config = {apiURL: "proplayer-backend.now.sh"};
+export const Config = {apiURL: "http://localhost/8080"};
 
 //steps to update Config File
 //1: Delte line 1

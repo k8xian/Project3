@@ -61,6 +61,7 @@ const Index = () => (
     <Link href="/profile" replace>
       <TwitchButton>Login with Twitch.tv</TwitchButton>
     </Link>
+    
   </LoginWrapper>
 )
 
