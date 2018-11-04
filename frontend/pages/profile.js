@@ -2,8 +2,8 @@
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components'
 import Link from 'next/link'
-import {Bio, Game, Photo, SocialLink} from '../components/Profile/Detail/index'
-import {ProfileHeader, StatsWrapper, MainContent, GamesList, SidebarEmbed, LinksWrapper, ProfileContent, MainDetail} from '../components/Profile/Styles/index'
+import { Bio, Game, PostBlock, Photo, SocialLink } from '../components/Profile/Detail/index'
+import { ProfileHeader, StatsWrapper, MainContent, GamesList, SidebarEmbed, LinksWrapper, PostWrapper, ProfileContent, MainDetail } from '../components/Profile/Styles/index'
 
 
 const GlobalStyle = createGlobalStyle`
@@ -29,11 +29,11 @@ const GlobalStyle = createGlobalStyle`
 
 const Profile = () => (
   <div>
-    <GlobalStyle/>
+    <GlobalStyle />
     <ProfileHeader>
-      <Photo/>
+      <Photo />
       <ProfileContent>
-        <Bio/>
+        <Bio />
       </ProfileContent>
       <LinksWrapper>
         <SocialLink />
@@ -43,18 +43,23 @@ const Profile = () => (
       </LinksWrapper>
     </ProfileHeader>
     <MainContent>
+      <GamesList>
+        <Game />
+        <Game />
+        <Game />
+        <Game />
+        <Game />
+        <Game />
+      </GamesList>
       <MainDetail>
-        <GamesList>
-          <Game/>
-          <Game/>
-          <Game/>
-          <Game/>
-          <Game/>
-          <Game/>
-        </GamesList>
         <StatsWrapper />
+        <PostWrapper>
+          <PostBlock />
+          <PostBlock />
+          <PostBlock />
+        </PostWrapper>
       </MainDetail>
-      <SidebarEmbed/>
+      <SidebarEmbed />
     </MainContent>
   </div>
 )
