@@ -48,8 +48,6 @@ const Profile = () => (
         <Game />
         <Game />
         <Game />
-        <Game />
-        <Game />
       </GamesList>
       <MainDetail>
         <StatsWrapper />
