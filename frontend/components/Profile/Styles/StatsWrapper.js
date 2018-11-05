@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Stats = styled.div`
 width: 100%;
-height: calc(100vh - 200px);
+height: 300px;
 clear: both;
 `
 
