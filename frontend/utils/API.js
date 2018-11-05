@@ -9,6 +9,8 @@ export default {
         return axios.get("/api/fortnite", params);
     },
     getHalo5: function(params) {
+        console.log("Working");
+        console.log(params);
         return axios.get("/api/halo5", params);
     },
     getLOL: function(params) {

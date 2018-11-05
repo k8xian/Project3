@@ -242,7 +242,7 @@ module.exports = {
     //Scrape Halo 5
     scrapeHalo5: (req, res) => {
         //http://halotracker.com/h5/player/Naded
-
+        console.log("Working -- Scrapper");
         //req.UID = username of the player
         return axios.get("http://halotracker.com/h5/player/" + req.UID)
             .then((response) => {
