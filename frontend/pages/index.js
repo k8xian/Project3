@@ -13,6 +13,16 @@ const TwitchButton = styled.button`
   clear: both;
   cursor: pointer;
 `
+const TestButton = styled.button`
+background-color: cyan;
+color: white;
+border: 0;
+width: 240px;
+height: 34px;
+clear: both;
+cursor: pointer;
+margin: 20px auto;
+`
 const GoogleButton = styled.button`
 background-color: white;
 color: rgba(0,0,0,.54);
@@ -61,8 +71,9 @@ const Index = () => (
     <Link href="/profile" replace>
       <TwitchButton>Login with Twitch.tv</TwitchButton>
     </Link>
+    {/* THIS IS ONLY HERE FOR TESTING PURPOSES, REMOVE WHEN LIVE*/}
     <Link href="/test-area" replace> 
-        <TwitchButton>Testing Grounds</TwitchButton>
+        <TestButton>Testing Grounds</TestButton>
     </Link>
   </LoginWrapper>
 )
