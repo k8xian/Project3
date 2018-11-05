@@ -18,6 +18,9 @@ export default class extends React.Component {
     };
 
     handleFetch = () => {
+        //First be sure we collected this.state properly
+        //Then from the api file we call a specific method, in this case we will be testing halo
+        //
         console.log(this.state);
         API.getHalo5({
             UID: this.state.UID
@@ -25,11 +28,14 @@ export default class extends React.Component {
         .then(res => console.log(res));
     };
 
+    //On button click this will fire and handle the fetch.
     handleFormSubmit = event => {
         event.preventDefault();
         this.handleFetch();
     }
 
+    //Render the test button and pass it the functions handleFormSubmit and handleInputChange
+    //This.state will collect the text entered into the text box
     render() {
         return (
             < div >

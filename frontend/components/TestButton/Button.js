@@ -3,6 +3,9 @@ import React from 'react';
 const Form = props => (
     <form>
         <div>
+            {/* 
+            This will collect text from the text box from the left on the testing page
+            */}
             <label>Platform</label>
             <input className="platform"
                 value={props.platform}
