@@ -44,10 +44,10 @@ const Profile = () => (
     </ProfileHeader>
     <MainContent>
       <GamesList>
-        <Game />
-        <Game />
-        <Game />
-        <Game />
+        <Game image="static/assets/images/games/halo.png" title="Halo 5"/>
+        <Game image="static/assets/images/games/overwatch.png" title="Overwatch"/>
+        <Game image="static/assets/images/games/fortnite.png" title="Fortnite"/>
+        <Game image="static/assets/images/games/leagueof.png" title="League of Legends"/>
       </GamesList>
       <MainDetail>
         <StatsWrapper />
