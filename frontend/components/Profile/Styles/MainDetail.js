@@ -6,6 +6,7 @@ height: calc(100vh - 200px);
 width: 75%;
 float: left;
 display: block;
+overflow: auto;
 `
 
 const MainDetail = props =>(
