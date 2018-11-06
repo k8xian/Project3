@@ -41,7 +41,7 @@ mongoose.connect(keys.mongodb.dbURL, () => {
 });
 
 //setup routes
-app.use(process.env.FRONTEND_URL + "/auth", authRoutes);
+app.use(process.env.BACKEND_URL + "/auth", authRoutes);
 // app.use("/profile", profileRoutes);
 
 //create home route
