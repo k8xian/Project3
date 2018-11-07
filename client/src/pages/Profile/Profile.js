@@ -1,51 +1,64 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
-import Jumbotron from "../../components/Jumbotron";
-import API from "../../utils/API";
+import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components'
+import { Bio, Game, PostBlock, Photo, SocialLink } from '../../components/Profile/Detail/index'
+import { ProfileHeader, StatsWrapper, MainContent, GamesList, SidebarEmbed, LinksWrapper, PostWrapper, ProfileContent, MainDetail } from '../../components/Profile/Styles/index'
 
-class Profile extends Component {
-  state = {
-    book: {}
-  };
-  // Add code to get the book with an _id equal to the id in the route param
-  // e.g. http://localhost:3000/books/:id
-  // The book id for this route can be accessed using this.props.match.params.id
-
-  componentDidMount() {
-    API.getBook(this.props.match.params.id)
-    .then(res => this.setState({book: res.data}))
-    .catch(err => console.log(err));
+const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css?family=Libre+Franklin:300,800');
+  body {
+    margin: 0;
+    padding: 0;
+    color: white;
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Libre Franklin', sans-serif;
+    background-repeat: no-repeat;
+    background: #171717;
+    background: -moz-linear-gradient(top, #171717 0%, #29282d 50%, #1c2529 100%);
+    background: -webkit-linear-gradient(top, #171717 0%,#29282d 50%,#1c2529 100%); 
+    background: linear-gradient(to bottom, #171717 0%,#29282d 50%,#1c2529 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#171717', endColorstr='#1c2529',GradientType=0 );
+    overflow: hidden;
   }
+`
 
-  render() {
-    return (
-      <Container fluid>
-        <Row>
-          <Col size="md-12">
-            <Jumbotron>
-              <h1>
-                {this.state.book.title} by {this.state.book.author}
-              </h1>
-            </Jumbotron>
-          </Col>
-        </Row>
-        <Row>
-          <Col size="md-10 md-offset-1">
-            <article>
-              <h1>Synopsis</h1>
-              <p>{this.state.book.synopsis}</p>
-            </article>
-          </Col>
-        </Row>
-        <Row>
-          <Col size="md-2">
-            <Link to="/">← Back to Authors</Link>
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
-}
 
-export default Profile;
+
+
+const Profile = () => (
+    <div>
+      <GlobalStyle />
+      <ProfileHeader>
+        <Photo />
+        <ProfileContent>
+          <Bio />
+        </ProfileContent>
+        <LinksWrapper>
+          <SocialLink />
+          <SocialLink />
+          <SocialLink />
+          <SocialLink />
+        </LinksWrapper>
+      </ProfileHeader>
+      <MainContent>
+        <GamesList>
+          <Game image="/images/games/halo.png" title="Halo 5"/>
+          <Game image="/images/games/overwatch.png" title="Overwatch"/>
+          <Game image="/images/games/fortnite.png" title="Fortnite"/>
+          <Game image="/images/games/leagueof.png" title="League of Legends"/>
+        </GamesList>
+        <MainDetail>
+          <StatsWrapper />
+          <PostWrapper>
+            <PostBlock />
+            <PostBlock />
+            <PostBlock />
+          </PostWrapper>
+        </MainDetail>
+        <SidebarEmbed />
+      </MainContent>
+    </div>
+  )
+  
+  export default Profile
