@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components'
 import { Bio, Game, PostBlock, Photo, SocialLink } from '../../components/Profile/Detail/index'
+import { SocialForm } from '../../components/Profile/Forms/index'
 import { ProfileHeader, StatsWrapper, MainContent, GamesList, SidebarEmbed, LinksWrapper, PostWrapper, ProfileContent, MainDetail } from '../../components/Profile/Styles/index'
 
 const GlobalStyle = createGlobalStyle`
@@ -23,8 +24,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-
-
+//prop for edit view or not edit view
 
 const Profile = () => (
     <div>
@@ -35,10 +35,7 @@ const Profile = () => (
           <Bio />
         </ProfileContent>
         <LinksWrapper>
-          <SocialLink />
-          <SocialLink />
-          <SocialLink />
-          <SocialLink />
+          <SocialForm />
         </LinksWrapper>
       </ProfileHeader>
       <MainContent>

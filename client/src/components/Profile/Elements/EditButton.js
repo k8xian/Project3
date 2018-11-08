@@ -7,9 +7,10 @@ background-size: contain;
 float: right;
 height: 18px;
 width: 18px;
-margin-top: -11px;
-background-image: URL('/static/assets/images/icons/edit.svg');
+margin-top: 0;
+background-image: url('/images/icons/edit.svg');
 cursor: pointer;
+display:  ${props => props.edit ? "none" : "block"};
 `
 
 const EditButton = props =>(

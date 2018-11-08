@@ -7,7 +7,7 @@ const ProfileInfo = styled.div`
 height: 200px;
 float: left;
 padding-right: 20px;
-padding-top: 10px;
+padding-top: 25px;
 width: 88%;
 text-align: justify;
 margin: auto;
@@ -29,7 +29,8 @@ width: 90%;
 `
 
 const StyledBio = styled.p`
-margin-top: 0;
+margin-top: 11px;
+margin-bottom: 0px;
 `
 
 
@@ -106,8 +107,8 @@ class Bio extends Component {
     render() {
         return (
             <ProfileInfo>
+                <EditButton id={'editBio'} edit/>
                 <StyledBio>
-                    <EditButton id={'editBio'} onClick={this.handleClick} />
                     {this.state.value}, Edit mode is: {this.state.editMode}
                 </StyledBio>
                 <StyledBioForm onSubmit={this.handleSubmit}>
