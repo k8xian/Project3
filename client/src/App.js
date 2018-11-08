@@ -3,7 +3,11 @@ import Books from "./pages/Books";
 import Detail from "./pages/Detail";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
+<<<<<<< HEAD
 import NoMatch from "./pages/NoMatch";
+=======
+import Nav from "./components/old/Nav";
+>>>>>>> 86c9e619b91f38381a59621d21fee67066d6c2bb
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 
@@ -21,7 +25,6 @@ const App = () => (
         <Route exact path="/profile/:id" component={Profile} />
         {/* This will be the individual view for any profile with an edit button that will show/hide forms */}
         <Route exact path="/profile/:id/edit" component={Profile} />
-        <Route component={NoMatch} />
       </Switch>
     </div>
   </Router>
