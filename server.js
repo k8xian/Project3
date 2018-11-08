@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
-const UserRoutes = require('./routes/users');
 
 
 // Define middleware here
@@ -20,7 +19,7 @@ if (process.env.NODE_ENV === "production") {
 
 // Add routes, both API and view
 app.use(routes);
-app.use('/users', UserRoutes)
+app.use('/users', require('./routes/users'))
 
 
 
