@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
-import Jumbotron from "../../components/Jumbotron";
+import { Col, Row, Container } from "../../components/old/Grid";
+import Jumbotron from "../../components/old/Jumbotron";
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 import Logo from '../../components/Logo';
