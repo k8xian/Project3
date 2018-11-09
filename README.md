@@ -13,6 +13,9 @@ JSON Web Tokens are an open, industry standard RFC 7519 method for representing 
 JWT.IO allows you to decode, verify and generate JWT. https://jwt.io/
 Github - https://github.com/auth0/node-jsonwebtoken
 
+## Google API + OAuth
+Access the Google API here - https://console.developers.google.com/apis
+Google OAuth Codes & Tokens - https://developers.google.com/oauthplayground/
 
 
 

@@ -23,6 +23,9 @@ router
     UsersController.signIn
   ); // exchange email and password for token
 
+router.route('/oauth/google')
+    .post(passport.authenticate('googleToken', { session: false }));
+
 router
   .route("/secret")
   .get(
