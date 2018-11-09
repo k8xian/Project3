@@ -1,47 +1,46 @@
 import React, { Component } from "react";
-import styled from 'styled-components';
-import { createGlobalStyle } from 'styled-components';
-import Logo from '../../components/Logo';
-
+import styled from "styled-components";
+import { createGlobalStyle } from "styled-components";
+import Logo from "../../components/Logo";
+import { Link } from "react-router-dom";
 // import API from "../../utils/API";
 
-
 const TwitchButton = styled.button`
-  background-color: #6441A4;
+  background-color: #6441a4;
   color: white;
   border: 0;
   width: 240px;
   height: 34px;
   clear: both;
   cursor: pointer;
-`
+`;
 const TestButton = styled.button`
-background-color: cyan;
-color: white;
-border: 0;
-width: 240px;
-height: 34px;
-clear: both;
-cursor: pointer;
-margin: 20px auto;
-`
+  background-color: cyan;
+  color: white;
+  border: 0;
+  width: 240px;
+  height: 34px;
+  clear: both;
+  cursor: pointer;
+  margin: 20px auto;
+`;
 const GoogleButton = styled.button`
-background-color: white;
-color: rgba(0,0,0,.54);
-border: 0;
-width: 240px;
-height: 34px;
-border-radius: 0;
-cursor: pointer;
-margin: 20px auto;
-`
+  background-color: white;
+  color: rgba(0, 0, 0, 0.54);
+  border: 0;
+  width: 240px;
+  height: 34px;
+  border-radius: 0;
+  cursor: pointer;
+  margin: 20px auto;
+`;
 
 const LoginWrapper = styled.div`
 width 80%;
 max-width: 300px;
 margin: 80px auto 0;
 text-align: center;
-`
+`;
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Libre+Franklin:300,800');
@@ -60,38 +59,37 @@ const GlobalStyle = createGlobalStyle`
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#171717', endColorstr='#1c2529',GradientType=0 );
     overflow: hidden;
   }
-`
-
+`;
 
 class Login extends Component {
   state = {
     book: {}
   };
-    // Add code to get the book with an _id equal to the id in the route param
-    // e.g. http://localhost:3000/books/:id
-    // The book id for this route can be accessed using this.props.match.params.id
+  // Add code to get the book with an _id equal to the id in the route param
+  // e.g. http://localhost:3000/books/:id
+  // The book id for this route can be accessed using this.props.match.params.id
 
-    //   initial loading of these components
-    //   componentDidMount() {
-    //     API.getBook(this.props.match.params.id)
-    //     .then(res => this.setState({book: res.data}))
-    //     .catch(err => console.log(err));
-    //   }
+  //   initial loading of these components
+  //   componentDidMount() {
+  //     API.getBook(this.props.match.params.id)
+  //     .then(res => this.setState({book: res.data}))
+  //     .catch(err => console.log(err));
+  //   }
 
   render() {
     return (
-        <LoginWrapper>
+      <LoginWrapper>
         <GlobalStyle />
         <Logo />
-        <a href="/auth/google">
-        <GoogleButton>Login with Google</GoogleButton>
-        </a>
+        <Link to="/" href="/auth/google">
+          <GoogleButton>Login with Google</GoogleButton>
+        </Link>
         <a href="/profile">
           <TwitchButton>Login with Twitch.tv</TwitchButton>
         </a>
         {/* THIS IS ONLY HERE FOR TESTING PURPOSES, REMOVE WHEN LIVE*/}
-        <a href="/test-area" replace> 
-            <TestButton>Testing Grounds</TestButton>
+        <a href="/test-area" replace>
+          <TestButton>Testing Grounds</TestButton>
         </a>
       </LoginWrapper>
     );
