@@ -18,7 +18,6 @@ const App = () => (
         <Route exact path="/profile/:id" component={Profile} />
         {/* This will be the individual view for any profile with an edit button that will show/hide forms */}
         <Route exact path="/profile/:id/edit" component={Profile} />
-        <Route exact path="/" component={Profile} />
       </Switch>
     </div>
   </Router>
