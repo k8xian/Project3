@@ -16,21 +16,21 @@ signToken = user => {
 
 module.exports = {
   signUp: async (req, res, next) => {
-    console.log(".signUp() called!");
-    console.log("contents of req.value.body", req.value.body);
-
     const { email, password } = req.value.body;
 
     // validate if user containing email alreadt exists
-    const foundUser = await User.findOne({ email: email });
+    const foundUser = await User.findOne({ "local.email": email });
     if (foundUser) {
       return res.status(403).json({ error: "Email is already in use" });
     }
 
     // if a new user, create one
     const newUser = new User({
-      email: email,
-      password: password
+      method: 'local',
+      local: {
+        email: email,
+        password: password
+      }
     });
     await newUser.save(); // async await to make sure new user gets stored in db before moving on
 
@@ -40,13 +40,24 @@ module.exports = {
     // response with token
     res.status(200).json({ token: token });
   },
+
+
   signIn: async (req, res, next) => {
     // Generate Token
-    const token = signToken(req.user);
+    const token = signToken(req.user); // Received user in req.user
     res.status(200).json({ token })
     // console.log('req.user', req.user);
     console.log("sucessful login!");
   },
+
+  googleOAuth: async (req, res, next) => {
+    // Generate Token
+    console.log('req.user', req.user)
+
+    const token = signToken(req.user);
+    res.status(200).json({ token })
+  },
+
   secret: async (req, res, next) => {
     console.log("i managed to get here");
     res.json({ secret: "resource" })

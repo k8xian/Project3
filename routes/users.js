@@ -8,6 +8,7 @@ const { validateBody, schemas } = require("../helpers/routeHelpers");
 const UsersController = require("../controllers/users");
 const passportSignIn = passport.authenticate("local", { session: false });
 const passportJWT = passport.authenticate("jwt", { session: false });
+const passportGoogle = passport.authenticate('googleToken', { session: false })
 
 // if client makes post request to this route with a body of some data, it will first be validated..
 // ...with Joi in routeHelpers.js. Then when validate, it will route to controllers/users.js
@@ -24,7 +25,7 @@ router
   ); // exchange email and password for token
 
 router.route('/oauth/google')
-    .post(passport.authenticate('googleToken', { session: false }));
+    .post(passportGoogle, UsersController.googleOAuth);
 
 router
   .route("/secret")
