@@ -6,7 +6,7 @@ signToken = user => {
   return JWT.sign(
     {
       iss: "Project3", // name
-      sub: newUser.id, // using a user's mongo_db unique id
+      sub: user.id, // using a user's mongo_db unique id
       iat: new Date().getTime(), // current time
       exp: new Date().setDate(new Date().getDate() + 1) // current time + 1 day
     },
