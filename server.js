@@ -1,3 +1,4 @@
+const PORT = process.env.PORT || 3001;
 const express = require("express");
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
@@ -5,7 +6,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const mongoose = require("mongoose");
 require('dotenv').config()
-// const routes = require("./routes");
+const routes = require("./routes");
 
 
 // Define middleware here
@@ -19,7 +20,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Add routes, both API and view
-// app.use(routes);
+app.use(routes);
 app.use('/users', require('./routes/users'))
 
 
@@ -29,7 +30,6 @@ app.use('/users', require('./routes/users'))
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist");
 
 // Start the API server
-const PORT = process.env.PORT || 3001;
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
