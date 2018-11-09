@@ -11,6 +11,9 @@ joi: allows you to create blueprints or schemas for JavaScript objects (an objec
 JSON Web Tokens are an open, industry standard RFC 7519 method for representing claims securely between two parties.
 
 JWT.IO allows you to decode, verify and generate JWT. https://jwt.io/
+Github - https://github.com/auth0/node-jsonwebtoken
+
+
 
 
 
