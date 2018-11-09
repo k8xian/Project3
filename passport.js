@@ -3,6 +3,7 @@ const JwtStrategy = require("passport-jwt").Strategy;
 const LocalStrategy = require("passport-local").Strategy;
 const { ExtractJwt } = require("passport-jwt");
 const GooglePlusTokenStrategy = require('passport-google-plus-token');
+const FacebookTokenStrategy = require('passport-facebook-token');
 require("dotenv").config();
 const User = require("./models/user");
 
@@ -67,6 +68,38 @@ passport.use('googleToken', new GooglePlusTokenStrategy({
   }
   
 }));
+
+// FACEBOOK STRATEGY
+passport.use('facebookToken', new FacebookTokenStrategy({
+  clientID: process.env.FACEBOOK_CLIENTID,
+  clientSecret: process.env.FACEBOOK_CLIENTSECRET
+}, async (accessToken, refreshToken, profile, done) => {
+  try {
+    // console.log('profile', profile);
+    // console.log('accessToken', accessToken);
+    // console.log('refreshToken', refreshToken);
+    const existingUser = await User.findOne({ "facebook.id": profile.id });
+    if (existingUser) {
+      return done(null, existingUser);
+    }
+
+    const newUser = new User({
+      method: 'facebook',
+      facebook: {
+        id: profile.id,
+        email: profile.emails[0].value
+      }
+    });
+
+    await newUser.save();
+    done(null, newUser);
+    
+  } catch(error) {
+    done(error, false, error.message);
+  }
+}));
+
+
 
 // LOCAL STRATEGY
 passport.use(

@@ -12,11 +12,11 @@ const passportGoogle = passport.authenticate('googleToken', { session: false })
 
 // if client makes post request to this route with a body of some data, it will first be validated..
 // ...with Joi in routeHelpers.js. Then when validate, it will route to controllers/users.js
-router
+router // for new users signing up locally
   .route("/signup")
   .post(validateBody(schemas.authSchema), UsersController.signUp); // exchang email and password for token
 
-router
+router // for existing users with local account
   .route("/signin")
   .post(
     validateBody(schemas.authSchema),
@@ -24,8 +24,13 @@ router
     UsersController.signIn
   ); // exchange email and password for token
 
-router.route('/oauth/google')
+router.route('/oauth/google') // route for logging with google
     .post(passportGoogle, UsersController.googleOAuth);
+
+router.route('/oauth/facebook')
+    .post(passport.authenticate('facebookToken', { session: false }), UsersController.facebookOAuth);
+
+
 
 router
   .route("/secret")
