@@ -89,10 +89,6 @@ class Login extends Component {
         <a href="/profile">
           <TwitchButton>Login with Twitch.tv</TwitchButton>
         </a>
-        {/* THIS IS ONLY HERE FOR TESTING PURPOSES, REMOVE WHEN LIVE*/}
-        <a href="/test-area" replace> 
-            <TestButton>Testing Grounds</TestButton>
-        </a>
       </LoginWrapper>
     );
   }

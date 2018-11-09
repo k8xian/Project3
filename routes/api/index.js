@@ -1,27 +1,40 @@
 const router = require("express").Router();
-// const bookRoutes = require("./books");
 
-//Create a user
-const createUser = require("./createUser");
+//example on how to require files and make a route template
+//const fetch = require("./fetch");
+//router.use("/fetch", fetch);
 
-//Update a user's game names
-const updateFortnite = require("./updateFortnite");
-const updateHalo5 = require("./updateHalo5");
-const updateLOL = require("./updateLOL");
-const updateOverwatch = require("./updateOverwatch");
+//const require every route that is in here
+const createUserAccount = require("./createUserAccount.js");
 
-// Book routes
-// router.use("/books", bookRoutes);
+//required files for updating the user's game ID.
+const updateFortniteUID = require("./updateGameUID/updateFortniteUID.js");
+const updateHalo5UID = require("./updateGameUID/updateHalo5UID.js");
+const updateLOLUID = require("./updateGameUID/updateLOLUID.js");
+const updateOverwatchUID = require("./updateGameUID/updateOverwatchUID.js");
 
-//Settung the actual routes. These will match 
-// /api/WHATCOMESAFTERSLASH
-// eg: /api/createUser, /api/updateFornite
+//required files for updating the user's game platform
+const updateFortnitePlatform = require("./updateGamePlatform/updateFortnitePlatform.js");
+const updateLOLPlatform = require("./updateGamePlatform/updateLOLPlatform.js");
+const updateOverwatchPlatform = require("./updateGamePlatform/updateOverwatchPlatform.js");
 
-router.use("/createUser", createUser);
+//This route will be for the initial creation of a user's account.
+//This will match: backendURL/api/createUserAccount
+router.use("/createUserAccount", createUserAccount);
 
-router.use("/updateFornite", updateFortnite);
-router.use("/updateHalo5", updateHalo5);
-router.use("/updateLOL", updateLOL);
-router.use("/updateOverwatch", updateOverwatch);
+//This route will be for handling of a user updating their UID for a game.
+//This will match: backendURL/api/updateGAMEHEREUID
+router.use("/updateFortniteUID", updateFortniteUID);
+router.use("/updateHalo5UID", updateHalo5UID);
+router.use("/updateLOLUID", updateLOLUID);
+router.use("/updateOverwatchUID", updateOverwatchUID);
+
+//This route will be for handling of a user updating their Platform for a game.
+//This will match: backendURL/api/updateGAMEHEREPlatform
+//Note: Halo5 does NOT require a platform.
+router.use("/updateFortnitePlatform", updateFortnitePlatform);
+router.use("/updateLOLPlatform", updateLOLPlatform);
+router.use("/updateOverwatchPlatform", updateOverwatchPlatform);
+
 
 module.exports = router;

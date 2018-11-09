@@ -1,40 +1,71 @@
 import axios from "axios";
 
 export default {
-    //To use this,
-    //In the files, import "utils, and pack data into an object."
-    // handleUpdate = () => {
-    //     API.updateHalo5({
-    //         sessionID: this should be the person's session ID
-    //          platform: see models from users-games-models for acceptable platforms for each game
-    //          UID: This should be the user's user id for the game they play. PC overwatch should be noted as UID-12345
-    //     })
-    //         .then(res => console.log(res))
-    //         .catch(err => console.log(err));
-    // }
-
-    //This might have to change in some form. saveData should just be run when we create a user account
     createUserAccount: function(userData) {
-        return axios.post(`/api/userAccounts`, userData);
+        return axios.post(`/api/createUserAccount`, userData);
     },
-    updateFortnite: function(userData) {
+    /******************************************
+    This section is for updating a user's ID
+    What this should look like on the front end:
+    API.updateGAMENAMEUID({
+        userAccountName: this.state.userAccountName,
+        newUID: WHATEVER STATE WE USE TO CAPTURE UID INPUT (e.g: this.state.UID)
+    })
+    .then(res => {
+        if(res.status === 200){
+            return res.json();
+        }
+    }).then(doSomething => if the status message was okay, this will fire, 
+        tell the user data was successfully submitted)
+    ******************************************/
+    updateFortniteUID: function(userData) {
         console.log(userData);
-        return axios.put(`/api/updateFortnite`, userData);
+        return axios.put(`/api/updateForniteUID`, userData);
     },
-    updateHalo5: function(userData) {
+    updateHalo5UID: function(userData) {
         console.log(userData);
-        return axios.put(`/api/updateHalo5`, userData);
+        return axios.put(`/api/updateHalo5UID`, userData);
     },
-    updateLOL: function(userData) {
+    updateLOLUID: function(userData) {
         console.log(userData);
-        return axios.put(`/api/updateLOL`, userData);
+        return axios.put(`/api/updateLOLUID`, userData);
     },
-    updateOverwatch: function(userData) {
+    updateOverwatchUID: function(userData) {
         console.log(userData);
-        return axios.put(`/api/updateOverwatch`, userData);
+        return axios.put(`/api/updateOverwatchUID`, userData);
+    },
+    /******************************************
+    This section is for updating a user's platform
+    What this should look like on the front end:
+    API.updateGAMENAMEPlatform({
+        userAccountName: this.state.userAccountName,
+        newPlatform: WHATEVER STATE WE USE TO CAPTURE PLATFORM INPUT(e.g: this.state.Platform)
+    })
+    .then(res => {
+        if(res.status === 200){
+            return res.json();
+        }
+    }).then(doSomething => if the status message was okay, this will fire, 
+        tell the user data was successfully submitted)
+    ******************************************/
+    updateFortnitePlatform: function(userData) {
+        console.log("Update fortnite platform")
+        console.log(userData);
+        return axios.put(`/api/updateFortnitePlatform`, userData);
+    },
+    updateLOLPlatform: function(userData) {
+        console.log(userData);
+        return axios.put(`/api/updateLOLPlatform`, userData);
+    },
+    updateOverwatchPlatform: function(userData) {
+        console.log(userData);
+        return axios.put(`/api/updateOverwatchPlatform`, userData);
     },
 };
 
+
+//THIS IS LEFTOVER LEGACY CODE
+//LOOK AT THIS IF YOU NEED ADDITIONAL HELP
 // export default {
 //   // Gets all books
 //   getBooks: function() {
