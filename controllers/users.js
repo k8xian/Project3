@@ -42,7 +42,10 @@ module.exports = {
   },
   signIn: async (req, res, next) => {
     // Generate Token
-    console.log(".signIn() called!");
+    const token = signToken(req.user);
+    res.status(200).json({ token })
+    // console.log('req.user', req.user);
+    console.log("sucessful login!");
   },
   secret: async (req, res, next) => {
     console.log("i managed to get here");
