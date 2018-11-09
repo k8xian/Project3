@@ -45,6 +45,7 @@ module.exports = {
     console.log(".signIn() called!");
   },
   secret: async (req, res, next) => {
-    console.log(".secret() called!");
+    console.log("i managed to get here");
+    res.json({ secret: "resource" })
   }
 };
