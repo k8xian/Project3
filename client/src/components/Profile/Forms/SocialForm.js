@@ -4,6 +4,7 @@
 
 import React from "react";
 import styled from 'styled-components';
+import SocialLink from '../../Profile/Detail/SocialLink'
 
 
 const StyledSocialAdd = styled.button`
@@ -154,15 +155,17 @@ class SocialForm extends React.Component {
                     Add Twitch
                 </StyledSocialAdd>
                 {!this.state.twitchIsHidden && <this.TwitchForm />}
-                <p>{this.state.twitch}</p>
+                <SocialLink site="Twitch" url={this.state.twitch} username={this.state.twitch}></SocialLink>
                 <StyledSocialAdd onClick={this.toggleTwitter.bind(this)} >
                     Add Twitter
                 </StyledSocialAdd>
+                <SocialLink site="Twitter" url={this.state.twitter} username={this.state.twitter}></SocialLink>
                 {!this.state.twitterIsHidden && <this.TwitterForm />}
                 <p>{this.state.twitter}</p>
                 <StyledSocialAdd onClick={this.toggleInstagram.bind(this)} >
                     Add Instagram
                 </StyledSocialAdd>
+                <SocialLink site="Instagram" url={this.state.instagram} username={this.state.instagram}></SocialLink>
                 {!this.state.instagramIsHidden && <this.InstagramForm />}
                 <p>{this.state.instagram}</p>
             </div>
