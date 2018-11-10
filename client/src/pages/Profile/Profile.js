@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components'
 import { Bio, Game, PostBlock, Photo, SocialLink } from '../../components/Profile/Detail/index'
-import { SocialForm } from '../../components/Profile/Forms/index'
+import { SocialForm, TwitchStreamForm, TwitterFeedForm } from '../../components/Profile/Forms/index'
 import { ProfileHeader, StatsWrapper, MainContent, GamesList, SidebarEmbed, LinksWrapper, PostWrapper, ProfileContent, MainDetail } from '../../components/Profile/Styles/index'
 
 const GlobalStyle = createGlobalStyle`
@@ -53,7 +53,10 @@ const Profile = () => (
             <PostBlock />
           </PostWrapper>
         </MainDetail>
-        <SidebarEmbed />
+        <SidebarEmbed>
+          <TwitchStreamForm />
+          <TwitterFeedForm />
+        </SidebarEmbed>
       </MainContent>
     </div>
   )
