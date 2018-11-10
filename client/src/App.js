@@ -5,8 +5,6 @@ import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-
-
 const App = () => (
   <Router>
     <div>
