@@ -61,6 +61,22 @@ export default {
         console.log(userData);
         return axios.put(`/api/updateOverwatchPlatform`, userData);
     },
+    saveBio: function(userData) {
+        console.log(userData);
+        return axios.put(`/api/updatebio`, userData);
+    },
+    addTwitch: function(userData) {
+        console.log(userData);
+        return axios.put(`/api/addtwitch`, userData);
+    },
+    addTwitter: function(userData) {
+        console.log(userData);
+        return axios.put(`api/addtwitter`, userData);
+    },
+    addInstagram: function(userData) {
+        console.log(userData);
+        return axios.put(`api/addinstagram`, userData);
+    }
 };
 
 
