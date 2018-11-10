@@ -63,7 +63,7 @@ const GlobalStyle = createGlobalStyle`
 
 class Login extends Component {
   state = {
-    book: {}
+    // book: {}
   };
   // Add code to get the book with an _id equal to the id in the route param
   // e.g. http://localhost:3000/books/:id
@@ -81,9 +81,20 @@ class Login extends Component {
       <LoginWrapper>
         <GlobalStyle />
         <Logo />
-        <Link to="/" href="/auth/google">
+        {/* Put submit handler in this form tag here */}
+          <form >
+            {/* Put on change handler for email here */}
+            <input type="email"></input>
+            {/* put on change handler for password here */}
+            <input type="password"></input>
+            <input type="submit"></input>
+          </form>
+
+
+
+        <a href="/auth/google">
           <GoogleButton>Login with Google</GoogleButton>
-        </Link>
+        </a>
         <a href="/profile">
           <TwitchButton>Login with Twitch.tv</TwitchButton>
         </a>
