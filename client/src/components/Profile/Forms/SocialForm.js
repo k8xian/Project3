@@ -1,61 +1,170 @@
-//have a dropdown that lets you select available social media platforms
-//once one is selected, show a form that lets you enter your handle
-//convert this data to a link and display it
+//style display of current state in an anchor tag
+//store data in the backend
+//pull out data from the backend
 
-//save the input data to the backend
 import React from "react";
 import styled from 'styled-components';
 
-// const StyledLink = styled.div`
-// width: 100%;
-// display: block;
-// clear: both;
-// align-self: flex-end;
-// `
 
-// const SocialLink = props => (
+const StyledSocialAdd = styled.button`
+clear: both;
+display: block;
+width: 100px;
+height: 20px;
+background-color: rgba(0,0,0,0);
+border-radius: 0;
+border: 1px solid #00fff4;
+color: #00fff4;
+cursor: pointer;
+margin: 20px 0;
+float: left;
+`
 
-//     <StyledLink>
-//         {props.site || "site"}: <a href={props.url}>@ {props.username || "username"}</a>
-//     </StyledLink>
-// );
+const StyledSocialInput = styled.input`
+float: left;
+margin: 20px 0 20px 20px;
+background-color: rgba(0,0,0,0);
+border: 0;
+color: white;
+line-height: 20px;
+height: 20px;
+border-bottom: 1px solid white;
+padding: 0 3px;
+width: 80px;
+`
 
+const SocialSubmitButton = styled.input`
+width: 20px;
+height: 20px;
+background-color: rgba(0,0,0,0);
+border: 1px solid #00fff4;
+float: left;
+display: block;
+margin: 21px 0 -1px 0;
+cursor: pointer;
+color: #00fff4;
+text-align: center;
+line-height: 20px;
+`
+
+const StyledForm = styled.form`
+float: left;
+`
+
+//move the form outside as the hide element
 
 class SocialForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { value: 'Twitch' };
+        this.state = {
+            twitch: '',
+            twitter: '',
+            instagram: '',
+            isToggleOn: true,
+            twitchIsHidden: true,
+            twitterIsHidden: true,
+            instagramIsHidden: true
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        };
+
+
+        this.handleTwitchChange = this.handleTwitchChange.bind(this);
+        this.handleTwitterChange = this.handleTwitterChange.bind(this);
+        this.handleInstagramChange = this.handleInstagramChange.bind(this);
+
+        this.handleTwitchSubmit = this.handleTwitchSubmit.bind(this);
+        this.handleTwitterSubmit = this.handleTwitterSubmit.bind(this);
+        this.handleInstagramSubmit = this.handleInstagramSubmit.bind(this);
     }
 
-    handleChange(event) {
-        this.setState({ value: event.target.value });
+    handleTwitchChange(event) {
+        this.setState({ twitch: event.target.twitch });
     }
 
-    handleSubmit(event) {
-        alert('You selected:  ' + this.state.value);
+    handleInstagramChange(event) {
+        this.setState({ instagram: event.target.instagram });
+    }
+
+    handleTwitterChange(event) {
+        this.setState({ twitter: event.target.twitter });
+    }
+
+    handleTwitchSubmit(event) {
+        alert('Twitch was updated to' + this.state.twitch);
+        //hide the form
         event.preventDefault();
+    }
+
+    handleTwitterSubmit(event) {
+        alert('Twitter was updated to' + this.state.twitter);
+        //hide the form
+        event.preventDefault();
+    }
+
+    handleInstagramSubmit(event) {
+        alert('Instagram was updated to ' + this.state.instagram);
+        //hide the form
+        event.preventDefault();
+    }
+
+    TwitchForm = () => (
+        <StyledForm>
+            <StyledSocialInput value={this.state.twitch} onChange={this.handleTwitchChange} placeholder={this.state.twitch || "@"} />
+            <SocialSubmitButton type="submit" value=">" />
+        </StyledForm>
+    )
+
+    TwitterForm = () => (
+        <StyledForm>
+            <StyledSocialInput value={this.state.twitter} onChange={this.handleTwitterChange} placeholder={this.state.twitter || "@"} />
+            <SocialSubmitButton type="submit" value=">" />
+        </StyledForm>
+    )
+
+    InstagramForm = () => (
+        <StyledForm>
+            <StyledSocialInput value={this.state.instagram} onChange={this.handleInstagramChange} placeholder={this.state.instagram || "@"} />
+            <SocialSubmitButton type="submit" value=">" />
+        </StyledForm>
+    )
+
+    toggleTwitch(event) {
+        event.preventDefault();
+        this.setState({
+            twitchIsHidden: !this.state.twitchIsHidden
+        })
+    }
+    toggleTwitter(event) {
+        event.preventDefault();
+        this.setState({
+            twitterIsHidden: !this.state.twitterIsHidden
+        })
+    }
+    toggleInstagram(event) {
+        event.preventDefault();
+        this.setState({
+            instagramIsHidden: !this.state.instagramIsHidden
+        })
     }
 
     render() {
         return (
-            // <form onSubmit={this.handleSubmit}>
-            //     <label>
-            //         Add a social media link:
-            //   <select value={this.state.value} onChange={this.handleChange}>
-            //             <option value="Twitch">Twitch</option>
-            //             <option value="Twitter">Twitter</option>
-            //             <option value="Instagram">Instagram</option>
-            //         </select>
-            //     </label>
-            //     <input type="submit" value="Submit" />
-            // </form>
             <div>
-                <input type="button" value="Connect Twitch"></input>
-                <input type="button" value="Connect Twitter"></input>
-                <input type="button" value="Connect Instagram"></input>
+                <StyledSocialAdd onClick={this.toggleTwitch.bind(this)} >
+                    Add Twitch
+                </StyledSocialAdd>
+                {!this.state.twitchIsHidden && <this.TwitchForm />}
+                <p>{this.state.twitch}</p>
+                <StyledSocialAdd onClick={this.toggleTwitter.bind(this)} >
+                    Add Twitter
+                </StyledSocialAdd>
+                {!this.state.twitterIsHidden && <this.TwitterForm />}
+                <p>{this.state.twitter}</p>
+                <StyledSocialAdd onClick={this.toggleInstagram.bind(this)} >
+                    Add Instagram
+                </StyledSocialAdd>
+                {!this.state.instagramIsHidden && <this.InstagramForm />}
+                <p>{this.state.instagram}</p>
             </div>
         );
     }
