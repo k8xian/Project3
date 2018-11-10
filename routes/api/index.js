@@ -5,7 +5,6 @@ const router = require("express").Router();
 //router.use("/fetch", fetch);
 
 //const require every route that is in here
-const createUserAccount = require("../createUserAccount.js");
 
 //required files for updating the user's game ID.
 const updateFortniteUID = require("./updateGameUID/updateFortniteUID.js");

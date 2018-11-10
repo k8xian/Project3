@@ -3,5 +3,5 @@ module.exports = {
     //Schemaname: require("./schemaname")
     // GoogleUser: require("./google-model.js"),
     user: require("./user"),
-    userGameIDs: require("./usersGameIDsModel"),
+    userProfileInformations: require("./usersGameIDsModel"),
 };
