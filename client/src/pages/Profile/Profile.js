@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components'
 import { Bio, Game, PostBlock, Photo, SocialLink } from '../../components/Profile/Detail/index'
+import { AllStats, FortniteStats, OverwatchStats, LOLStats, HaloStats } from '../../components/Stats/index'
 import { SocialForm, TwitchStreamForm, TwitterFeedForm } from '../../components/Profile/Forms/index'
 import { ProfileHeader, StatsWrapper, MainContent, GamesList, SidebarEmbed, LinksWrapper, PostWrapper, ProfileContent, MainDetail } from '../../components/Profile/Styles/index'
 
@@ -31,41 +32,44 @@ const GlobalStyle = createGlobalStyle`
 //prop for edit view or not edit view
 
 const Profile = () => (
-    <div>
-      <GlobalStyle />
-      <ProfileHeader>
-        <Photo />
-        <ProfileContent>
-          <Bio />
-        </ProfileContent>
-        <LinksWrapper>
-          <SocialForm />
-        </LinksWrapper>
-      </ProfileHeader>
-      <MainContent>
-        <GamesList>
-          {/* Put a refresh button for each game in the stats */}
-          <Game image="/images/games/halo.png" title="Halo 5"/>
-          <Game image="/images/games/overwatch.png" title="Overwatch"/>
-          <Game image="/images/games/fortnite.png" title="Fortnite"/>
-          <Game image="/images/games/leagueof.png" title="League of Legends"/>
-        </GamesList>
-        <MainDetail>
-          <StatsWrapper />
+  <div>
+    <GlobalStyle />
+    <ProfileHeader>
+      <Photo />
+      <ProfileContent>
+        <Bio />
+      </ProfileContent>
+      <LinksWrapper>
+        <SocialForm />
+      </LinksWrapper>
+    </ProfileHeader>
+    <MainContent>
+      <GamesList>
+        {/* Put a refresh button for each game in the stats */}
+        <Game image="/images/games/halo.png" title="Halo 5" />
+        <Game image="/images/games/overwatch.png" title="Overwatch" />
+        <Game image="/images/games/fortnite.png" title="Fortnite" />
+        <Game image="/images/games/leagueof.png" title="League of Legends" />
+      </GamesList>
+      <MainDetail>
+        <StatsWrapper>
           {/* Show regular stats */}
           {/* Show  */}
-          <PostWrapper>
-            <PostBlock />
-            <PostBlock />
-            <PostBlock />
-          </PostWrapper>
-        </MainDetail>
-        <SidebarEmbed>
-          <TwitchStreamForm />
-          <TwitterFeedForm />
-        </SidebarEmbed>
-      </MainContent>
-    </div>
-  )
-  
-  export default Profile
+          <AllStats />
+          {/*Other stat blocks are going to get referenced here*/}
+        </StatsWrapper>
+        <PostWrapper>
+          <PostBlock />
+          <PostBlock />
+          <PostBlock />
+        </PostWrapper>
+      </MainDetail>
+      <SidebarEmbed>
+        <TwitchStreamForm />
+        <TwitterFeedForm />
+      </SidebarEmbed>
+    </MainContent>
+  </div>
+)
+
+export default Profile
