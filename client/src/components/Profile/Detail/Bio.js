@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
 // import BioForm from '../Forms/BioForm';
-import { SubmitButton } from '../Elements/index'
+import { SubmitButton } from '../../Elements/index'
 
 const ProfileInfo = styled.div`
     height: 200px;
