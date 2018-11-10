@@ -2,6 +2,8 @@ const path = require("path");
 const router = require("express").Router();
 const apiRoutes = require("./api");
 const user = require('./users');
+// require path to createUserAccount
+const createUserAccount = require('./createUserAccount')
 
 // API Routes
 router.use("/api", apiRoutes);
