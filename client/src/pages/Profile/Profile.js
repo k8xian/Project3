@@ -22,6 +22,10 @@ const GlobalStyle = createGlobalStyle`
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#171717', endColorstr='#1c2529',GradientType=0 );
     overflow: hidden;
   }
+
+  .element::-webkit-scrollbar { 
+    width: 0 !important 
+  }
 `
 
 //prop for edit view or not edit view
@@ -40,6 +44,7 @@ const Profile = () => (
       </ProfileHeader>
       <MainContent>
         <GamesList>
+          {/* Put a refresh button for each game in the stats */}
           <Game image="/images/games/halo.png" title="Halo 5"/>
           <Game image="/images/games/overwatch.png" title="Overwatch"/>
           <Game image="/images/games/fortnite.png" title="Fortnite"/>
@@ -47,6 +52,8 @@ const Profile = () => (
         </GamesList>
         <MainDetail>
           <StatsWrapper />
+          {/* Show regular stats */}
+          {/* Show  */}
           <PostWrapper>
             <PostBlock />
             <PostBlock />
