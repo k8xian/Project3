@@ -12,7 +12,7 @@ list-style-type: none;
 // add statname= and statvalue= to each prop stat to define a stat
 const LOLStats = props =>(
 <StyledStatBlock>
-    <Stat statname="pwned count" statvalue="10000"/>
+    <Stat statname="lol" statvalue="10000"/>
     <Stat/>
     <Stat/>
     <Stat/>
