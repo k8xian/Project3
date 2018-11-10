@@ -3,6 +3,12 @@ deployment link: [https://project3-k8xian.herokuapp.com/](https://project3-k8xia
 use npm install in client folder
 use yarn install in root, use yarn start to run
 
+# Frontend
+
+## Stats
+* All Stats will be compiled in "allstats", there are props listed in the comments
+* Ultimately the db needs to be set up to map to all of these. 
+
 
 ## Helper Function added
 joi: allows you to create blueprints or schemas for JavaScript objects (an object that stores information) to ensure validation of key information. https://github.com/hapijs/joi
@@ -16,6 +22,7 @@ Github - https://github.com/auth0/node-jsonwebtoken
 ## Google API + OAuth
 Access the Google API here - https://console.developers.google.com/apis
 Google OAuth Codes & Tokens - https://developers.google.com/oauthplayground/
+
 
 
 

@@ -5,7 +5,6 @@ const router = require("express").Router();
 //router.use("/fetch", fetch);
 
 //const require every route that is in here
-const createUserAccount = require("./createUserAccount.js");
 
 //required files for updating the user's game ID.
 const updateFortniteUID = require("./updateGameUID/updateFortniteUID.js");
@@ -18,9 +17,11 @@ const updateFortnitePlatform = require("./updateGamePlatform/updateFortnitePlatf
 const updateLOLPlatform = require("./updateGamePlatform/updateLOLPlatform.js");
 const updateOverwatchPlatform = require("./updateGamePlatform/updateOverwatchPlatform.js");
 
-//This route will be for the initial creation of a user's account.
-//This will match: backendURL/api/createUserAccount
-router.use("/createUserAccount", createUserAccount);
+//required files for scrapping the user's data for the games that they play
+const getNewFortniteData = require("./getNewUserData/getNewFortniteData");
+const getNewHalo5Data = require("./getNewUserData/getNewHalo5Data");
+const getNewLOLData = require("./getNewUserData/getNewLOLData");
+const getNewOverwatchData = require("./getNewUserData/getNewOverwatchData");
 
 //This route will be for handling of a user updating their UID for a game.
 //This will match: backendURL/api/updateGAMEHEREUID
@@ -36,5 +37,11 @@ router.use("/updateFortnitePlatform", updateFortnitePlatform);
 router.use("/updateLOLPlatform", updateLOLPlatform);
 router.use("/updateOverwatchPlatform", updateOverwatchPlatform);
 
+//This route will be for handling of a user updating their Platform for a game.
+//This will match: backendURL/api/getNewGAMENAMEHEREData
+router.use("/getNewFortniteData", getNewFortniteData);
+router.use("/getNewHalo5Data", getNewHalo5Data);
+router.use("/getNewLOLData", getNewLOLData);
+router.use("/getNewOverwatchData", getNewOverwatchData);
 
 module.exports = router;
