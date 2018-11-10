@@ -10,7 +10,7 @@ const db = require("../models");
 module.exports = {
     updateHalo5UID: (req, res) => {
         console.log(req.body);
-        db.userGameIDs //TODO: This "userAccountName" reference might have to switch depending on John's models
+        db.userProfileInformation //TODO: This "userAccountName" reference might have to switch depending on John's models
             .findOneAndUpdate({ "userAccountName" : req.body.userAccountName },
                 { $set: { "Halo5.UID": req.body.newUID } },
                 { new: true })
@@ -21,7 +21,7 @@ module.exports = {
             .catch(err => console.log(err));
     },
     updateFortniteUID: (req, res) => {
-        db.userGameIDs //TODO: This "userAccountName" reference might have to switch depending on John's models
+        db.userProfileInformation //TODO: This "userAccountName" reference might have to switch depending on John's models
             .findOneAndUpdate({ "userAccountName": req.body.userAccountName },
                 { $set: { "Fortnite.UID": req.body.newUID } },
                 { new: true })
@@ -32,7 +32,7 @@ module.exports = {
             .catch(err => console.log(err));
     },
     updateLOLUID: (req, res) => {
-        db.userGameIDs//TODO: This "userAccountName" reference might have to switch depending on John's models
+        db.userProfileInformation//TODO: This "userAccountName" reference might have to switch depending on John's models
             .findOneAndUpdate({ "userAccountName": req.body.userAccountName },
                 { $set: { "LOL.UID": req.body.newUID } },
                 { new: true })
@@ -43,7 +43,7 @@ module.exports = {
             .catch(err => console.log(err));
     },
     updateOverwatchUID: (req, res) => {
-        db.userGameIDs //TODO: This "userAccountName" reference might have to switch depending on John's models
+        db.userProfileInformation //TODO: This "userAccountName" reference might have to switch depending on John's models
             .findOneAndUpdate({ "userAccountName": req.body.userAccountName },
                 { $set: { "Overwatch.UID": req.body.newUID } },
                 { new: true })

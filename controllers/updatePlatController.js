@@ -9,7 +9,7 @@ const db = require("../models");
 module.exports = {
     
     updateFortnitePlatform: (req, res) => {
-        db.userGameIDs //TODO: This "userAccountName" reference might have to switch depending on John's models
+        db.userProfileInformation //TODO: This "userAccountName" reference might have to switch depending on John's models
             .findOneAndUpdate({ "userAccountName": req.body.userAccountName },
                 { $set: { "Fortnite.Platform": req.body.newPlatform } },
                 { new: true })
@@ -19,7 +19,7 @@ module.exports = {
             .catch(err => console.log(err));
     },
     updateLOLPlatform: (req, res) => {
-        db.userGameIDs //TODO: This "userAccountName" reference might have to switch depending on John's models
+        db.userProfileInformation //TODO: This "userAccountName" reference might have to switch depending on John's models
             .findOneAndUpdate({ "userAccountName": req.body.userAccountName },
                 { $set: { "LOL.Platform": req.body.newPlatform } },
                 { new: true })
@@ -30,7 +30,7 @@ module.exports = {
             .catch(err => console.log(err));
     },
     updateOverwatchPlatform: (req, res) => {
-        db.userGameIDs //TODO: This "userAccountName" reference might have to switch depending on John's models
+        db.userProfileInformation //TODO: This "userAccountName" reference might have to switch depending on John's models
             .findOneAndUpdate({ "userAccountName": req.body.userAccountName },
                 { $set: { "Overwatch.Platform": req.body.newPlatform } },
                 { new: true })
