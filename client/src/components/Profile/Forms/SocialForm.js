@@ -1,25 +1,9 @@
-//have a dropdown that lets you select available social media platforms
-//once one is selected, show a form that lets you enter your handle
-//convert this data to a link and display it
+//style display of current state in an anchor tag
+//store data in the backend
+//pull out data from the backend
 
-//save the input data to the backend
 import React from "react";
 import styled from 'styled-components';
-import { SubmitButton } from '../Elements/index'
-
-// const StyledLink = styled.div`
-// width: 100%;
-// display: block;
-// clear: both;
-// align-self: flex-end;
-// `
-
-// const SocialLink = props => (
-
-//     <StyledLink>
-//         {props.site || "site"}: <a href={props.url}>@ {props.username || "username"}</a>
-//     </StyledLink>
-// );
 
 
 const StyledSocialAdd = styled.button`
