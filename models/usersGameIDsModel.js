@@ -2,13 +2,18 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-var userGameIDsModel = new Schema ({
+//TODO: Add all profile information here
+//When this is created after user is authenticated
+//Make sure you make all of the created fields empty strings.
+//After that we can just update/put all of the other things
+
+var userProfileInformationModel = new Schema ({
     //Will this need to be on a google or a twitch ID?
     userAccountName: {
-        type: String,
+        type: Schema.Types.ObjectId,
         //TODO: Change this reference when given the correct models for users
         //BE SURE THIS REFERENCE IS UNIQUE
-        ref: "Users",
+        ref: "user",
     },
     //This should only be a UID
     //IBlameLee, Naded, etc
@@ -43,6 +48,6 @@ var userGameIDsModel = new Schema ({
     }
 });
 
-var userGameIDs = mongoose.model("userGameIDs", userGameIDsModel);
+var userProfileInformation = mongoose.model("userProfileInformation", userProfileInformationModel);
 
-module.exports = userGameIDs;
+module.exports = userProfileInformation;

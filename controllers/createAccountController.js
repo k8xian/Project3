@@ -32,7 +32,7 @@ Overwatch{
 
 module.exports = {
     create: function (req, res) {
-        db.userGameIDs
+        db.userProfileInformation
             .create(req.body)
             .then(dbRes => res.json(dbRes))
             .catch(err => res.status(422).json(err));
