@@ -29,47 +29,146 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
+const StatButtonSwitch = styled.button`
+background-color: rgba(0,0,0,0);
+border: 0;
+color: white;
+cursor: pointer;
+`
+
+const AllStatButton = styled.button`
+background-color: rgba(0,0,0,0);
+color: #00fff4;
+cursor: pointer;
+border: 1px solid #00fff4;
+`
+
 //prop for edit view or not edit view
 
-const Profile = () => (
-  <div>
-    <GlobalStyle />
-    <ProfileHeader>
-      <Photo />
-      <ProfileContent>
-        <Bio />
-      </ProfileContent>
-      <LinksWrapper>
-        <SocialForm />
-      </LinksWrapper>
-    </ProfileHeader>
-    <MainContent>
-      <GamesList>
-        {/* Put a refresh button for each game in the stats */}
-        <Game image="/images/games/halo.png" title="Halo 5" />
-        <Game image="/images/games/overwatch.png" title="Overwatch" />
-        <Game image="/images/games/fortnite.png" title="Fortnite" />
-        <Game image="/images/games/leagueof.png" title="League of Legends" />
-      </GamesList>
-      <MainDetail>
-        <StatsWrapper>
-          {/* Show regular stats */}
-          {/* Show  */}
-          <AllStats />
-          {/*Other stat blocks are going to get referenced here*/}
-        </StatsWrapper>
-        <PostWrapper>
-          <PostBlock />
-          <PostBlock />
-          <PostBlock />
-        </PostWrapper>
-      </MainDetail>
-      <SidebarEmbed>
-        <TwitchStreamForm />
-        <TwitterFeedForm />
-      </SidebarEmbed>
-    </MainContent>
-  </div>
-)
+class Profile extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      allStatsHidden: false,
+      haloStatsHidden: true,
+      lolStatsHidden: true,
+      fortniteStatsHidden: true,
+      overwatchStatsHidden: true,
+    };
+
+    this.showAllStats = this.showAllStats.bind(this);
+    this.showHaloStats = this.showHaloStats.bind(this);
+    this.showLOLStats = this.showLOLStats.bind(this);
+    this.showFortniteStats = this.showFortniteStats.bind(this);
+    this.showOverwatchStats = this.showOverwatchStats.bind(this);
+}
+
+showAllStats(event) {
+  event.preventDefault();
+  this.setState({
+      allStatsHidden: false,
+      haloStatsHidden: true,
+      lolStatsHidden: true,
+      fortniteStatsHidden: true,
+      overwatchStatsHidden: true
+
+  })
+}
+
+showHaloStats(event) {
+  event.preventDefault();
+  this.setState({
+      allStatsHidden: true,
+      haloStatsHidden: false,
+      lolStatsHidden: true,
+      fortniteStatsHidden: true,
+      overwatchStatsHidden: true
+
+  })
+}
+
+showLOLStats(event) {
+  event.preventDefault();
+  this.setState({
+      allStatsHidden: true,
+      haloStatsHidden: true,
+      lolStatsHidden: false,
+      fortniteStatsHidden: true,
+      overwatchStatsHidden: true
+
+  })
+}
+
+showFortniteStats(event) {
+  event.preventDefault();
+  this.setState({
+      allStatsHidden: true,
+      haloStatsHidden: true,
+      lolStatsHidden: true,
+      fortniteStatsHidden: false,
+      overwatchStatsHidden: true
+
+  })
+}
+
+showOverwatchStats(event) {
+  event.preventDefault();
+  this.setState({
+      allStatsHidden: true,
+      haloStatsHidden: true,
+      lolStatsHidden: true,
+      fortniteStatsHidden: true,
+      overwatchStatsHidden: false,
+  })
+}
+
+
+  render() {
+    return (
+      <div>
+        <GlobalStyle />
+        <ProfileHeader>
+          <Photo />
+          <ProfileContent>
+            <Bio />
+          </ProfileContent>
+          <LinksWrapper>
+            <SocialForm />
+          </LinksWrapper>
+        </ProfileHeader>
+        <MainContent>
+          <GamesList>
+            {/* Put a refresh button for each game in the stats */}
+            <AllStatButton onClick={this.showAllStats}>Show All Stats</AllStatButton>
+            <StatButtonSwitch onClick={this.showHaloStats}> <Game image="/images/games/halo.png" title="Halo 5" /></StatButtonSwitch>
+            <StatButtonSwitch onClick={this.showOverwatchStats}> <Game image="/images/games/overwatch.png" title="Overwatch" /></StatButtonSwitch>
+            <StatButtonSwitch onClick={this.showFortniteStats}><Game image="/images/games/fortnite.png" title="Fortnite" /></StatButtonSwitch>
+            <StatButtonSwitch onClick={this.showLOLStats}><Game image="/images/games/leagueof.png" title="League of Legends" /></StatButtonSwitch>
+          </GamesList>
+          <MainDetail>
+            <StatsWrapper>
+              {!this.state.allStatsHidden && <AllStats/>}
+              {!this.state.lolStatsHidden && <LOLStats/>}
+              {!this.state.fortniteStatsHidden && <FortniteStats />}
+              {!this.state.overwatchStatsHidden && <OverwatchStats/>}
+              {!this.state.haloStatsHidden && <HaloStats/>}
+            </StatsWrapper>
+            <PostWrapper>
+              <PostBlock />
+              <PostBlock />
+              <PostBlock />
+            </PostWrapper>
+          </MainDetail>
+          <SidebarEmbed>
+            <TwitchStreamForm />
+            <TwitterFeedForm />
+          </SidebarEmbed>
+        </MainContent>
+      </div>
+    )
+  }
+}
+
 
 export default Profile
