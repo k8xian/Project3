@@ -2,8 +2,11 @@ const PORT = process.env.PORT || 3001;
 const express = require("express");
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
+// can white list our deployed domain with cors
+app.use(cors());
 const mongoose = require("mongoose");
 require('dotenv').config()
 const routes = require("./routes");

@@ -27,7 +27,7 @@ router // for existing users with local account
 router.route('/oauth/google') // route for logging with google
     .post(passportGoogle, UsersController.googleOAuth);
 
-router.route('/oauth/facebook')
+router.route('/oauth/facebook') // route for logging with facebook
     .post(passport.authenticate('facebookToken', { session: false }), UsersController.facebookOAuth);
 
 
