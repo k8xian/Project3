@@ -4,9 +4,16 @@ import { Stat } from '../Elements/index'
 
 const StyledStatBlock = styled.ul`
 columns: 4;
-width: 90%;
-margin: 20px auto;
+width: 100%;
+margin: 20px 0;
 list-style-type: none;
+`
+const StatWrapper = styled.div`
+width: 90%;
+margin: auto;
+`
+const StatTitle = styled.h2`
+font-weight: 300;
 `
 
 const StyledRefreshStats = styled.button`
@@ -25,20 +32,23 @@ float: left;
 
 // add statname= and statvalue= to each prop stat to define a stat
 const FortniteStats = props =>(
-<StyledStatBlock>
-    <Stat statname="fortnite" statvalue="10000"/>
-    <Stat/>
-    <Stat/>
-    <Stat/>
-    <Stat/>
-    <Stat/>
-    <Stat/>
-    <Stat/>
-    <Stat/>
-    <Stat/>
-    <Stat/>
-    <StyledRefreshStats>Refresh Stats</StyledRefreshStats>
-</StyledStatBlock>
+    <StatWrapper>
+        <StatTitle>Fortnite</StatTitle>
+        <StyledStatBlock>
+            <Stat statname="fortnite" statvalue="10000" />
+            <Stat />
+            <Stat />
+            <Stat />
+            <Stat />
+            <Stat />
+            <Stat />
+            <Stat />
+            <Stat />
+            <Stat />
+            <Stat />
+        </StyledStatBlock>
+        <StyledRefreshStats>Refresh Stats</StyledRefreshStats>
+    </StatWrapper>
 );
 
 export default FortniteStats;

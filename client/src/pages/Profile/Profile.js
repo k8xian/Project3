@@ -29,6 +29,20 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
+const StatButtonSwitch = styled.button`
+background-color: rgba(0,0,0,0);
+border: 0;
+color: white;
+cursor: pointer;
+`
+
+const AllStatButton = styled.button`
+background-color: rgba(0,0,0,0);
+color: #00fff4;
+cursor: pointer;
+border: 1px solid #00fff4;
+`
+
 //prop for edit view or not edit view
 
 class Profile extends Component {
@@ -126,14 +140,11 @@ showOverwatchStats(event) {
         <MainContent>
           <GamesList>
             {/* Put a refresh button for each game in the stats */}
-            <Game image="/images/games/halo.png" title="Halo 5" />
-            <Game image="/images/games/overwatch.png" title="Overwatch" />
-            <Game image="/images/games/fortnite.png" title="Fortnite" />
-            <Game image="/images/games/leagueof.png" title="League of Legends" />
-            <button onClick={this.showHaloStats}>Halo</button>
-            <button onClick={this.showOverwatchStats}>Overwatch</button>
-            <button onClick={this.showFortniteStats}>Fortnite</button>
-            <button onClick={this.showLOLStats}>League of Legends</button>
+            <AllStatButton onClick={this.showAllStats}>Show All Stats</AllStatButton>
+            <StatButtonSwitch onClick={this.showHaloStats}> <Game image="/images/games/halo.png" title="Halo 5" /></StatButtonSwitch>
+            <StatButtonSwitch onClick={this.showOverwatchStats}> <Game image="/images/games/overwatch.png" title="Overwatch" /></StatButtonSwitch>
+            <StatButtonSwitch onClick={this.showFortniteStats}><Game image="/images/games/fortnite.png" title="Fortnite" /></StatButtonSwitch>
+            <StatButtonSwitch onClick={this.showLOLStats}><Game image="/images/games/leagueof.png" title="League of Legends" /></StatButtonSwitch>
           </GamesList>
           <MainDetail>
             <StatsWrapper>
