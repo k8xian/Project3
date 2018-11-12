@@ -10,8 +10,8 @@ module.exports = {
     SaveBio: (req, res) => {
         console.log(req.body);
         profile.bio 
-            .findOneAndUpdate({ "bio" : req.body.bio },
-                { $set: { "bio": req.body.bio } },
+            .findOneAndUpdate({ "userAccountName" : req.body.bio },
+                { $set: { "userAccountName": req.body.bio } },
                 { new: true })
             .then(dbRes => {
                 console.log("Hello");
@@ -22,8 +22,8 @@ module.exports = {
     addTwitch: (req, res) => {
         console.log(req.body);
         profile.addTwitch 
-            .findOneAndUpdate({ "bio" : req.body.addTwitch },
-                { $set: { "bio": req.body.addTwitch } },
+            .findOneAndUpdate({ "userAccountName" : req.body.addTwitch },
+                { $set: { "userAccountName": req.body.addTwitch } },
                 { new: true })
             .then(dbRes => {
                 console.log("Hello");
@@ -31,11 +31,11 @@ module.exports = {
             })
             .catch(err => console.log(err));
     },
-    AddTwitter: (req, res) => {
+    addTwitter: (req, res) => {
         console.log(req.body);
         profile.AddTwitter
-            .findOneAndUpdate({ "bio" : req.body.AddTwitter },
-                { $set: { "bio": req.body.AddTwitter} },
+            .findOneAndUpdate({ "userAccountName" : req.body.AddTwitter },
+                { $set: { "userAccountName": req.body.AddTwitter} },
                 { new: true })
             .then(dbRes => {
                 console.log("Hello");
@@ -46,8 +46,8 @@ module.exports = {
     addInstagram: (req, res) => {
         console.log(req.body);
         profile.addInstagram 
-            .findOneAndUpdate({ "bio" : req.body.addInstagram },
-                { $set: { "bio": req.body.addInstagram } },
+            .findOneAndUpdate({ "userAccountName" : req.body.addInstagram },
+                { $set: { "userAccountName": req.body.addInstagram } },
                 { new: true })
             .then(dbRes => {
                 console.log("Hello");

@@ -76,7 +76,7 @@ export default {
     addInstagram: function(userData) {
         console.log(userData);
         return axios.put(`api/addinstagram`, userData);
-    }
+    },
     /******************************************
     This section is for getting user's data via scrapping
     What this should look like on the front end:
