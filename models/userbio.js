@@ -18,7 +18,7 @@ const userSchema = new Schema({
         instagram: {
             type: String,
         }
-    });
+    };
 
 // mongoose prefunction
 userSchema.pre("save", async function (next) {
@@ -36,7 +36,7 @@ userSchema.pre("save", async function (next) {
     } catch (error) {
         next(error);
     }
-});
+},
 
 userSchema.methods.isValidPassword = async function (newPassword) {
     try {
@@ -44,7 +44,7 @@ userSchema.methods.isValidPassword = async function (newPassword) {
     } catch (error) {
         throw new Error(error);
     }
-};
+},
 
 // Create a model
 const User = mongoose.model("user", userSchema);

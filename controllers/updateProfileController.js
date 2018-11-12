@@ -31,7 +31,7 @@ module.exports = {
             })
             .catch(err => console.log(err));
     },
-    AddTwitter: (req, res) => {
+    addTwitter: (req, res) => {
         console.log(req.body);
         profile.AddTwitter
             .findOneAndUpdate({ "bio" : req.body.AddTwitter },
@@ -54,4 +54,5 @@ module.exports = {
                 res.json(dbRes);
             })
             .catch(err => console.log(err));
+        }
     };
