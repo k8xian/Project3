@@ -61,6 +61,7 @@ export default {
         console.log(userData);
         return axios.put(`/api/updateOverwatchPlatform`, userData);
     },
+<<<<<<< HEAD
     saveBio: function (userData) {
         console.log(userData);
         return axios.put(`/api/updatebio`, userData);
@@ -77,6 +78,8 @@ export default {
         console.log(userData);
         return axios.put(`api/addinstagram`, userData);
     },
+=======
+>>>>>>> d0b61b3f0883461df5a78de11651183778677fcf
     /******************************************
     This section is for getting user's data via scrapping
     What this should look like on the front end:

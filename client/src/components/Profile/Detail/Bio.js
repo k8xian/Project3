@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
+<<<<<<< HEAD
 // import BioForm from '../../Forms/BioForm';
 import { SubmitButton } from '../../Elements/index'
 import API from '../../../utils/API'
 // import { SubmitButton } from '../../Elements/index'
+=======
+// import BioForm from '../Forms/BioForm';
+import { SubmitButton } from '../../Elements/index'
+>>>>>>> d0b61b3f0883461df5a78de11651183778677fcf
 
 const ProfileInfo = styled.div`
     height: 200px;
