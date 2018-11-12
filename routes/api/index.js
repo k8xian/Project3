@@ -23,10 +23,25 @@ const updateBothLOL = require("./updateBoth/updateBothLOL.js");
 const updateBothOverwatch = require("./updateBoth/updateBothOverwatch.js");
 
 //required files for scrapping the user's data for the games that they play
-const getNewFortniteData = require("./getNewUserData/getNewFortniteData");
-const getNewHalo5Data = require("./getNewUserData/getNewHalo5Data");
-const getNewLOLData = require("./getNewUserData/getNewLOLData");
-const getNewOverwatchData = require("./getNewUserData/getNewOverwatchData");
+const getNewFortniteData = require("./getNewUserData/getNewFortniteData.js");
+const getNewHalo5Data = require("./getNewUserData/getNewHalo5Data.js");
+const getNewLOLData = require("./getNewUserData/getNewLOLData.js");
+const getNewOverwatchData = require("./getNewUserData/getNewOverwatchData.js");
+
+//required files for updating generic profile information
+const updateBio = require("./updateProfile/updateBio.js");
+const updateInstagram = require("./updateProfile/updateInstagram.js");
+const updateProfileImage = require("./updateProfile/updateProfileImage.js");
+const updateTwitch = require("./updateProfile/updateTwitch.js");
+const updateTwitter = require("./updateProfile/updateTwitter.js");
+
+//This route will be used for handling the updating of generic profile information
+//This will match: backendURL/api/updateXXXXXXXX
+router.use("/updateBio", updateBio);
+router.use("/updateInstagram", updateInstagram);
+router.use("/updateProfileImage", updateProfileImage);
+router.use("/updateTwitch", updateTwitch);
+router.use("/updateTwitter", updateTwitter);
 
 //This route will be for handling of a user updating their UID for a game.
 //This will match: backendURL/api/updateGAMEHEREUID

@@ -62,12 +62,15 @@ export default {
         return axios.put(`/api/updateOverwatchPlatform`, userData);
     },
     /******************************************
-    This section is for updating a user's platform
+    This section is for updating a user's generic profile information
     What this should look like on the front end:
-    API.updateBothGAMENAME({
-        userAccountName: this.state.userAccountName,
-        newPlatform: WHATEVER STATE WE USE TO CAPTURE PLATFORM INPUT(e.g: this.state.Platform)
-        newUID: WHATEVER STATE WE USE TO CAPTURE UID INPUT(e.g: this.state.UID)
+    API.updateWHATEVERNAMETOUPDATE({
+        Make a relevent object:
+        Bio: relevent state here
+        Instagram: relevent state here
+        ProfileImage: relevent state here
+        Twitch: relevent state here
+        Twitter: relevent state here
     })
     .then(res => {
         if(res.status === 200){
@@ -86,6 +89,26 @@ export default {
     updateBothOverwatch: function (userData) {
         console.log(userData);
         return axios.put(`/api/updateBothOverwatch`, userData);
+    },
+    updateBio: function (userData) {
+        console.log(userData);
+        return axios.put(`/api/updateBio`, userData);
+    },
+    updateInstagram: function (userData) {
+        console.log(userData);
+        return axios.put(`api/updateInstagram`, userData);
+    },
+    updateProfileImage: function (userData) {
+        console.log(userData);
+        return axios.put(`api/updateProfileImage`, userData);
+    },
+    updateTwitch: function (userData) {
+        console.log(userData);
+        return axios.put(`/api/updateTwitch`, userData);
+    },
+    updateTwitter: function (userData) {
+        console.log(userData);
+        return axios.put(`api/updateTwitter`, userData);
     },
     /******************************************
     This section is for getting user's data via scrapping
