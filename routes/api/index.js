@@ -17,6 +17,11 @@ const updateFortnitePlatform = require("./updateGamePlatform/updateFortnitePlatf
 const updateLOLPlatform = require("./updateGamePlatform/updateLOLPlatform.js");
 const updateOverwatchPlatform = require("./updateGamePlatform/updateOverwatchPlatform.js");
 
+//required files for updating both the user's game ID and platform at the same time
+const updateBothFortnite = require("./updateBoth/updateBothFortnite.js");
+const updateBothLOL = require("./updateBoth/updateBothLOL.js");
+const updateBothOverwatch = require("./updateBoth/updateBothOverwatch.js");
+
 //required files for scrapping the user's data for the games that they play
 const getNewFortniteData = require("./getNewUserData/getNewFortniteData");
 const getNewHalo5Data = require("./getNewUserData/getNewHalo5Data");
@@ -36,6 +41,13 @@ router.use("/updateOverwatchUID", updateOverwatchUID);
 router.use("/updateFortnitePlatform", updateFortnitePlatform);
 router.use("/updateLOLPlatform", updateLOLPlatform);
 router.use("/updateOverwatchPlatform", updateOverwatchPlatform);
+
+//This route will be for handling of a user updating their Platform for a game.
+//This will match: backendURL/api/updateGAMEHEREPlatform
+//Note: Halo5 does NOT require a platform.
+router.use("/updateBothFortnite", updateBothFortnite);
+router.use("/updateBothLOL", updateBothLOL);
+router.use("/updateBothOverwatch", updateBothOverwatch);
 
 //This route will be for handling of a user updating their Platform for a game.
 //This will match: backendURL/api/getNewGAMENAMEHEREData
