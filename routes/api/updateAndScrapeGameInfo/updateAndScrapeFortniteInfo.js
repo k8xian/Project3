@@ -1,9 +1,9 @@
 const router = require("express").Router();
 
 // const updatePlatController = require("../../../controllers/updatePlatController.js");
-const initialPostController = require("../../../controllers/initialDataPostController");
+const updateAndScrapeController = require("../../../controllers/updateAndScrapeController");
 
 router.route("/")
-    .post(initialPostController.initialDataPostFortnite)
+    .post(updateAndScrapeController.updateAndScrapeFortnite)
 
 module.exports = router;

@@ -79,17 +79,6 @@ export default {
     }).then(doSomething => if the status message was okay, this will fire, 
         tell the user data was successfully submitted)
     ******************************************/
-    updateBothFortnite: function (userData) {
-        return axios.put(`/api/updateBothFortnite`, userData);
-    },
-    updateBothLOL: function (userData) {
-        console.log(userData);
-        return axios.put(`/api/updateBothLOL`, userData);
-    },
-    updateBothOverwatch: function (userData) {
-        console.log(userData);
-        return axios.put(`/api/updateBothOverwatch`, userData);
-    },
     updateBio: function (userData) {
         console.log(userData);
         return axios.put(`/api/updateBio`, userData);
@@ -146,6 +135,41 @@ export default {
     },
     getNewOverwatchData: function (userData) {
         return axios.post(`/api/getOverwatchData`, userData);
+    },
+    /******************************************
+    This section is for updating and scraping data for the user
+    When they first submit their credentials, we may need to modify them
+    League of legends makes it so that spaces are + in the url
+    By default blizzard wants usernames on PC to be Chalor-1443 instead of #1443
+    Be sure you set "isPopulate: true", this will cause our get routes
+    To know that they should retrieve data for that object
+
+    NOTE: HALO 5 DOES NOT NEED PLATFORM 
+
+    What this should look like on the front end:
+    API.updateWHATEVERNAMETOUPDATE({
+        isPopulated: True
+        Platform: this.state.relevant platform
+        UID: this.state.relevant UID
+    })
+    .then(res => {
+        if(res.status === 200){
+            return res.json();
+        }
+    }).then(doSomething => if the status message was okay, this will fire, 
+        tell the user data was successfully submitted)
+    ******************************************/
+    updateAndScrapeFortnite: function (userData) {
+        return axios.post(`/api/updateAndScrapeFortnite`, userData);
+    },
+    updateAndScrapeHalo5: function (userData) {
+        return axios.post(`/api/updateAndScrapeHalo5`, userData);
+    },
+    updateAndScrapeLOL: function (userData) {
+        return axios.post(`/api/updateAndScrapeLOL`, userData);
+    },
+    updateAndScrapeOverwatch: function (userData) {
+        return axios.post(`/api/updateAndScrapeOverwatch`, userData);
     },
 };
 

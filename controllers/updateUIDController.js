@@ -12,7 +12,7 @@ module.exports = {
         console.log(req.body);
         db.userProfileInformation //TODO: This "userAccountName" reference might have to switch depending on John's models
             .findOneAndUpdate({ "userAccountName" : req.body.userAccountName },
-                { $set: { "Halo5.UID": req.body.newUID } },
+                { $set: { "Halo5.UID": req.body.UID } },
                 { new: true })
             .then(dbRes => {
                 console.log("Hello");
@@ -23,7 +23,7 @@ module.exports = {
     updateFortniteUID: (req, res) => {
         db.userProfileInformation //TODO: This "userAccountName" reference might have to switch depending on John's models
             .findOneAndUpdate({ "userAccountName": req.body.userAccountName },
-                { $set: { "Fortnite.UID": req.body.newUID } },
+                { $set: { "Fortnite.UID": req.body.UID } },
                 { new: true })
             .then(dbRes => {
                 console.log("Hello");
@@ -34,7 +34,7 @@ module.exports = {
     updateLOLUID: (req, res) => {
         db.userProfileInformation//TODO: This "userAccountName" reference might have to switch depending on John's models
             .findOneAndUpdate({ "userAccountName": req.body.userAccountName },
-                { $set: { "LOL.UID": req.body.newUID } },
+                { $set: { "LOL.UID": req.body.UID } },
                 { new: true })
             .then(dbRes => {
                 console.log("Hello");
@@ -45,7 +45,7 @@ module.exports = {
     updateOverwatchUID: (req, res) => {
         db.userProfileInformation //TODO: This "userAccountName" reference might have to switch depending on John's models
             .findOneAndUpdate({ "userAccountName": req.body.userAccountName },
-                { $set: { "Overwatch.UID": req.body.newUID } },
+                { $set: { "Overwatch.UID": req.body.UID } },
                 { new: true })
             .then(dbRes => {
                 console.log("Hello");

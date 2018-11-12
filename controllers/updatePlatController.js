@@ -17,7 +17,7 @@ module.exports = {
                 res.json(dbRes);
             })
             .catch(err => console.log(err));
-    },  
+    },
     updateLOLPlatform: (req, res) => {
         db.userProfileInformation //TODO: This "userAccountName" reference might have to switch depending on John's models
             .findOneAndUpdate({ "userAccountName": req.body.userAccountName },
