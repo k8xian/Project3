@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
 // import BioForm from '../Forms/BioForm';
+// import { SubmitButton } from '../Elements/index'
+import API from '../../../utils/API'
 import { SubmitButton } from '../../Elements/index'
 
 const ProfileInfo = styled.div`
@@ -60,13 +62,10 @@ class Bio extends Component {
     }
 
     handleChange(event) {
-        this.setState({value: event.target.value});
-      }
-    
-    handleSubmit(event) {
-    alert('You changed your bio:  ' + this.state.value);
-    event.preventDefault();
+        this.setState({ value: event.target.value });
     }
+
+
 
     showEditForm(event) {
         event.preventDefault();
@@ -75,11 +74,11 @@ class Bio extends Component {
         })
     }
 
-    toggleHidden () {
+    toggleHidden() {
         this.setState({
-          isHidden: !this.state.isHidden
+            isHidden: !this.state.isHidden
         })
-      }
+    }
 
     BioForm = () => (
         <StyledBioForm onSubmit={this.handleSubmit}>
@@ -87,6 +86,18 @@ class Bio extends Component {
             <SubmitButton id="bioSubmit" />
         </StyledBioForm>
     )
+
+    handleSubmit(event) {
+        alert('You changed your bio:  ' + this.state.Bio);
+        event.preventDefault();
+        if (this.state.Bio) {
+            API.updateBio({
+                bio: this.state.Bio
+            })
+                .then(res => this.saveBio())
+                .catch(err => console.log(err));
+        }
+    }
 
     //todo
     // show form only if you click the edit button
@@ -96,7 +107,7 @@ class Bio extends Component {
     render() {
         return (
             <ProfileInfo>
-                <StyledEditButton onClick={this.toggleHidden.bind(this)}/>
+                <StyledEditButton onClick={this.toggleHidden.bind(this)} />
                 <StyledBio>
                     {this.state.value}
                 </StyledBio>

@@ -15,6 +15,11 @@ var userProfileInformationModel = new Schema ({
         //BE SURE THIS REFERENCE IS UNIQUE
         ref: "user",
     },
+    Bio: String,
+    Twitch: String,
+    Twitter: String,
+    Instagram: String,
+    ProfileImage:String, //maybe this should be a file? That would take up a lot of space
     //This should only be a UID
     //IBlameLee, Naded, etc
     Halo5: {
