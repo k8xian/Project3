@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default {
-    createUserAccount: function(userData) {
+    createUserAccount: function (userData) {
         return axios.post(`/api/createUserAccount`, userData);
     },
     /******************************************
@@ -18,19 +18,19 @@ export default {
     }).then(doSomething => if the status message was okay, this will fire, 
         tell the user data was successfully submitted)
     ******************************************/
-    updateFortniteUID: function(userData) {
+    updateFortniteUID: function (userData) {
         console.log(userData);
         return axios.put(`/api/updateForniteUID`, userData);
     },
-    updateHalo5UID: function(userData) {
+    updateHalo5UID: function (userData) {
         console.log(userData);
         return axios.put(`/api/updateHalo5UID`, userData);
     },
-    updateLOLUID: function(userData) {
+    updateLOLUID: function (userData) {
         console.log(userData);
         return axios.put(`/api/updateLOLUID`, userData);
     },
-    updateOverwatchUID: function(userData) {
+    updateOverwatchUID: function (userData) {
         console.log(userData);
         return axios.put(`/api/updateOverwatchUID`, userData);
     },
@@ -48,34 +48,56 @@ export default {
     }).then(doSomething => if the status message was okay, this will fire, 
         tell the user data was successfully submitted)
     ******************************************/
-    updateFortnitePlatform: function(userData) {
+    updateFortnitePlatform: function (userData) {
         console.log("Update fortnite platform")
         console.log(userData);
         return axios.put(`/api/updateFortnitePlatform`, userData);
     },
-    updateLOLPlatform: function(userData) {
+    updateLOLPlatform: function (userData) {
         console.log(userData);
         return axios.put(`/api/updateLOLPlatform`, userData);
     },
-    updateOverwatchPlatform: function(userData) {
+    updateOverwatchPlatform: function (userData) {
         console.log(userData);
         return axios.put(`/api/updateOverwatchPlatform`, userData);
     },
-    saveBio: function(userData) {
+    /******************************************
+    This section is for updating a user's generic profile information
+    What this should look like on the front end:
+    API.updateWHATEVERNAMETOUPDATE({
+        Make a relevent object:
+        Bio: relevent state here
+        Instagram: relevent state here
+        ProfileImage: relevent state here
+        Twitch: relevent state here
+        Twitter: relevent state here
+    })
+    .then(res => {
+        if(res.status === 200){
+            return res.json();
+        }
+    }).then(doSomething => if the status message was okay, this will fire, 
+        tell the user data was successfully submitted)
+    ******************************************/
+    updateBio: function (userData) {
         console.log(userData);
-        return axios.put(`/api/updatebio`, userData);
+        return axios.put(`/api/updateBio`, userData);
     },
-    addTwitch: function(userData) {
+    updateInstagram: function (userData) {
         console.log(userData);
-        return axios.put(`/api/addtwitch`, userData);
+        return axios.put(`api/updateInstagram`, userData);
     },
-    addTwitter: function(userData) {
+    updateProfileImage: function (userData) {
         console.log(userData);
-        return axios.put(`api/addtwitter`, userData);
+        return axios.put(`api/updateProfileImage`, userData);
     },
-    addInstagram: function(userData) {
+    updateTwitch: function (userData) {
         console.log(userData);
-        return axios.put(`api/addinstagram`, userData);
+        return axios.put(`/api/updateTwitch`, userData);
+    },
+    updateTwitter: function (userData) {
+        console.log(userData);
+        return axios.put(`api/updateTwitter`, userData);
     },
     /******************************************
     This section is for getting user's data via scrapping

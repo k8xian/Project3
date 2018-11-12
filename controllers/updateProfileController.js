@@ -7,11 +7,11 @@ const db = require("../models");
 //Set the oldUID entry to the new one.
 
 module.exports = {
-    SaveBio: (req, res) => {
+    updateBio: (req, res) => {
         console.log(req.body);
-        profile.bio 
-            .findOneAndUpdate({ "userAccountName" : req.body.bio },
-                { $set: { "userAccountName": req.body.bio } },
+        db.userProfileInformation
+            .findOneAndUpdate({ "userAccountName": req.body.userAccountName },
+                { $set: { "userAccountName": req.body.updateBio } },
                 { new: true })
             .then(dbRes => {
                 console.log("Hello");
@@ -19,11 +19,11 @@ module.exports = {
             })
             .catch(err => console.log(err));
     },
-    addTwitch: (req, res) => {
+    updateTwitch: (req, res) => {
         console.log(req.body);
-        profile.addTwitch 
-            .findOneAndUpdate({ "userAccountName" : req.body.addTwitch },
-                { $set: { "userAccountName": req.body.addTwitch } },
+        db.userProfileInformation
+            .findOneAndUpdate({ "userAccountName": req.body.userAccountName },
+                { $set: { "userAccountName": req.body.updateTwitch } },
                 { new: true })
             .then(dbRes => {
                 console.log("Hello");
@@ -31,11 +31,11 @@ module.exports = {
             })
             .catch(err => console.log(err));
     },
-    addTwitter: (req, res) => {
+    updateTwitter: (req, res) => {
         console.log(req.body);
-        profile.AddTwitter
-            .findOneAndUpdate({ "userAccountName" : req.body.AddTwitter },
-                { $set: { "userAccountName": req.body.AddTwitter} },
+        db.userProfileInformation
+            .findOneAndUpdate({ "userAccountName": req.body.userAccountName },
+                { $set: { "userAccountName": req.body.updateTwitter } },
                 { new: true })
             .then(dbRes => {
                 console.log("Hello");
@@ -43,15 +43,28 @@ module.exports = {
             })
             .catch(err => console.log(err));
     },
-    addInstagram: (req, res) => {
+    updateInstagram: (req, res) => {
         console.log(req.body);
-        profile.addInstagram 
-            .findOneAndUpdate({ "userAccountName" : req.body.addInstagram },
-                { $set: { "userAccountName": req.body.addInstagram } },
+        db.userProfileInformation
+            .findOneAndUpdate({ "userAccountName": req.body.userAccountName },
+                { $set: { "userAccountName": req.body.updateInstagram } },
                 { new: true })
             .then(dbRes => {
                 console.log("Hello");
                 res.json(dbRes);
             })
             .catch(err => console.log(err));
-    };
+    },
+    updateProfileImage: (req, res) => {
+        console.log(req.body);
+        db.userProfileInformation
+            .findOneAndUpdate({ "userAccountName": req.body.userAccountName },
+                { $set: { "userAccountName": req.body.ProfileImage } },
+                { new: true })
+            .then(dbRes => {
+                console.log("Hello");
+                res.json(dbRes);
+            })
+            .catch(err => console.log(err));
+    },
+}

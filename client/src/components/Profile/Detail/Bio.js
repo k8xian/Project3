@@ -91,7 +91,7 @@ class Bio extends Component {
         alert('You changed your bio:  ' + this.state.Bio);
         event.preventDefault();
         if (this.state.Bio) {
-            API.saveBio({
+            API.updateBio({
                 bio: this.state.Bio
             })
                 .then(res => this.saveBio())
