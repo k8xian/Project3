@@ -17,7 +17,7 @@ module.exports = {
                 console.log("Hello");
                 res.json(dbRes);
             })
-            .catch(err => console.log(err));
+            .catch(err => res.status(422).json(err));
     },
     updateTwitch: (req, res) => {
         console.log(req.body);
@@ -29,7 +29,7 @@ module.exports = {
                 console.log("Hello");
                 res.json(dbRes);
             })
-            .catch(err => console.log(err));
+            .catch(err => res.status(422).json(err));
     },
     updateTwitter: (req, res) => {
         console.log(req.body);
@@ -41,7 +41,7 @@ module.exports = {
                 console.log("Hello");
                 res.json(dbRes);
             })
-            .catch(err => console.log(err));
+            .catch(err => res.status(422).json(err));
     },
     updateInstagram: (req, res) => {
         console.log(req.body);
@@ -53,7 +53,7 @@ module.exports = {
                 console.log("Hello");
                 res.json(dbRes);
             })
-            .catch(err => console.log(err));
+            .catch(err => res.status(422).json(err));
     },
     updateProfileImage: (req, res) => {
         console.log(req.body);
@@ -65,6 +65,6 @@ module.exports = {
                 console.log("Hello");
                 res.json(dbRes);
             })
-            .catch(err => console.log(err));
+            .catch(err => res.status(422).json(err));
     },
 }

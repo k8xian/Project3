@@ -97,7 +97,7 @@ class Bio extends Component {
                 .then(res => this.saveBio())
                 .catch(err => console.log(err));
         }
-    }
+}
 
     //todo
     // show form only if you click the edit button
