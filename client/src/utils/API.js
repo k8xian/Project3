@@ -13,6 +13,26 @@ export default {
         //will probably have to be gotten from req.params
         return axios.get(`/getProfileInfo`, userData)
     },
+    getFortniteData: function (userData) {
+        // I can not see if this works out right now, this
+        //will probably have to be gotten from req.params
+        return axios.get(`/getFortniteData`, userData)
+    },
+    getHalo5Data: function (userData) {
+        // I can not see if this works out right now, this
+        //will probably have to be gotten from req.params
+        return axios.get(`/getHalo5Data`, userData)
+    },
+    getLOLData: function (userData) {
+        // I can not see if this works out right now, this
+        //will probably have to be gotten from req.params
+        return axios.get(`/getLOLData`, userData)
+    },
+    getOverwatchData: function (userData) {
+        // I can not see if this works out right now, this
+        //will probably have to be gotten from req.params
+        return axios.get(`/getOverwatchData`, userData)
+    },
     /******************************************
     This section is for updating a user's ID
     What this should look like on the front end:
@@ -134,16 +154,16 @@ export default {
         tell the user data was successfully submitted)
     ******************************************/
     getNewFortniteData: function (userData) {
-        return axios.post(`/api/getFortniteData`, userData);
+        return axios.post(`/api/getNewFortniteData`, userData);
     },
     getNewHalo5Data: function (userData) {
-        return axios.post(`/api/getHalo5Data`, userData);
+        return axios.post(`/api/getNewHalo5Data`, userData);
     },
     getNewLOLData: function (userData) {
-        return axios.post(`/api/getLOLData`, userData);
+        return axios.post(`/api/getNewLOLData`, userData);
     },
     getNewOverwatchData: function (userData) {
-        return axios.post(`/api/getOverwatchData`, userData);
+        return axios.post(`/api/getNewOverwatchData`, userData);
     },
     /******************************************
     This section is for updating and scraping data for the user

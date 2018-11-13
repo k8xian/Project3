@@ -69,4 +69,17 @@ router.use("/updateProfileImage", updateProfileImage);
 router.use("/updateTwitch", updateTwitch);
 router.use("/updateTwitter", updateTwitter);
 
+//required files for getting game data
+const getFortniteData = require("./getGameData/getFortniteData");
+const getHalo5Data = require("./getGameData/getHalo5Data");
+const getLOLData = require("./getGameData/getLOLData");
+const getOverwatchData = require("./getGameData/getOverwatchData");
+
+//This route will be used for handling the getting of data for certain games
+//This will match: backendURL/api/getGAMENAMEHEREData
+router.use("/getFortniteData", getFortniteData);
+router.use("/getHalo5Data", getHalo5Data);
+router.use("/getLOLData", getLOLData);
+router.use("/getOverwatchData", getOverwatchData);
+
 module.exports = router;
