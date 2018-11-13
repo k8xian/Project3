@@ -10,10 +10,10 @@ const Schema = mongoose.Schema;
 var userProfileInformationModel = new Schema({
     //Will this need to be on a google or a twitch ID?
     userAccountName: {
-        type: Schema.Types.ObjectId,
+        type: String
         //TODO: Change this reference when given the correct models for users
         //BE SURE THIS REFERENCE IS UNIQUE
-        ref: "user",
+        // ref: "user",
     },
     //This should only be a UID
     //IBlameLee, Naded, etc
@@ -96,6 +96,16 @@ var userProfileInformationModel = new Schema({
         type: String,
         default: "",
     },
+    // TwitchEmbed: {
+    //     Link: {
+    //         type: String,
+    //         default: "",
+    //     },
+    //     isPopulated: {
+    //         type: Boolean,
+    //         default: false
+    //     }
+    // },
     Instagram: {
         type: String,
         default: "",

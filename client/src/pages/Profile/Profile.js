@@ -5,6 +5,7 @@ import { Bio, Game, PostBlock, Photo, SocialLink } from '../../components/Profil
 import { AllStats, FortniteStats, OverwatchStats, LOLStats, HaloStats } from '../../components/Stats/index'
 import { SocialForm, TwitchStreamForm, TwitterFeedForm } from '../../components/Profile/Forms/index'
 import { ProfileHeader, StatsWrapper, MainContent, GamesList, SidebarEmbed, LinksWrapper, PostWrapper, ProfileContent, MainDetail } from '../../components/Profile/Styles/index'
+import API from "../../utils/API";
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Libre+Franklin:300,800');
@@ -62,67 +63,106 @@ class Profile extends Component {
     this.showLOLStats = this.showLOLStats.bind(this);
     this.showFortniteStats = this.showFortniteStats.bind(this);
     this.showOverwatchStats = this.showOverwatchStats.bind(this);
-}
+  }
 
-showAllStats(event) {
-  event.preventDefault();
-  this.setState({
+  showAllStats(event) {
+    event.preventDefault();
+    this.setState({
       allStatsHidden: false,
       haloStatsHidden: true,
       lolStatsHidden: true,
       fortniteStatsHidden: true,
       overwatchStatsHidden: true
 
-  })
-}
+    })
+  }
 
-showHaloStats(event) {
-  event.preventDefault();
-  this.setState({
+  showHaloStats(event) {
+    event.preventDefault();
+    this.setState({
       allStatsHidden: true,
       haloStatsHidden: false,
       lolStatsHidden: true,
       fortniteStatsHidden: true,
       overwatchStatsHidden: true
 
-  })
-}
+    })
+  }
 
-showLOLStats(event) {
-  event.preventDefault();
-  this.setState({
+  showLOLStats(event) {
+    event.preventDefault();
+    this.setState({
       allStatsHidden: true,
       haloStatsHidden: true,
       lolStatsHidden: false,
       fortniteStatsHidden: true,
       overwatchStatsHidden: true
 
-  })
-}
+    })
+  }
 
-showFortniteStats(event) {
-  event.preventDefault();
-  this.setState({
+  showFortniteStats(event) {
+    event.preventDefault();
+    this.setState({
       allStatsHidden: true,
       haloStatsHidden: true,
       lolStatsHidden: true,
       fortniteStatsHidden: false,
       overwatchStatsHidden: true
 
-  })
-}
+    })
+  }
 
-showOverwatchStats(event) {
-  event.preventDefault();
-  this.setState({
+  showOverwatchStats(event) {
+    event.preventDefault();
+    this.setState({
       allStatsHidden: true,
       haloStatsHidden: true,
       lolStatsHidden: true,
       fortniteStatsHidden: true,
       overwatchStatsHidden: false,
-  })
-}
+    })
+  }
 
+  componentDidMount() {
+
+  }
+
+  componentWillMount() {
+    let url = new URL(document.URL);
+    const parseURL = url.pathname.split("/");
+
+    let userAccountName = parseURL[2];
+    console.log(userAccountName);
+    API.getProfileInformation({ 
+      userAccountName: userAccountName
+    })
+      .then(res => {
+        console.log(res);
+        this.setState({
+          userAccountName: userAccountName,
+          Bio: res.Bio,
+          Twitter: res.Twitter,
+          Twitch: res.Twitch,
+          Instagram: res.Instagram,
+          ProfileImage: res.ProfileImage,
+          //Are these necessary here?
+          //These will tell you if a game has an entry
+          //in the data base, if they do, we should just
+          //use these to display which games the person has info entered for
+          isFortnitePopulated: res.Fortnite.isPopulated,
+          isHalo5Populated: res.Halo5.isPopulated,
+          isLOLPopulated: res.LOL.isPopulated,
+          isOverwatchPopulated: res.Overwatch.isPopulated,
+          //These should contain the UID, Platform, and isPopulated
+          //They will be used when the url is in edit mode ie: /profile/:id/edit
+          Fortnite: res.Fortnite,
+          Halo5: res.Halo5,
+          LOL: res.LOL,
+          Overwatch: res.Overwatch,
+        });
+      });
+  }
 
   render() {
     return (
@@ -148,11 +188,11 @@ showOverwatchStats(event) {
           </GamesList>
           <MainDetail>
             <StatsWrapper>
-              {!this.state.allStatsHidden && <AllStats/>}
-              {!this.state.lolStatsHidden && <LOLStats/>}
+              {!this.state.allStatsHidden && <AllStats />}
+              {!this.state.lolStatsHidden && <LOLStats />}
               {!this.state.fortniteStatsHidden && <FortniteStats />}
-              {!this.state.overwatchStatsHidden && <OverwatchStats/>}
-              {!this.state.haloStatsHidden && <HaloStats/>}
+              {!this.state.overwatchStatsHidden && <OverwatchStats />}
+              {!this.state.haloStatsHidden && <HaloStats />}
             </StatsWrapper>
             <PostWrapper>
               <PostBlock />
