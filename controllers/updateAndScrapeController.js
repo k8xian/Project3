@@ -12,7 +12,7 @@ module.exports = {
     updateAndScrapeFortnite: (req, res) => {
         db.userProfileInformation //TODO: This "userAccountName" reference might have to switch depending on John's models
             .update({ "userAccountName": req.body.userAccountName },
-                { $set: { "Fortnite.Platform": req.body.Platform, "Fortnite.UID": req.body.UID } },
+                { $set: { "Fortnite.Platform": req.body.Platform, "Fortnite.UID": req.body.UID, "Fortnite.isPopulated": true } },
                 { new: true })
             .then(() => {
                 console.log("Testing this");
@@ -25,7 +25,7 @@ module.exports = {
     updateAndScrapeLOL: (req, res) => {
         db.userProfileInformation //TODO: This "userAccountName" reference might have to switch depending on John's models
             .update({ "userAccountName": req.body.userAccountName },
-                { $set: { "LOL.Platform": req.body.Platform, "LOL.UID": req.body.UID } },
+                { $set: { "LOL.Platform": req.body.Platform, "LOL.UID": req.body.UID, "LOL.isPopulated": true } },
                 { new: true })
             .then(dbRes => {
                 console.log(dbRes);
@@ -38,7 +38,7 @@ module.exports = {
     updateAndScrapeOverwatch: (req, res) => {
         db.userProfileInformation //TODO: This "userAccountName" reference might have to switch depending on John's models
             .update({ "userAccountName": req.body.userAccountName },
-                { $set: { "Overwatch.Platform": req.body.Platform, "Overwatch.UID": req.body.UID } },
+                { $set: { "Overwatch.Platform": req.body.Platform, "Overwatch.UID": req.body.UID, "Overwatch.isPopulated": true } },
                 { new: true })
             .then(dbRes => {
                 res.json(dbRes);
@@ -51,7 +51,7 @@ module.exports = {
     updateAndScrapeHalo5: (req, res) => {
         db.userProfileInformation //TODO: This "userAccountName" reference might have to switch depending on John's models
             .update({ "userAccountName": req.body.userAccountName },
-                { $set: { "Halo5.UID": req.body.UID } },
+                { $set: { "Halo5.UID": req.body.UID, "Halo5.isPopulated": true } },
                 { new: true })
             .then(dbRes => {
                 res.json(dbRes);
