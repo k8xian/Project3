@@ -125,7 +125,42 @@ class Profile extends Component {
   }
 
   componentDidMount() {
+    let url = new URL(document.URL);
+    const parseURL = url.pathname.split("/");
 
+    let userAccountName = parseURL[2];
+    
+    if (this.state.isFortnitePopulated) {
+      API.getFortniteData({
+        userAccountName: userAccountName,
+      })
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+    }
+
+    if (this.state.isHalo5Populated) {
+      API.getHalo5Data({
+        userAccountName: userAccountName,
+      })
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+    }
+
+    if (this.state.isLOLPopulated) {
+      API.getLOLData({
+        userAccountName: userAccountName,
+      })
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+    }
+
+    if (this.state.isOverwatchPopulated) {
+      API.getOverwatchData({
+        userAccountName: userAccountName,
+      })
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+    }
   }
 
   componentWillMount() {
@@ -133,8 +168,8 @@ class Profile extends Component {
     const parseURL = url.pathname.split("/");
 
     let userAccountName = parseURL[2];
-    console.log(userAccountName);
-    API.getProfileInformation({ 
+
+    API.getProfileInformation({
       userAccountName: userAccountName
     })
       .then(res => {
