@@ -4,6 +4,7 @@ const apiRoutes = require("./api");
 const user = require('./users');
 // require path to createUserAccount
 const createUserAccount = require('./createUserAccount')
+const getProfileInfo = require("./getProfileInfo.js");
 
 // API Routes
 router.use("/api", apiRoutes);
@@ -11,6 +12,10 @@ router.use("/api", apiRoutes);
 //This route will be for the initial creation of a user's account.
 //This will match: backendURL/createUserAccount
 router.use("/createUserAccount", createUserAccount);
+
+//This route will be for the initial creation of a user's account.
+//This will match: backendURL/getProfileInfo
+router.use("/getProfileInfo", getProfileInfo);
 
 //This is John's route to authenticate a user
 //This will match: backendurl/users

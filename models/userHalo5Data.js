@@ -13,6 +13,10 @@ const userHalo5DataModel = new Schema({
     winRate: String,
     gamesPlayed: String,
     timePlayed: String,
+    Date: {
+        type: Date,
+        default: Date.now
+    },
 });
 
 var halo5Data = mongoose.model("halo5Data", userHalo5DataModel);

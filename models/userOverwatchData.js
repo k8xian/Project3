@@ -11,6 +11,10 @@ const userOverwatchDataModel = new Schema({
     rankIcon: String,
     compRank: String,
     displayName: String,
+    Date: {
+        type: Date,
+        default: Date.now
+    },
 });
 
 var overwatchData = mongoose.model("overwatchData", userOverwatchDataModel);    

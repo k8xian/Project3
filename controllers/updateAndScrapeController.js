@@ -17,10 +17,10 @@ module.exports = {
             .then(() => {
                 console.log("Testing this");
             })
-            .catch(err => console.log(err));
+            .catch(err => res.status(422).json(err));
         scrape.scrapeFortnite(req.body)
             .then(scrapeRes => db.fortniteData.create(scrapeRes))
-            .catch(err => console.log(err));
+            .catch(err => res.status(422).json(err));
     },
     updateAndScrapeLOL: (req, res) => {
         db.userProfileInformation //TODO: This "userAccountName" reference might have to switch depending on John's models
@@ -30,10 +30,10 @@ module.exports = {
             .then(dbRes => {
                 console.log(dbRes);
             })
-            .catch(err => console.log(err));
+            .catch(err => res.status(422).json(err));
         scrape.scrapeLOL(req.body)
             .then(scrapeRes => db.lolData.create(scrapeRes))
-            .catch(err => console.log(err));
+            .catch(err => res.status(422).json(err));
     },
     updateAndScrapeOverwatch: (req, res) => {
         db.userProfileInformation //TODO: This "userAccountName" reference might have to switch depending on John's models
@@ -43,10 +43,10 @@ module.exports = {
             .then(dbRes => {
                 res.json(dbRes);
             })
-            .catch(err => console.log(err));
+            .catch(err => res.status(422).json(err));
         scrape.scrapeLOL(req.body)
             .then(scrapeRes => db.lolData.create(scrapeRes))
-            .catch(err => console.log(err));
+            .catch(err => res.status(422).json(err));
     },
     updateAndScrapeHalo5: (req, res) => {
         db.userProfileInformation //TODO: This "userAccountName" reference might have to switch depending on John's models
@@ -56,9 +56,9 @@ module.exports = {
             .then(dbRes => {
                 res.json(dbRes);
             })
-            .catch(err => console.log(err));
+            .catch(err => res.status(422).json(err));
         scrape.scrapeLOL(req.body)
             .then(scrapeRes => db.lolData.create(scrapeRes))
-            .catch(err => console.log(err));
+            .catch(err => res.status(422).json(err));
     },
 }

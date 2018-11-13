@@ -1,8 +1,17 @@
 import axios from "axios";
 
 export default {
+    //After a user is authorized, hit this route with their
+    //userAccountName
+    //That wil create an account for them automatically.
     createUserAccount: function (userData) {
-        return axios.post(`/api/createUserAccount`, userData);
+        return axios.post(`/createUserAccount`, userData);
+    },
+    //This will fetch the profile information from the route above
+    getProfileInformation: function (userData) {
+        // I can not see if this works out right now, this
+        //will probably have to be gotten from req.params
+        return axios.get(`/getProfileInfo`, userData)
     },
     /******************************************
     This section is for updating a user's ID

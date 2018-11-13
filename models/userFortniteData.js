@@ -13,6 +13,10 @@ const userFortniteDataModel = new Schema({
     totalWins: String,
     totalMatches: String,
     timePlayed: String,
+    Date: {
+        type: Date,
+        default: Date.now
+    },
 });
 
 var fortniteData = mongoose.model("fortniteData", userFortniteDataModel);

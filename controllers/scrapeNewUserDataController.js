@@ -34,9 +34,9 @@ module.exports = {
                             message: "Infomation is now up to date!"
                         });
                     })
-                    .catch(err => console.log(err));
+                    .catch(err => res.status(422).json(err));
             })
-            .catch(err => console.log(err));
+            .catch(err => res.status(422).json(err));
     },
     getNewHalo5Data: (req, res) => {
         return scrapper.scrapeHalo5(req.body)
@@ -60,9 +60,9 @@ module.exports = {
                             message: "Infomation is now up to date!"
                         });
                     })
-                    .catch(err => console.log(err));
+                    .catch(err => res.status(422).json(err));
             })
-            .catch(err => console.log(err));
+            .catch(err => res.status(422).json(err));
     },
     getNewLOLData: (req, res) => {
         return scrapper.scrapeLOL(req.body)
@@ -86,9 +86,9 @@ module.exports = {
                             message: "Infomation is now up to date!"
                         });
                     })
-                    .catch(err => console.log(err));
+                    .catch(err => res.status(422).json(err));
             })
-            .catch(err => console.log(err));
+            .catch(err => res.status(422).json(err));
     },
     getNewOverwatchData: (req, res) => {
         return scrapper.scrapeOverwatch(req.body)
@@ -110,8 +110,8 @@ module.exports = {
                             message: "Infomation is now up to date!"
                         });
                     })
-                    .catch(err => console.log(err));
+                    .catch(err => res.status(422).json(err));
             })
-            .catch(err => console.log(err));
+            .catch(err => res.status(422).json(err));
     },
 }

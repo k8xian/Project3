@@ -16,7 +16,7 @@ module.exports = {
             .then(dbRes => {
                 res.json(dbRes);
             })
-            .catch(err => console.log(err));
+            .catch(err => res.status(422).json(err));
     },
     updateLOLPlatform: (req, res) => {
         db.userProfileInformation //TODO: This "userAccountName" reference might have to switch depending on John's models
@@ -27,7 +27,7 @@ module.exports = {
                 console.log("Hello");
                 res.json(dbRes);
             })
-            .catch(err => console.log(err));
+            .catch(err => res.status(422).json(err));
     },
     updateOverwatchPlatform: (req, res) => {
         db.userProfileInformation //TODO: This "userAccountName" reference might have to switch depending on John's models
@@ -38,6 +38,6 @@ module.exports = {
                 console.log("Hello");
                 res.json(dbRes);
             })
-            .catch(err => console.log(err));
+            .catch(err => res.status(422).json(err));
     },
 };

@@ -13,6 +13,10 @@ const userLOLDataModel = new Schema({
     leaguePoints: String,
     record: String,
     rankImg: String,
+    Date: {
+        type: Date,
+        default: Date.now
+    },
 });
 
 var lolData = mongoose.model("lolData", userLOLDataModel);
