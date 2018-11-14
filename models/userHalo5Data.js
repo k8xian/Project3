@@ -12,7 +12,6 @@ const userHalo5DataModel = new Schema({
   winRate: Number,
   gamesPlayed: Number,
   timePlayed: Number,
-  totalKills: Number,
   killsPerGame: Number,
   headshotPercent: Number,
   Date: {
