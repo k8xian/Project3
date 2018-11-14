@@ -140,7 +140,13 @@ class Profile extends Component {
     const getProfileInformation = await API.getProfileInformation({ userAccountName: userAccountName });
     let profileInformation = getProfileInformation.data;
     this.setState({ profileInformation });
-    console.log(this.state);
+
+    let SocialMediaInfo = {
+      Bio: this.state.profileInformation.Bio,
+      Instagram: this.state.profileInformation.Instagram,
+      Twitch: this.state.profileInformation.Twitch,
+      Twitter: this.state.profileInformation.Twitter,
+    };
 
     let fortniteStats;
     let fortniteData;
@@ -174,8 +180,6 @@ class Profile extends Component {
       overwatchData = overwatchStats.data;
       this.setState({ overwatchData });
     }
-
-    console.log(this.state);
   }
 
   render() {
@@ -203,10 +207,10 @@ class Profile extends Component {
           <MainDetail>
             <StatsWrapper>
               {!this.state.allStatsHidden && <AllStats />}
-              {!this.state.lolStatsHidden && <LOLStats />}
-              {!this.state.fortniteStatsHidden && <FortniteStats />}
-              {!this.state.overwatchStatsHidden && <OverwatchStats />}
-              {!this.state.haloStatsHidden && <HaloStats />}
+              {!this.state.lolStatsHidden && <LOLStats lolData={this.state.lolData} handleClick={API.getNewLOLData}/>}
+              {!this.state.fortniteStatsHidden && <FortniteStats fortniteData ={this.state.fortniteData}/>}
+              {!this.state.overwatchStatsHidden && <OverwatchStats overwatchData={this.state.overwatchData}/>}
+              {!this.state.haloStatsHidden && <HaloStats halo5Data={this.state.halo5Data}/>}
             </StatsWrapper>
             <PostWrapper>
               <PostBlock />

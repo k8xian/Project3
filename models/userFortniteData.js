@@ -4,20 +4,20 @@ const Schema = mongoose.Schema;
 
 const userFortniteDataModel = new Schema({
   userAccountName: {
-    type:String,
+    type: String,
     // type: Schema.Types.ObjectId,
     // ref: "userProfileInformation",
   },
-  kdRatio: Number,
-  winRate: Number,
-  gamesPlayed: Number,
-  timePlayed: Number,
-  totalKills: Number,
-  totalWins: Number,
   Date: {
     type: Date,
     default: Date.now
   },
+  gamesPlayed: Number,
+  kdRatio: Number,
+  timePlayed: Number,
+  totalKills: Number,
+  totalWins: Number,
+  winRate: Number,
 });
 
 var fortniteData = mongoose.model("fortniteData", userFortniteDataModel);

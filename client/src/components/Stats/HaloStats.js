@@ -32,24 +32,19 @@ float: left;
 `
 
 // add statname= and statvalue= to each prop stat to define a stat
-const HaloStats = props =>(
-    <StatWrapper>
-        <StatTitle>Halo 5</StatTitle>
-        <StyledStatBlock>
-            <Stat statname="halo" statvalue="10000" />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-        </StyledStatBlock>
-        <StyledRefreshStats>Refresh Stats</StyledRefreshStats>
-    </StatWrapper>
+const HaloStats = props => (
+  <StatWrapper>
+    <StatTitle>Halo 5</StatTitle>
+    <StyledStatBlock>
+      <Stat statname="Kill/Death Ratio" statvalue={props.halo5Data.kdRatio} />
+      <Stat statname="Kills per Game" statvalue={props.halo5Data.killsPerGame} />
+      <Stat statname="Games played" statvalue={props.halo5Data.gamesPlayed} />
+      <Stat statname="Win Rate" statvalue={props.halo5Data.winRate} />
+      <Stat statname="Headshot %" statvalue={`${props.halo5Data.headshotPercent}%`} />
+      <Stat statname="Time Played" statvalue={`${props.halo5Data.timePlayed} hours`}/>
+    </StyledStatBlock>
+    <StyledRefreshStats>Refresh Stats</StyledRefreshStats>
+  </StatWrapper>
 );
 
 export default HaloStats;

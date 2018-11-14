@@ -31,25 +31,19 @@ float: left;
 `
 
 // add statname= and statvalue= to each prop stat to define a stat
-const FortniteStats = props =>(
-  
-    <StatWrapper>
-        <StatTitle>Fortnite</StatTitle>
-        <StyledStatBlock>
-            <Stat statname="fortnite" statvalue="10000" />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-        </StyledStatBlock>
-        <StyledRefreshStats>Refresh Stats</StyledRefreshStats>
-    </StatWrapper>
+const FortniteStats = props => (
+  <StatWrapper>
+    <StatTitle>Fortnite</StatTitle>
+    <StyledStatBlock>
+      <Stat statname="Games Played" statvalue={props.fortniteData.gamesPlayed}/>
+      <Stat statname="Kill/Death Ratio" statvalue={`${props.fortniteData.kdRatio}%`}/>
+      <Stat statname="Total Kills" statvalue={props.fortniteData.totalKills}/>
+      <Stat statname="Total Wins" statvalue={props.fortniteData.totalWins}/>
+      <Stat statname="Win Rate" statvalue={`${props.fortniteData.winRate}%`}/>
+      <Stat statname="Time Played" statvalue={`${props.fortniteData.timePlayed} hours`}/>
+    </StyledStatBlock>
+    <StyledRefreshStats>Refresh Stats</StyledRefreshStats>
+  </StatWrapper>
 );
 
 export default FortniteStats;

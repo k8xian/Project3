@@ -7,7 +7,6 @@ height: 200px;
 float: left;
 `
 
-
 const StyledSocialAdd = styled.button`
 clear: both;
 display: block;
