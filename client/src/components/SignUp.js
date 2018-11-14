@@ -4,22 +4,21 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
+import { SubmitButton } from './Elements/index'
 
-import * as actions from '../../actions'
-import CustomInput from '../../components/CustomInput';
+import * as actions from '../actions'
+import CustomInput from "./CustomInput";
 
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
-import Logo from "../../components/Logo";
-import { Link } from "react-router-dom";
-import API from "../../utils/API";
+import Logo from "../components/Logo";
 
 const TwitchButton = styled.button`
   background-color: #6441a4;
   color: white;
   border: 0;
   width: 240px;
-  height: 34px;
+  height: 34px]
   clear: both;
   cursor: pointer;
 `;
@@ -51,6 +50,30 @@ margin: 80px auto 0;
 text-align: center;
 `;
 
+const StyledButton = styled.button`
+border-radius: 0;
+    border: 0;
+    background-color: rgba(0,0,0,0);
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+`;
+
+const StyledLink = styled.div`
+width: 140px;
+height: 40px;
+border-radius: 0;
+border: 1px solid #00fff4;
+color: #00fff4;
+background-color: rgba(0,0,0,0);
+float: left;
+text-decoration: none;
+font-size: 1rem;
+padding: 0;
+line-height: 40px;
+`;
+
+
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Libre+Franklin:300,800');
   body {
@@ -70,7 +93,8 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-class Login extends Component {
+
+class SignUp extends Component {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
@@ -104,51 +128,65 @@ class Login extends Component {
     }
   }
 
-  // Add code to get the book with an _id equal to the id in the route param
-  // e.g. http://localhost:3000/books/:id
-  // The book id for this route can be accessed using this.props.match.params.id
-
-  //   initial loading of these components
-  //   componentDidMount() {
-  //     API.getBook(this.props.match.params.id)
-  //     .then(res => this.setState({book: res.data}))
-  //     .catch(err => console.log(err));
-  //   }
-
   render() {
+    //access to this because of redux form
     const { handleSubmit } = this.props;
     return (
       <LoginWrapper>
         <GlobalStyle />
         <Logo />
-        {/* Put submit handler in this form tag here */}
-        <form >
-          {/* Put on change handler for email here */}
-          <input type="email"></input>
-          {/* put on change handler for password here */}
-          <input type="password"></input>
-          <input type="submit"></input>
+        <div className="row">
+          <div className="col">
+            <form onSubmit={handleSubmit(this.onSubmit)}>
+              <fieldset>
+                <Field
+                  name="email"
+                  type="text"
+                  id="email"
+                  label="Enter Your Email"
+                  placeholder="example@example.com"
+                  component={CustomInput}
+                />
+              </fieldset>
+              <Field
+                name="password"
+                type="password"
+                id="password"
+                label="Enter your password"
+                placeholder="password"
+                component={CustomInput}
+              />
+              <fieldset />
 
-          {this.props.errorMessage ?
-            <div className="alert alert-danger">
-              {this.props.errorMessage}
-            </div> : null}
+              {this.props.errorMessage ?
+                <div className="alert alert-danger">
+                  {this.props.errorMessage}
+                </div> : null}
 
-          <button type="submit" className="btn btn-primary">
-            Sign Up
-            </button>
-        </form>
-        <GoogleButton
-          clientId="308330016501-kra9rvrv1fpacchgcdnabpdrk0gvv7ps.apps.googleusercontent.com"
-          buttonText="Google"
-          onSuccess={this.responseGoogle}
-          onFailure={this.responseGoogle}
-          className="btn btn-outline-danger"
-        />
-        <a href="/profile">
-          <TwitchButton>Login with Twitch.tv</TwitchButton>
-        </a>
-      </LoginWrapper >
+
+              <StyledButton type="submit">
+              <StyledLink>Sign Up</StyledLink>
+            </StyledButton>
+            <a href="/signin"><StyledLink>Sign In</StyledLink></a>
+            </form>
+          </div>
+
+              {/* <FacebookLogin
+                appId="246458786048562"
+                // autoLoad={true}
+                textButon="Facebook"
+                fields="name, email, picture"
+                callback={this.responseFacebook}
+                cssClass="btn btn-outline-primary"
+              /> */}
+              <GoogleButton
+                clientId="308330016501-kra9rvrv1fpacchgcdnabpdrk0gvv7ps.apps.googleusercontent.com"
+                buttonText="Google"
+                onSuccess={this.responseGoogle}
+                onFailure={this.responseGoogle}
+                className="btn btn-outline-danger">Login with Google</GoogleButton>
+        </div>
+      </LoginWrapper>
     );
   }
 }
@@ -161,5 +199,5 @@ function mapStateToProps(state) {
 
 export default compose(
   connect(mapStateToProps, actions),
-  reduxForm({ form: "login" })
-)(Login);
+  reduxForm({ form: "signup" })
+)(SignUp);
