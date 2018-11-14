@@ -143,29 +143,39 @@ class Profile extends Component {
     console.log(this.state);
 
     let fortniteStats;
+    let fortniteData;
     let halo5Stats;
+    let halo5Data;
     let lolStats;
+    let lolData;
     let overwatchStats;
+    let overwatchData;
 
     if (this.state.profileInformation.Fortnite.isPopulated) {
       fortniteStats = await API.getFortniteData({ userAccountName: userAccountName });
-      console.log(fortniteStats);
+      fortniteData = fortniteStats.data;
+      this.setState({ fortniteData });
     }
 
-    if (!this.state.profileInformation.Halo5.isPopulated) {
+    if (this.state.profileInformation.Halo5.isPopulated) {
       halo5Stats = await API.getHalo5Data({ userAccountName: userAccountName });
-      console.log(halo5Stats);
+      halo5Data = halo5Stats.data;
+      this.setState({ halo5Data });
     }
 
     if (this.state.profileInformation.LOL.isPopulated) {
       lolStats = await API.getLOLData({ userAccountName: userAccountName });
-      console.log(lolStats);
+      lolData = lolStats.data;
+      this.setState({ lolData });
     }
 
     if (this.state.profileInformation.Overwatch.isPopulated) {
       overwatchStats = await API.getOverwatchData({ userAccountName: userAccountName });
-      console.log(overwatchStats);
+      overwatchData = overwatchStats.data;
+      this.setState({ overwatchData });
     }
+
+    console.log(this.state);
   }
 
   render() {

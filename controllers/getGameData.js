@@ -6,7 +6,7 @@ module.exports = ({
     console.log(req.params.id)
     db.fortniteData //this req.params.id will probably change in the future
       .findOne({ "userAccountName": req.params.id })
-      .then(dbRes => console.log(dbRes))
+      .then(dbRes => res.json(dbRes))
       .catch(err => res.status(422).json(err));
   },
   getHalo5Data: (req, res) => {
