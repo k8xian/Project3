@@ -8,12 +8,12 @@ const userFortniteDataModel = new Schema({
     // type: Schema.Types.ObjectId,
     // ref: "userProfileInformation",
   },
-  totalKills: String,
-  kdRatio: String,
-  winRate: String,
-  totalWins: String,
-  totalMatches: String,
-  timePlayed: String,
+  kdRatio: Number,
+  winRate: Number,
+  gamesPlayed: Number,
+  timePlayed: Number,
+  totalKills: Number,
+  totalWins: Number,
   Date: {
     type: Date,
     default: Date.now
@@ -24,4 +24,4 @@ var fortniteData = mongoose.model("fortniteData", userFortniteDataModel);
 
 module.exports = fortniteData;
 
-// db.fortniteData.insertOne({totalKills: "875", kdRatio:"2.04",winRate:"5.71%",wins:"26",totalMatches:"455",timePlayed:"51.43",userAccountName:"Chaelor"})
+// db.fortniteData.insertOne({totalKills: 875, kdRatio:2.04,winRate:5.71%,wins:26,totalMatches:455,timePlayed:51.43,userAccountName:"Chaelor"})
