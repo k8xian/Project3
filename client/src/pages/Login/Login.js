@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import Logo from "../../components/Logo";
 import { Link } from "react-router-dom";
-// import API from "../../utils/API";
+import API from "../../utils/API";
 
 const TwitchButton = styled.button`
   background-color: #6441a4;
@@ -82,13 +82,13 @@ class Login extends Component {
         <GlobalStyle />
         <Logo />
         {/* Put submit handler in this form tag here */}
-          <form >
-            {/* Put on change handler for email here */}
-            <input type="email"></input>
-            {/* put on change handler for password here */}
-            <input type="password"></input>
-            <input type="submit"></input>
-          </form>
+        <form >
+          {/* Put on change handler for email here */}
+          <input type="email"></input>
+          {/* put on change handler for password here */}
+          <input type="password"></input>
+          <input type="submit"></input>
+        </form>
 
 
 

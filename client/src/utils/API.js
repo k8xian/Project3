@@ -17,22 +17,22 @@ export default {
     getFortniteData: function (userData) {
         // I can not see if this works out right now, this
         //will probably have to be gotten from req.params
-        return axios.get(`/getFortniteData` + userData.userAccountName )
+        return axios.get(`/api/getFortniteData/` + userData.userAccountName )
     },
     getHalo5Data: function (userData) {
         // I can not see if this works out right now, this
         //will probably have to be gotten from req.params
-        return axios.get(`/getHalo5Data` + userData.userAccountName )
+        return axios.get(`/api/getHalo5Data/` + userData.userAccountName )
     },
     getLOLData: function (userData) {
         // I can not see if this works out right now, this
         //will probably have to be gotten from req.params
-        return axios.get(`/getLOLData` + userData.userAccountName )
+        return axios.get(`/api/getLOLData/` + userData.userAccountName )
     },
     getOverwatchData: function (userData) {
         // I can not see if this works out right now, this
         //will probably have to be gotten from req.params
-        return axios.get(`/getOverwatchData` + userData.userAccountName )
+        return axios.get(`/api/getOverwatchData/` + userData.userAccountName )
     },
     /******************************************
     This section is for updating a user's ID
@@ -50,19 +50,19 @@ export default {
     ******************************************/
     updateFortniteUID: function (userData) {
         console.log(userData);
-        return axios.put(`/api/updateForniteUID` + userData.userAccountName, userData);
+        return axios.put(`/api/updateForniteUID/` + userData.userAccountName, userData);
     },
     updateHalo5UID: function (userData) {
         console.log(userData);
-        return axios.put(`/api/updateHalo5UID` + userData.userAccountName, userData);
+        return axios.put(`/api/updateHalo5UID/` + userData.userAccountName, userData);
     },
     updateLOLUID: function (userData) {
         console.log(userData);
-        return axios.put(`/api/updateLOLUID` + userData.userAccountName, userData);
+        return axios.put(`/api/updateLOLUID/` + userData.userAccountName, userData);
     },
     updateOverwatchUID: function (userData) {
         console.log(userData);
-        return axios.put(`/api/updateOverwatchUID` + userData.userAccountName, userData);
+        return axios.put(`/api/updateOverwatchUID/` + userData.userAccountName, userData);
     },
     /******************************************
     This section is for updating a user's platform
@@ -81,15 +81,15 @@ export default {
     updateFortnitePlatform: function (userData) {
         console.log("Update fortnite platform")
         console.log(userData);
-        return axios.put(`/api/updateFortnitePlatform` + userData.userAccountName, userData);
+        return axios.put(`/api/updateFortnitePlatform/` + userData.userAccountName, userData);
     },
     updateLOLPlatform: function (userData) {
         console.log(userData);
-        return axios.put(`/api/updateLOLPlatform` + userData.userAccountName, userData);
+        return axios.put(`/api/updateLOLPlatform/` + userData.userAccountName, userData);
     },
     updateOverwatchPlatform: function (userData) {
         console.log(userData);
-        return axios.put(`/api/updateOverwatchPlatform` + userData.userAccountName, userData);
+        return axios.put(`/api/updateOverwatchPlatform/` + userData.userAccountName, userData);
     },
     /******************************************
     This section is for updating a user's generic profile information
@@ -111,23 +111,23 @@ export default {
     ******************************************/
     updateBio: function (userData) {
         console.log(userData);
-        return axios.put(`/api/updateBio` + userData.userAccountName, userData);
+        return axios.put(`/api/updateBio/` + userData.userAccountName, userData);
     },
     updateInstagram: function (userData) {
         console.log(userData);
-        return axios.put(`api/updateInstagram` + userData.userAccountName, userData);
+        return axios.put(`api/updateInstagram/` + userData.userAccountName, userData);
     },
     updateProfileImage: function (userData) {
         console.log(userData);
-        return axios.put(`api/updateProfileImage` + userData.userAccountName, userData);
+        return axios.put(`api/updateProfileImage/` + userData.userAccountName, userData);
     },
     updateTwitch: function (userData) {
         console.log(userData);
-        return axios.put(`/api/updateTwitch` + userData.userAccountName, userData);
+        return axios.put(`/api/updateTwitch/` + userData.userAccountName, userData);
     },
     updateTwitter: function (userData) {
         console.log(userData);
-        return axios.put(`api/updateTwitter` + userData.userAccountName, userData);
+        return axios.put(`api/updateTwitter/` + userData.userAccountName, userData);
     },
     /******************************************
     This section is for getting user's data via scrapping

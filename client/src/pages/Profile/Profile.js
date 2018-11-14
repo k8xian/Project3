@@ -124,79 +124,48 @@ class Profile extends Component {
     })
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+
+    //This code is used for parsing the url.
+    //First line gets the url,
+    //Second line WILL NEED TO BE CHANGED ON LIVE. It splits the url where / marks are
+    //Third line grabs the name from the url 
     let url = new URL(document.URL);
     const parseURL = url.pathname.split("/");
-
-    let userAccountName = parseURL[2];
-    
-    if (this.state.isFortnitePopulated) {
-      API.getFortniteData({
-        userAccountName: userAccountName,
-      })
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-    }
-
-    if (this.state.isHalo5Populated) {
-      API.getHalo5Data({
-        userAccountName: userAccountName,
-      })
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-    }
-
-    if (this.state.isLOLPopulated) {
-      API.getLOLData({
-        userAccountName: userAccountName,
-      })
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-    }
-
-    if (this.state.isOverwatchPopulated) {
-      API.getOverwatchData({
-        userAccountName: userAccountName,
-      })
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-    }
-  }
-
-  componentWillMount() {
-    let url = new URL(document.URL);
-    const parseURL = url.pathname.split("/");
-
     let userAccountName = parseURL[2];
 
-    API.getProfileInformation({
-      userAccountName: userAccountName
-    })
-      .then(res => {
-        console.log(res);
-        this.setState({
-          userAccountName: userAccountName,
-          Bio: res.Bio,
-          Twitter: res.Twitter,
-          Twitch: res.Twitch,
-          Instagram: res.Instagram,
-          ProfileImage: res.ProfileImage,
-          //Are these necessary here?
-          //These will tell you if a game has an entry
-          //in the data base, if they do, we should just
-          //use these to display which games the person has info entered for
-          isFortnitePopulated: res.Fortnite.isPopulated,
-          isHalo5Populated: res.Halo5.isPopulated,
-          isLOLPopulated: res.LOL.isPopulated,
-          isOverwatchPopulated: res.Overwatch.isPopulated,
-          //These should contain the UID, Platform, and isPopulated
-          //They will be used when the url is in edit mode ie: /profile/:id/edit
-          Fortnite: res.Fortnite,
-          Halo5: res.Halo5,
-          LOL: res.LOL,
-          Overwatch: res.Overwatch,
-        });
-      });
+    //This will await the data that is retrieved through the call to the backend
+    //And then it will save it to the profileInformation variable
+    //Then set state to the retrieved information, while preserving what was there
+    const getProfileInformation = await API.getProfileInformation({ userAccountName: userAccountName });
+    let profileInformation = getProfileInformation.data;
+    this.setState({ profileInformation });
+    console.log(this.state);
+
+    let fortniteStats;
+    let halo5Stats;
+    let lolStats;
+    let overwatchStats;
+
+    if (this.state.profileInformation.Fortnite.isPopulated) {
+      fortniteStats = await API.getFortniteData({ userAccountName: userAccountName });
+      console.log(fortniteStats);
+    }
+
+    if (!this.state.profileInformation.Halo5.isPopulated) {
+      halo5Stats = await API.getHalo5Data({ userAccountName: userAccountName });
+      console.log(halo5Stats);
+    }
+
+    if (this.state.profileInformation.LOL.isPopulated) {
+      lolStats = await API.getLOLData({ userAccountName: userAccountName });
+      console.log(lolStats);
+    }
+
+    if (this.state.profileInformation.Overwatch.isPopulated) {
+      overwatchStats = await API.getOverwatchData({ userAccountName: userAccountName });
+      console.log(overwatchStats);
+    }
   }
 
   render() {
