@@ -18,7 +18,7 @@ const TwitchButton = styled.button`
   color: white;
   border: 0;
   width: 240px;
-  height: 34px;
+  height: 34px]
   clear: both;
   cursor: pointer;
 `;
@@ -49,6 +49,30 @@ max-width: 300px;
 margin: 80px auto 0;
 text-align: center;
 `;
+
+const StyledButton = styled.button`
+border-radius: 0;
+    border: 0;
+    background-color: rgba(0,0,0,0);
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+`;
+
+const StyledLink = styled.div`
+width: 140px;
+height: 40px;
+border-radius: 0;
+border: 1px solid #00fff4;
+color: #00fff4;
+background-color: rgba(0,0,0,0);
+float: left;
+text-decoration: none;
+font-size: 1rem;
+padding: 0;
+line-height: 40px;
+`;
+
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Libre+Franklin:300,800');
@@ -140,9 +164,10 @@ class SignUp extends Component {
                 </div> : null}
 
 
-              <SubmitButton type="submit" className="btn btn-primary">
-                Sign Up
-            </SubmitButton>
+              <StyledButton type="submit">
+              <StyledLink>Sign Up</StyledLink>
+            </StyledButton>
+            <a href="/signin"><StyledLink>Sign In</StyledLink></a>
             </form>
           </div>
 
