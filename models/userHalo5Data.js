@@ -8,12 +8,12 @@ const userHalo5DataModel = new Schema({
     // type: Schema.Types.ObjectId,
     // ref: "user",
   },
-  KDA: String,
-  killsPerGame: String,
-  headshotPercent: String,
-  winRate: String,
-  gamesPlayed: String,
-  timePlayed: String,
+  kdRatio: Number,
+  winRate: Number,
+  gamesPlayed: Number,
+  timePlayed: Number,
+  killsPerGame: Number,
+  headshotPercent: Number,
   Date: {
     type: Date,
     default: Date.now
