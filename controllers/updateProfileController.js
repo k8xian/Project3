@@ -7,64 +7,59 @@ const db = require("../models");
 //Set the oldUID entry to the new one.
 
 module.exports = {
-    updateBio: (req, res) => {
-        console.log(req.body);
-        db.userProfileInformation
-            .findOneAndUpdate({ "userAccountName": req.params.id },
-                { $set: { "Bio": req.body.updateBio } },
-                { new: true })
-            .then(dbRes => {
-                console.log("Hello");
-                res.json(dbRes);
-            })
-            .catch(err => res.status(422).json(err));
-    },
-    updateTwitch: (req, res) => {
-        console.log(req.body);
-        db.userProfileInformation
-            .findOneAndUpdate({ "userAccountName": req.params.id },
-                { $set: { "Twitch": req.body.updateTwitch } },
-                { new: true })
-            .then(dbRes => {
-                console.log("Hello");
-                res.json(dbRes);
-            })
-            .catch(err => res.status(422).json(err));
-    },
-    updateTwitter: (req, res) => {
-        console.log(req.body);
-        db.userProfileInformation
-            .findOneAndUpdate({ "userAccountName": req.params.id },
-                { $set: { "userAccountName": req.body.updateTwitter } },
-                { new: true })
-            .then(dbRes => {
-                console.log("Hello");
-                res.json(dbRes);
-            })
-            .catch(err => res.status(422).json(err));
-    },
-    updateInstagram: (req, res) => {
-        console.log(req.body);
-        db.userProfileInformation
-            .findOneAndUpdate({ "userAccountName": req.params.id },
-                { $set: { "userAccountName": req.body.updateInstagram } },
-                { new: true })
-            .then(dbRes => {
-                console.log("Hello");
-                res.json(dbRes);
-            })
-            .catch(err => res.status(422).json(err));
-    },
-    updateProfileImage: (req, res) => {
-        console.log(req.body);
-        db.userProfileInformation
-            .findOneAndUpdate({ "userAccountName": req.params.id },
-                { $set: { "userAccountName": req.body.ProfileImage } },
-                { new: true })
-            .then(dbRes => {
-                console.log("Hello");
-                res.json(dbRes);
-            })
-            .catch(err => res.status(422).json(err));
-    },
+  updateBio: (req, res) => {
+    console.log(req.params);
+    console.log(req.body);
+    db.userProfileInformation
+      .findOneAndUpdate({ "userAccountName": req.params.id },
+        { $set: { "Bio": req.body.updateBio } },
+        { new: true })
+      .then(dbRes => {
+        res.json(dbRes);
+      })
+      .catch(err => res.status(422).json(err));
+  },
+  updateTwitch: (req, res) => {
+    db.userProfileInformation
+      .findOneAndUpdate({ "userAccountName": req.params.id },
+        { $set: { "Twitch": req.body.updateTwitch } },
+        { new: true })
+      .then(dbRes => {
+        res.json(dbRes);
+      })
+      .catch(err => res.status(422).json(err));
+  },
+  updateTwitter: (req, res) => {
+    db.userProfileInformation
+      .findOneAndUpdate({ "userAccountName": req.params.id },
+        { $set: { "Twitter": req.body.updateTwitter } },
+        { new: true })
+      .then(dbRes => {
+        console.log("Hello");
+        res.json(dbRes);
+      })
+      .catch(err => res.status(422).json(err));
+  },
+  updateInstagram: (req, res) => {
+    db.userProfileInformation
+      .findOneAndUpdate({ "userAccountName": req.params.id },
+        { $set: { "Instagram": req.body.updateInstagram } },
+        { new: true })
+      .then(dbRes => {
+        console.log("Hello");
+        res.json(dbRes);
+      })
+      .catch(err => res.status(422).json(err));
+  },
+  updateProfileImage: (req, res) => {
+    db.userProfileInformation
+      .findOneAndUpdate({ "userAccountName": req.params.id },
+        { $set: { "userAccountName": req.body.ProfileImage } },
+        { new: true })
+      .then(dbRes => {
+        console.log("Hello");
+        res.json(dbRes);
+      })
+      .catch(err => res.status(422).json(err));
+  },
 }
