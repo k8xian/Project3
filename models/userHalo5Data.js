@@ -4,20 +4,20 @@ const Schema = mongoose.Schema;
 
 const userHalo5DataModel = new Schema({
   userAccountName: {
-    type:String,
+    type: String,
     // type: Schema.Types.ObjectId,
     // ref: "user",
   },
-  kdRatio: Number,
-  winRate: Number,
-  gamesPlayed: Number,
-  timePlayed: Number,
-  killsPerGame: Number,
-  headshotPercent: Number,
   Date: {
     type: Date,
     default: Date.now
   },
+  headshotPercent: Number,
+  gamesPlayed: Number,
+  kdRatio: Number,
+  killsPerGame: Number,
+  timePlayed: Number,
+  winRate: Number,
 });
 
 var halo5Data = mongoose.model("halo5Data", userHalo5DataModel);
