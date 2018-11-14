@@ -10,8 +10,8 @@ module.exports = {
     updateBio: (req, res) => {
         console.log(req.body);
         db.userProfileInformation
-            .findOneAndUpdate({ "userAccountName": req.body.userAccountName },
-                { $set: { "userAccountName": req.body.updateBio } },
+            .findOneAndUpdate({ "userAccountName": req.params.id },
+                { $set: { "Bio": req.body.updateBio } },
                 { new: true })
             .then(dbRes => {
                 console.log("Hello");
@@ -22,8 +22,8 @@ module.exports = {
     updateTwitch: (req, res) => {
         console.log(req.body);
         db.userProfileInformation
-            .findOneAndUpdate({ "userAccountName": req.body.userAccountName },
-                { $set: { "userAccountName": req.body.updateTwitch } },
+            .findOneAndUpdate({ "userAccountName": req.params.id },
+                { $set: { "Twitch": req.body.updateTwitch } },
                 { new: true })
             .then(dbRes => {
                 console.log("Hello");
@@ -34,7 +34,7 @@ module.exports = {
     updateTwitter: (req, res) => {
         console.log(req.body);
         db.userProfileInformation
-            .findOneAndUpdate({ "userAccountName": req.body.userAccountName },
+            .findOneAndUpdate({ "userAccountName": req.params.id },
                 { $set: { "userAccountName": req.body.updateTwitter } },
                 { new: true })
             .then(dbRes => {
@@ -46,7 +46,7 @@ module.exports = {
     updateInstagram: (req, res) => {
         console.log(req.body);
         db.userProfileInformation
-            .findOneAndUpdate({ "userAccountName": req.body.userAccountName },
+            .findOneAndUpdate({ "userAccountName": req.params.id },
                 { $set: { "userAccountName": req.body.updateInstagram } },
                 { new: true })
             .then(dbRes => {
@@ -58,7 +58,7 @@ module.exports = {
     updateProfileImage: (req, res) => {
         console.log(req.body);
         db.userProfileInformation
-            .findOneAndUpdate({ "userAccountName": req.body.userAccountName },
+            .findOneAndUpdate({ "userAccountName": req.params.id },
                 { $set: { "userAccountName": req.body.ProfileImage } },
                 { new: true })
             .then(dbRes => {

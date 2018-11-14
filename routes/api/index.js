@@ -59,6 +59,7 @@ const updateBio = require("./updateProfile/updateBio.js");
 const updateInstagram = require("./updateProfile/updateInstagram.js");
 const updateProfileImage = require("./updateProfile/updateProfileImage.js");
 const updateTwitch = require("./updateProfile/updateTwitch.js");
+// const updateTwitchEmbed = require("./updateProfile/updateTwitchEmbed.js");
 const updateTwitter = require("./updateProfile/updateTwitter.js");
 
 //This route will be used for handling the updating of generic profile information
@@ -67,6 +68,20 @@ router.use("/updateBio", updateBio);
 router.use("/updateInstagram", updateInstagram);
 router.use("/updateProfileImage", updateProfileImage);
 router.use("/updateTwitch", updateTwitch);
+// router.use("/updateTwitchEmbed", updateTwitchEmbed);
 router.use("/updateTwitter", updateTwitter);
+
+//required files for getting game data
+const getFortniteData = require("./getGameData/getFortniteData");
+const getHalo5Data = require("./getGameData/getHalo5Data");
+const getLOLData = require("./getGameData/getLOLData");
+const getOverwatchData = require("./getGameData/getOverwatchData");
+
+//This route will be used for handling the getting of data for certain games
+//This will match: backendURL/api/getGAMENAMEHEREData
+router.use("/getFortniteData", getFortniteData);
+router.use("/getHalo5Data", getHalo5Data);
+router.use("/getLOLData", getLOLData);
+router.use("/getOverwatchData", getOverwatchData);
 
 module.exports = router;

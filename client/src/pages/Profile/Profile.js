@@ -5,6 +5,7 @@ import { Bio, Game, PostBlock, Photo, SocialLink } from '../../components/Profil
 import { AllStats, FortniteStats, OverwatchStats, LOLStats, HaloStats } from '../../components/Stats/index'
 import { SocialForm, TwitchStreamForm, TwitterFeedForm } from '../../components/Profile/Forms/index'
 import { ProfileHeader, StatsWrapper, MainContent, GamesList, SidebarEmbed, LinksWrapper, PostWrapper, ProfileContent, MainDetail } from '../../components/Profile/Styles/index'
+import API from "../../utils/API";
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Libre+Franklin:300,800');
@@ -62,67 +63,120 @@ class Profile extends Component {
     this.showLOLStats = this.showLOLStats.bind(this);
     this.showFortniteStats = this.showFortniteStats.bind(this);
     this.showOverwatchStats = this.showOverwatchStats.bind(this);
-}
+  }
 
-showAllStats(event) {
-  event.preventDefault();
-  this.setState({
+  showAllStats(event) {
+    event.preventDefault();
+    this.setState({
       allStatsHidden: false,
       haloStatsHidden: true,
       lolStatsHidden: true,
       fortniteStatsHidden: true,
       overwatchStatsHidden: true
 
-  })
-}
+    })
+  }
 
-showHaloStats(event) {
-  event.preventDefault();
-  this.setState({
+  showHaloStats(event) {
+    event.preventDefault();
+    this.setState({
       allStatsHidden: true,
       haloStatsHidden: false,
       lolStatsHidden: true,
       fortniteStatsHidden: true,
       overwatchStatsHidden: true
 
-  })
-}
+    })
+  }
 
-showLOLStats(event) {
-  event.preventDefault();
-  this.setState({
+  showLOLStats(event) {
+    event.preventDefault();
+    this.setState({
       allStatsHidden: true,
       haloStatsHidden: true,
       lolStatsHidden: false,
       fortniteStatsHidden: true,
       overwatchStatsHidden: true
 
-  })
-}
+    })
+  }
 
-showFortniteStats(event) {
-  event.preventDefault();
-  this.setState({
+  showFortniteStats(event) {
+    event.preventDefault();
+    this.setState({
       allStatsHidden: true,
       haloStatsHidden: true,
       lolStatsHidden: true,
       fortniteStatsHidden: false,
       overwatchStatsHidden: true
 
-  })
-}
+    })
+  }
 
-showOverwatchStats(event) {
-  event.preventDefault();
-  this.setState({
+  showOverwatchStats(event) {
+    event.preventDefault();
+    this.setState({
       allStatsHidden: true,
       haloStatsHidden: true,
       lolStatsHidden: true,
       fortniteStatsHidden: true,
       overwatchStatsHidden: false,
-  })
-}
+    })
+  }
 
+  async componentDidMount() {
+
+    //This code is used for parsing the url.
+    //First line gets the url,
+    //Second line WILL NEED TO BE CHANGED ON LIVE. It splits the url where / marks are
+    //Third line grabs the name from the url 
+    let url = new URL(document.URL);
+    const parseURL = url.pathname.split("/");
+    let userAccountName = parseURL[2];
+
+    //This will await the data that is retrieved through the call to the backend
+    //And then it will save it to the profileInformation variable
+    //Then set state to the retrieved information, while preserving what was there
+    const getProfileInformation = await API.getProfileInformation({ userAccountName: userAccountName });
+    let profileInformation = getProfileInformation.data;
+    this.setState({ profileInformation });
+    console.log(this.state);
+
+    let fortniteStats;
+    let fortniteData;
+    let halo5Stats;
+    let halo5Data;
+    let lolStats;
+    let lolData;
+    let overwatchStats;
+    let overwatchData;
+
+    if (this.state.profileInformation.Fortnite.isPopulated) {
+      fortniteStats = await API.getFortniteData({ userAccountName: userAccountName });
+      fortniteData = fortniteStats.data;
+      this.setState({ fortniteData });
+    }
+
+    if (this.state.profileInformation.Halo5.isPopulated) {
+      halo5Stats = await API.getHalo5Data({ userAccountName: userAccountName });
+      halo5Data = halo5Stats.data;
+      this.setState({ halo5Data });
+    }
+
+    if (this.state.profileInformation.LOL.isPopulated) {
+      lolStats = await API.getLOLData({ userAccountName: userAccountName });
+      lolData = lolStats.data;
+      this.setState({ lolData });
+    }
+
+    if (this.state.profileInformation.Overwatch.isPopulated) {
+      overwatchStats = await API.getOverwatchData({ userAccountName: userAccountName });
+      overwatchData = overwatchStats.data;
+      this.setState({ overwatchData });
+    }
+
+    console.log(this.state);
+  }
 
   render() {
     return (
@@ -148,11 +202,11 @@ showOverwatchStats(event) {
           </GamesList>
           <MainDetail>
             <StatsWrapper>
-              {!this.state.allStatsHidden && <AllStats/>}
-              {!this.state.lolStatsHidden && <LOLStats/>}
+              {!this.state.allStatsHidden && <AllStats />}
+              {!this.state.lolStatsHidden && <LOLStats />}
               {!this.state.fortniteStatsHidden && <FortniteStats />}
-              {!this.state.overwatchStatsHidden && <OverwatchStats/>}
-              {!this.state.haloStatsHidden && <HaloStats/>}
+              {!this.state.overwatchStatsHidden && <OverwatchStats />}
+              {!this.state.haloStatsHidden && <HaloStats />}
             </StatsWrapper>
             <PostWrapper>
               <PostBlock />

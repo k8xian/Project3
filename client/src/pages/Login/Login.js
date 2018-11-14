@@ -11,7 +11,8 @@ import CustomInput from '../../components/CustomInput';
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import Logo from "../../components/Logo";
-// import API from "../../utils/API";
+import { Link } from "react-router-dom";
+import API from "../../utils/API";
 
 const TwitchButton = styled.button`
   background-color: #6441a4;
@@ -120,26 +121,13 @@ class Login extends Component {
       <LoginWrapper>
         <GlobalStyle />
         <Logo />
-        <form onSubmit={handleSubmit(this.onSubmit)}>
-          <fieldset>
-            <Field
-              name="email"
-              type="text"
-              id="email"
-              label="Enter Your Email"
-              placeholder="example@example.com"
-              component={CustomInput}
-            />
-          </fieldset>
-          <Field
-            name="password"
-            type="password"
-            id="password"
-            label="Enter your password"
-            placeholder="password"
-            component={CustomInput}
-          />
-          <fieldset />
+        {/* Put submit handler in this form tag here */}
+        <form >
+          {/* Put on change handler for email here */}
+          <input type="email"></input>
+          {/* put on change handler for password here */}
+          <input type="password"></input>
+          <input type="submit"></input>
 
           {this.props.errorMessage ?
             <div className="alert alert-danger">
@@ -150,7 +138,6 @@ class Login extends Component {
             Sign Up
             </button>
         </form>
-
         <GoogleButton
           clientId="308330016501-kra9rvrv1fpacchgcdnabpdrk0gvv7ps.apps.googleusercontent.com"
           buttonText="Google"
@@ -161,7 +148,7 @@ class Login extends Component {
         <a href="/profile">
           <TwitchButton>Login with Twitch.tv</TwitchButton>
         </a>
-      </LoginWrapper>
+      </LoginWrapper >
     );
   }
 }

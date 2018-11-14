@@ -32,6 +32,7 @@ float: left;
 
 // add statname= and statvalue= to each prop stat to define a stat
 const FortniteStats = props =>(
+  
     <StatWrapper>
         <StatTitle>Fortnite</StatTitle>
         <StyledStatBlock>
