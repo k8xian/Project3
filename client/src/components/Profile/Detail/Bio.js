@@ -50,71 +50,91 @@ const StyledEditButton = styled.button`
 
 
 class Bio extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            value: 'This is your bio! Click the edit button to edit.',
-            formIsHidden: true,
-            isHidden: true
-        };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      formIsHidden: true,
+      isHidden: true
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-    handleChange(event) {
-        this.setState({ value: event.target.value });
-    }
+  async componentDidMount() {
+    let url = new URL(document.URL);
+    const parseURL = url.pathname.split("/");
+    let userAccountName = parseURL[2];
 
+    //This will await the data that is retrieved through the call to the backend
+    //And then it will save it to the profileInformation variable
+    //Then set state to the retrieved information, while preserving what was there
+    const getProfileInformation = await API.getProfileInformation({ userAccountName: userAccountName });
+    let profileInformation = getProfileInformation.data;
+    this.setState({
+      userAccountName: userAccountName,
+      bio: profileInformation.Bio,
+    });
+    console.log(this.state);
+  }
 
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
-    showEditForm(event) {
-        event.preventDefault();
-        this.setState({
-            formIsHidden: !this.state.formIsHidden
-        })
-    }
+  showEditForm(event) {
+    event.preventDefault();
+    this.setState({
+      formIsHidden: !this.state.formIsHidden
+    })
+  }
 
-    toggleHidden() {
-        this.setState({
-            isHidden: !this.state.isHidden
-        })
-    }
+  toggleHidden() {
+    this.setState({
+      isHidden: !this.state.isHidden
+    })
+  }
 
-    BioForm = () => (
-        <StyledBioForm onSubmit={this.handleSubmit}>
-            <StyledTextArea rows="8" value={this.state.value} onChange={this.handleChange} />
-            <SubmitButton id="bioSubmit" />
-        </StyledBioForm>
-    )
+  BioForm = () => (
+    <StyledBioForm onSubmit={this.handleSubmit}>
+      <StyledTextArea
+        rows="8"
+        name="bio"
+        value={this.state.bio}
+        onChange={this.handleInputChange}
+      />
+      <SubmitButton
+        id="bioSubmit"
+        onClick={this.handleSubmit}
+      />
+    </StyledBioForm>
+  )
 
-    handleSubmit(event) {
-        alert('You changed your bio:  ' + this.state.Bio);
-        event.preventDefault();
-        if (this.state.Bio) {
-            API.updateBio({
-                bio: this.state.Bio
-            })
-                .then(res => this.saveBio())
-                .catch(err => console.log(err));
-        }
-}
+  handleSubmit(event) {
+    event.preventDefault();
+    API.updateBio({
+      userAccountName: this.state.userAccountName,
+      updateBio: this.state.bio
+    }).then(res => this.toggleHidden());
+  }
 
-    //todo
-    // show form only if you click the edit button
-    // hide bio when form is shown
-    // hide the form when you hit the submit button
+  //todo
+  // show form only if you click the edit button
+  // hide bio when form is shown
+  // hide the form when you hit the submit button
 
-    render() {
-        return (
-            <ProfileInfo>
-                <StyledEditButton onClick={this.toggleHidden.bind(this)} />
-                <StyledBio>
-                    {this.state.value}
-                </StyledBio>
-                {!this.state.isHidden && <this.BioForm />}
-            </ProfileInfo>
-        );
-    }
+  render() {
+    return (
+      <ProfileInfo>
+        <StyledEditButton onClick={this.toggleHidden.bind(this)} />
+        <StyledBio>
+          {this.state.bio}
+        </StyledBio>
+        {!this.state.isHidden && <this.BioForm />}
+      </ProfileInfo>
+    );
+  }
 }
 
 export default Bio;

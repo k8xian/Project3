@@ -9,7 +9,6 @@ export default {
     },
     //This will fetch the profile information from the route above
     getProfileInformation: function (userData) {
-      console.log("This is inside the api file");
         // I can not see if this works out right now, this
         //will probably have to be gotten from req.params
         return axios.get(`/getProfileInfo/` + userData.userAccountName )
@@ -115,11 +114,11 @@ export default {
     },
     updateInstagram: function (userData) {
         console.log(userData);
-        return axios.put(`api/updateInstagram/` + userData.userAccountName, userData);
+        return axios.put(`/api/updateInstagram/` + userData.userAccountName, userData);
     },
     updateProfileImage: function (userData) {
         console.log(userData);
-        return axios.put(`api/updateProfileImage/` + userData.userAccountName, userData);
+        return axios.put(`/api/updateProfileImage/` + userData.userAccountName, userData);
     },
     updateTwitch: function (userData) {
         console.log(userData);
@@ -127,7 +126,7 @@ export default {
     },
     updateTwitter: function (userData) {
         console.log(userData);
-        return axios.put(`api/updateTwitter/` + userData.userAccountName, userData);
+        return axios.put(`/api/updateTwitter/` + userData.userAccountName, userData);
     },
     /******************************************
     This section is for getting user's data via scrapping

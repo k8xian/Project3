@@ -36,17 +36,11 @@ const LOLStats = props =>(
     <StatWrapper>
         <StatTitle>League of Legends</StatTitle>
         <StyledStatBlock>
-            <Stat statname="League of Legends" statvalue="10000" />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
+            <Stat statname="Player Rank" statvalue={props.lolData.playerRank}/>
+            <Stat statname="Player Queue" statevalue={props.lolData.playerQueue}/>
+            <Stat statname="Global Ranking" statvalue={props.lolData.globalRank}/>
+            <Stat statname="League Points" statvalue={props.lolData.leaguePoints}/>
+            <Stat statname="Record" statvalue={props.lolData.record}/>
         </StyledStatBlock>
         <StyledRefreshStats>Refresh Stats</StyledRefreshStats>
     </StatWrapper>

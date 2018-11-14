@@ -35,17 +35,8 @@ const OverwatchStats = props =>(
     <StatWrapper>
         <StatTitle>Overwatch</StatTitle>
         <StyledStatBlock>
-            <Stat statname="Overwatch" statvalue="10000" />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
-            <Stat />
+            <Stat statname="Comp Rank" statvalue={props.overwatchData.compRank}/>
+            <Stat statname="Display Name" statvalue={props.overwatchData.displayName}/>
         </StyledStatBlock>
         <StyledRefreshStats>Refresh Stats</StyledRefreshStats>
     </StatWrapper>
