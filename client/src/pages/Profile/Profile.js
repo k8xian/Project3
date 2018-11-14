@@ -151,31 +151,31 @@ class Profile extends Component {
     let overwatchStats;
     let overwatchData;
 
-    if (this.state.profileInformation.Fortnite.isPopulated) {
+    if (!this.state.profileInformation.Fortnite.isPopulated) {
       fortniteStats = await API.getFortniteData({ userAccountName: userAccountName });
       fortniteData = fortniteStats.data;
       this.setState({ fortniteData });
     }
 
-    if (this.state.profileInformation.Halo5.isPopulated) {
+    if (!this.state.profileInformation.Halo5.isPopulated) {
       halo5Stats = await API.getHalo5Data({ userAccountName: userAccountName });
       halo5Data = halo5Stats.data;
       this.setState({ halo5Data });
     }
 
-    if (this.state.profileInformation.LOL.isPopulated) {
+    if (!this.state.profileInformation.LOL.isPopulated) {
       lolStats = await API.getLOLData({ userAccountName: userAccountName });
       lolData = lolStats.data;
       this.setState({ lolData });
     }
 
-    if (this.state.profileInformation.Overwatch.isPopulated) {
+    if (!this.state.profileInformation.Overwatch.isPopulated) {
       overwatchStats = await API.getOverwatchData({ userAccountName: userAccountName });
       overwatchData = overwatchStats.data;
       this.setState({ overwatchData });
     }
 
-    console.log(this.state);
+    console.log(this.state.fortniteData);
   }
 
   render() {
@@ -203,10 +203,10 @@ class Profile extends Component {
           <MainDetail>
             <StatsWrapper>
               {!this.state.allStatsHidden && <AllStats />}
-              {!this.state.lolStatsHidden && <LOLStats />}
-              {!this.state.fortniteStatsHidden && <FortniteStats />}
-              {!this.state.overwatchStatsHidden && <OverwatchStats />}
-              {!this.state.haloStatsHidden && <HaloStats />}
+              {!this.state.lolStatsHidden && <LOLStats lolData={this.state.lolData}/>}
+              {!this.state.fortniteStatsHidden && <FortniteStats fortniteData ={this.state.fortniteData}/>}
+              {!this.state.overwatchStatsHidden && <OverwatchStats overwatchData={this.state.overwatchData}/>}
+              {!this.state.haloStatsHidden && <HaloStats halo5Data={this.state.halo5Data}/>}
             </StatsWrapper>
             <PostWrapper>
               <PostBlock />
