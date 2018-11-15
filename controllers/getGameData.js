@@ -2,8 +2,6 @@ const db = require("../models");
 
 module.exports = ({
   getFortniteData: (req, res) => {
-    console.log("This was hit");
-    console.log(req.params.id)
     db.fortniteData //this req.params.id will probably change in the future
       .findOne({ "userAccountName": req.params.id })
       .then(dbRes => res.json(dbRes))

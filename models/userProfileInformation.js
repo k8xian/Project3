@@ -47,7 +47,7 @@ var userProfileInformationModel = new Schema({
     },
     //This should be server(Platform):
     //br, eune, euw, lan, las, na, oce, ru, tr, jp, sea, kr, cn
-    //UID foxifi, KZ+KUZZ, spaces get replaced with a + mark
+    //UID foxifi, KZ+Cuzz, spaces get replaced with a + mark
     LOL: {
         Platform: {
             type: String,
@@ -63,7 +63,7 @@ var userProfileInformationModel = new Schema({
         },
     },
     //This should be Platform
-    //xlb, psn, pc
+    //xbl, psn, pc
     //UID: Kitcy(psn/xbl) NAMEHERE-XXXX(pc): Chaelor-1443
     Overwatch: {
         Platform: {

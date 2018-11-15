@@ -44,15 +44,15 @@ router.use("/updateOverwatchPlatform", updateOverwatchPlatform);
 //required files for scrapping the user's data for the games that they play
 const getNewFortniteData = require("./getNewUserData/getNewFortniteData.js");
 const getNewHalo5Data = require("./getNewUserData/getNewHalo5Data.js");
-const getNewLOLData = require("./getNewUserData/getNewLOLData.js");
+const getNewLOLData = require("./getNewUserData/getNewLOLData");
 const getNewOverwatchData = require("./getNewUserData/getNewOverwatchData.js");
 
 //This route will be for handling of a user updating their Platform for a game.
 //This will match: backendURL/api/getNewGAMENAMEHEREData
-router.use("/getNewFortniteData", getNewFortniteData);
-router.use("/getNewHalo5Data", getNewHalo5Data);
-router.use("/getNewLOLData", getNewLOLData);
-router.use("/getNewOverwatchData", getNewOverwatchData);
+router.use("/getNewFortniteData/", getNewFortniteData);
+router.use("/getNewHalo5Data/", getNewHalo5Data);
+router.use("/getNewLOLData/", getNewLOLData);
+router.use("/getNewOverwatchData/", getNewOverwatchData);
 
 //required files for updating generic profile information
 const updateBio = require("./updateProfile/updateBio.js");

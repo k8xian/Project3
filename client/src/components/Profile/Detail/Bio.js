@@ -73,7 +73,6 @@ class Bio extends Component {
       userAccountName: userAccountName,
       bio: profileInformation.Bio,
     });
-    console.log(this.state);
   }
 
   handleInputChange = event => {

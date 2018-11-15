@@ -12,12 +12,12 @@ const userHalo5DataModel = new Schema({
     type: Date,
     default: Date.now
   },
-  headshotPercent: Number,
+  headshotPercent: String,
   gamesPlayed: Number,
   kdRatio: Number,
   killsPerGame: Number,
-  timePlayed: Number,
-  winRate: Number,
+  timePlayed: String,
+  winRate: String,
 });
 
 var halo5Data = mongoose.model("halo5Data", userHalo5DataModel);

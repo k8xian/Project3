@@ -185,18 +185,18 @@ class SignIn extends Component {
       <LoginWrapper>
         <GlobalStyle />
         <Logo />
-          <form onSubmit={handleSubmit(this.onSubmit)}>
-            <StyledFieldset>
-              <Field
-                name="email"
-                type="text"
-                id="email"
-                // label="Email: "
-                placeholder="example@example.com"
-                component={CustomInput}
-              />
-            </StyledFieldset>
-            <StyledFieldset>
+        <form onSubmit={handleSubmit(this.onSubmit)}>
+          <StyledFieldset>
+            <Field
+              name="email"
+              type="text"
+              id="email"
+              // label="Email: "
+              placeholder="example@example.com"
+              component={CustomInput}
+            />
+          </StyledFieldset>
+          <StyledFieldset>
             <Field
               name="password"
               type="password"
@@ -205,21 +205,21 @@ class SignIn extends Component {
               placeholder="password"
               component={CustomInput}
             />
-            </StyledFieldset>
+          </StyledFieldset>
 
-            { this.props.errorMessage ? 
+          {this.props.errorMessage ?
             <ErrorMessage>
-              { this.props.errorMessage }
-            </ErrorMessage> : null }
+              {this.props.errorMessage}
+            </ErrorMessage> : null}
 
 
-            <StyledButton type="submit">
+          <StyledButton type="submit">
             <StyledLink>Sign In</StyledLink>
-            </StyledButton>
-            <a href="/signup"><StyledSwitchLink>or Sign Up</StyledSwitchLink></a>
-          </form>
-          
-            {/* <FacebookLogin 
+          </StyledButton>
+          <a href="/signup"><StyledSwitchLink>or Sign Up</StyledSwitchLink></a>
+        </form>
+
+        {/* <FacebookLogin 
               appId="246458786048562"
               // autoLoad={true}
               textButon="Facebook"
@@ -227,13 +227,13 @@ class SignIn extends Component {
               callback={this.responseFacebook}
               cssClass="btn btn-outline-primary"
             /> */}
-            <GoogleButton 
-              clientId="308330016501-kra9rvrv1fpacchgcdnabpdrk0gvv7ps.apps.googleusercontent.com"
-              buttonText="Google"
-              onSuccess={this.responseGoogle}
-              onFailure={this.responseGoogle}
-              className="btn btn-outline-danger"
-            >Login with Google</GoogleButton>
+        <GoogleButton
+          clientId="308330016501-kra9rvrv1fpacchgcdnabpdrk0gvv7ps.apps.googleusercontent.com"
+          buttonText="Google"
+          onSuccess={this.responseGoogle}
+          onFailure={this.responseGoogle}
+          className="btn btn-outline-danger"
+        >Login with Google</GoogleButton>
       </LoginWrapper>
     );
   }

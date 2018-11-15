@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components'
 import { Bio, Game, PostBlock, Photo, SocialLink } from '../../components/Profile/Detail/index'
 import { AllStats, FortniteStats, OverwatchStats, LOLStats, HaloStats } from '../../components/Stats/index'
-import { SocialForm, TwitchStreamForm, TwitterFeedForm, HaloForm, FortniteForm, OverwatchForm, LOLForm} from '../../components/Profile/Forms/index'
+import { SocialForm, TwitchStreamForm, TwitterFeedForm, HaloForm, FortniteForm, OverwatchForm, LOLForm } from '../../components/Profile/Forms/index'
 import { ProfileHeader, StatsWrapper, MainContent, GamesList, SidebarEmbed, LinksWrapper, PostWrapper, ProfileContent, MainDetail } from '../../components/Profile/Styles/index'
 import API from "../../utils/API";
 
@@ -145,13 +145,6 @@ class Profile extends Component {
     let profileInformation = getProfileInformation.data;
     this.setState({ profileInformation });
 
-    let SocialMediaInfo = {
-      Bio: this.state.profileInformation.Bio,
-      Instagram: this.state.profileInformation.Instagram,
-      Twitch: this.state.profileInformation.Twitch,
-      Twitter: this.state.profileInformation.Twitter,
-    };
-
     let fortniteStats;
     let fortniteData;
     let halo5Stats;
@@ -186,6 +179,50 @@ class Profile extends Component {
     }
   }
 
+  handleGetNewLOLData = () => {
+    console.log(this.state.lolData);
+    API.getNewLOLData({
+      Platform: this.state.profileInformation.LOL.Platform,
+      UID: this.state.profileInformation.LOL.UID,
+      userAccountName: this.state.profileInformation.userAccountName
+    }).then(res => {
+      console.log(res.data);
+      this.setState({ lolData: res.data })
+    });
+  }
+
+  handleGetNewFortniteData = () => {
+    API.getNewFortniteData({
+      Platform: this.state.profileInformation.Fortnite.Platform,
+      UID: this.state.profileInformation.Fortnite.UID,
+      userAccountName: this.state.profileInformation.userAccountName
+    }).then(res => {
+      console.log(res.data);
+      this.setState({ fortniteData: res.data })
+    });
+  }
+
+  handleGetNewOverwatchData = () => {
+    API.getNewOverwatchData({
+      Platform: this.state.profileInformation.Overwatch.Platform,
+      UID: this.state.profileInformation.Overwatch.UID,
+      userAccountName: this.state.profileInformation.userAccountName
+    }).then(res => {
+      console.log(res.data);
+      this.setState({ overwatchData: res.data })
+    });
+  }
+
+  handleGetNewHalo5Data = () => {
+    API.getNewHalo5Data({
+      UID: this.state.profileInformation.Halo5.UID,
+      userAccountName: this.state.profileInformation.userAccountName
+    }).then(res => {
+      console.log(res.data);
+      this.setState({ halo5Data: res.data })
+    });
+  }
+
   render() {
     return (
       <div>
@@ -203,22 +240,34 @@ class Profile extends Component {
           <GamesList>
             {/* Put a refresh button for each game in the stats */}
             <AllStatButton onClick={this.showAllStats}>Show All Stats</AllStatButton>
-            {!this.halodataexists && <HaloForm/>}
-            {this.halodataexists && <StatButtonSwitch onClick={this.showHaloStats}> <Game image="/images/games/halo.png" title="Halo 5" /></StatButtonSwitch>}
-            {!this.overwatchdataexists && <OverwatchForm/>}
-            {this.overwatchdataexists && <StatButtonSwitch onClick={this.showOverwatchStats}> <Game image="/images/games/overwatch.png" title="Overwatch" /></StatButtonSwitch>}
-            {!this.fortnitedataexists && <FortniteForm/>}
-            {this.fortnitedataexists && <StatButtonSwitch onClick={this.showFortniteStats}><Game image="/images/games/fortnite.png" title="Fortnite" /></StatButtonSwitch>}
-            {!this.loldataexists && <LOLForm />}
-            {this.loldataexists && <StatButtonSwitch onClick={this.showLOLStats}><Game image="/images/games/leagueof.png" title="League of Legends" /></StatButtonSwitch>}
+            <StatButtonSwitch onClick={this.showHaloStats}> <Game image="/images/games/halo.png" title="Halo 5" /></StatButtonSwitch>
+            <StatButtonSwitch onClick={this.showOverwatchStats}> <Game image="/images/games/overwatch.png" title="Overwatch" /></StatButtonSwitch>
+            <StatButtonSwitch onClick={this.showFortniteStats}><Game image="/images/games/fortnite.png" title="Fortnite" /></StatButtonSwitch>
+            <StatButtonSwitch onClick={this.showLOLStats}><Game image="/images/games/leagueof.png" title="League of Legends" /></StatButtonSwitch>
           </GamesList>
           <MainDetail>
             <StatsWrapper>
               {!this.state.allStatsHidden && <AllStats />}
-              {!this.state.lolStatsHidden && <LOLStats lolData={this.state.lolData} handleClick={API.getNewLOLData}/>}
-              {!this.state.fortniteStatsHidden && <FortniteStats fortniteData ={this.state.fortniteData}/>}
-              {!this.state.overwatchStatsHidden && <OverwatchStats overwatchData={this.state.overwatchData}/>}
-              {!this.state.haloStatsHidden && <HaloStats halo5Data={this.state.halo5Data}/>}
+              {!this.state.lolStatsHidden &&
+                <LOLStats
+                  handleGetNewLOLData={this.handleGetNewLOLData}
+                  lolData={this.state.lolData}
+                />}
+              {!this.state.fortniteStatsHidden &&
+                <FortniteStats
+                  handleGetNewFortniteData={this.handleGetNewFortniteData}
+                  fortniteData={this.state.fortniteData}
+                />}
+              {!this.state.overwatchStatsHidden &&
+                <OverwatchStats
+                  handleGetNewOverwatchData={this.handleGetNewOverwatchData}
+                  overwatchData={this.state.overwatchData}
+                />}
+              {!this.state.haloStatsHidden &&
+                <HaloStats
+                  handleGetNewHalo5Data={this.handleGetNewHalo5Data}
+                  halo5Data={this.state.halo5Data}
+                />}
             </StatsWrapper>
             <PostWrapper>
               <PostBlock />

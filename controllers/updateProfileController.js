@@ -35,7 +35,6 @@ module.exports = {
         { $set: { "Twitter": req.body.updateTwitter } },
         { new: true })
       .then(dbRes => {
-        console.log("Hello");
         res.json(dbRes);
       })
       .catch(err => res.status(422).json(err));
@@ -46,7 +45,6 @@ module.exports = {
         { $set: { "Instagram": req.body.updateInstagram } },
         { new: true })
       .then(dbRes => {
-        console.log("Hello");
         res.json(dbRes);
       })
       .catch(err => res.status(422).json(err));
@@ -57,7 +55,6 @@ module.exports = {
         { $set: { "userAccountName": req.body.ProfileImage } },
         { new: true })
       .then(dbRes => {
-        console.log("Hello");
         res.json(dbRes);
       })
       .catch(err => res.status(422).json(err));
