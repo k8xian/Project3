@@ -17,7 +17,7 @@ module.exports = {
     //req.platform = what platform the user plays on
     //req.UID = the user's ID
     return axios.get("https://playoverwatch.com/en-us/career/"
-      + req.platform + "/" + req.UID)
+      + req.Platform + "/" + req.UID)
       .then((response) => {
 
         //load reponse data into cheerio
@@ -54,7 +54,6 @@ module.exports = {
         };
 
         //Console log and return object
-        console.log(playerData);
         return playerData;
       })
       .catch(err => res.status(422).json(err));
@@ -67,16 +66,14 @@ module.exports = {
     //req.platform = what platform they play on
     //req.UID = the user's ID
     return axios.get("https://fortnitestats.net/profile/"
-      + platform + "/" + UID)
+      + req.Platform + "/" + req.UID)
       .then((response) => {
-
         //Load response data into cheerio
         let $ = cheerio.load(response.data);
         //We will return this array after pushing objects to it.
         let playerDataArr = [];
 
         $("div.panel-body").each(function (i, el) {
-
           //Val will be the value retrieved from the h3
           //Stat def will be the associated stat definition
           let val = $(this).find("h3").text().trim();
@@ -94,8 +91,15 @@ module.exports = {
             playerDataArr.push(playerData);
           }
         });
-        console.log(playerDataArr);
-        return playerDataArr;
+        let saveToDB = {
+          totalKills: playerDataArr[0].val,
+          kdRatio: playerDataArr[1].val,
+          winRate: playerDataArr[2].val,
+          totalWins: playerDataArr[3].val,
+          gamesPlayed: playerDataArr[4].val,
+          timePlayed: playerDataArr[5].val,
+        }
+        return saveToDB;
       })
       .catch(err => res.status(422).json(err));
   },
@@ -109,7 +113,7 @@ module.exports = {
     //req.platform = the server the user plays on
     //req.UID = the username of the player
     return axios.get("https://www.leagueofgraphs.com/summoner/"
-      + req.platform + "/" + req.UID)
+      + req.Platform + "/" + req.UID)
       .then((response) => {
 
         //Load the returned data into cheerio
@@ -132,7 +136,6 @@ module.exports = {
             message: "You are not ranked"
           }
 
-          console.log(playerData);
           return playerData
           //If the player is ranked, return the rank data
         } else {
@@ -224,8 +227,8 @@ module.exports = {
 
           //This is the object to be returned
           let playerData = {
-            rank: playerRank.text(),
-            queue: playerQueue.text(),
+            playerRank: playerRank.text(),
+            playerQueue: playerQueue.text(),
             globalRank: playerGlobalRanking.text(),
             leaguePoints: playerLeaguePoints.text(),
             record: playerRecord.text(),
@@ -236,7 +239,6 @@ module.exports = {
           //It contains players:
           //Rank, queue type, global rank,
           //League points, record, and the rank image.
-          console.log(playerData)
           return playerData
         }
       })
@@ -273,17 +275,15 @@ module.exports = {
         });
 
         let saveToDB = {
-          KDA: playerDataArr[2].val,
+          kdRatio: playerDataArr[2].val,
           killsPerGame: playerDataArr[5].val,
-          totalKills: playerDataArr[3].val,
           headshotPercent: playerDataArr[7].val,
           winRate: playerDataArr[8].val,
           gamesPlayed: playerDataArr[9].val,
           timePlayed: playerDataArr[12].val,
         }
-        console.log(saveToDB);
         return saveToDB;
       })
-      .catch(err => res.status(422).json(err));
+      .catch(err => res.status(425).json(err));
   },
 }

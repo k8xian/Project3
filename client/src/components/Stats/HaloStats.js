@@ -40,10 +40,10 @@ const HaloStats = props => (
       <Stat statname="Kills per Game" statvalue={props.halo5Data.killsPerGame} />
       <Stat statname="Games played" statvalue={props.halo5Data.gamesPlayed} />
       <Stat statname="Win Rate" statvalue={props.halo5Data.winRate} />
-      <Stat statname="Headshot %" statvalue={`${props.halo5Data.headshotPercent}%`} />
-      <Stat statname="Time Played" statvalue={`${props.halo5Data.timePlayed} hours`}/>
+      <Stat statname="Headshot %" statvalue={`${props.halo5Data.headshotPercent}`} />
+      <Stat statname="Time Played" statvalue={`${props.halo5Data.timePlayed}`}/>
     </StyledStatBlock>
-    <StyledRefreshStats>Refresh Stats</StyledRefreshStats>
+    <StyledRefreshStats onClick={props.handleGetNewHalo5Data}>Refresh Stats</StyledRefreshStats>
   </StatWrapper>
 );
 

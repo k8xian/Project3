@@ -31,15 +31,15 @@ float: left;
 `
 
 // add statname= and statvalue= to each prop stat to define a stat
-const OverwatchStats = props =>(
-    <StatWrapper>
-        <StatTitle>Overwatch</StatTitle>
-        <StyledStatBlock>
-            <Stat statname="Comp Rank" statvalue={props.overwatchData.compRank}/>
-            <Stat statname="Display Name" statvalue={props.overwatchData.displayName}/>
-        </StyledStatBlock>
-        <StyledRefreshStats>Refresh Stats</StyledRefreshStats>
-    </StatWrapper>
+const OverwatchStats = props => (
+  <StatWrapper>
+    <StatTitle>Overwatch</StatTitle>
+    <StyledStatBlock>
+      <Stat statname="Comp Rank" statvalue={props.overwatchData.compRank} />
+      <Stat statname="Display Name" statvalue={props.overwatchData.displayName} />
+    </StyledStatBlock>
+    <StyledRefreshStats onClick={props.handleGetNewOverwatchData}>Refresh Stats</StyledRefreshStats>
+  </StatWrapper>
 );
 
 export default OverwatchStats;

@@ -78,7 +78,9 @@ class Login extends Component {
 
   render() {
     return (
+      
       <LoginWrapper>
+        {console.log("Hello")}
         <GlobalStyle />
         <Logo />
         {/* Put submit handler in this form tag here */}

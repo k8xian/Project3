@@ -4,6 +4,6 @@ const createAccountController = require("../controllers/createAccountController.
 
 //This matches /api/userAccount
 router.route("/")
-    .post(createAccountController.create);
+  .post(createAccountController.create);
 
 module.exports = router;
