@@ -33,14 +33,14 @@ const TestButton = styled.button`
   margin: 20px auto;
 `;
 const GoogleButton = styled.button`
-  background-color: white;
-  color: rgba(0, 0, 0, 0.54);
-  border: 0;
-  width: 240px;
-  height: 34px;
-  border-radius: 0;
-  cursor: pointer;
-  margin: 20px auto;
+background-color: white;
+color: rgba(0,0,0,0.72);
+border: 0;
+width: 100%;
+height: 34px;
+border-radius: 0;
+cursor: pointer;
+margin: 20px auto;
 `;
 
 const LoginWrapper = styled.div`
@@ -57,6 +57,8 @@ border-radius: 0;
     font-size: 1rem;
     margin: 0;
     padding: 0;
+    float: left;
+    margin-right: 6px;
 `;
 
 const StyledLink = styled.div`
@@ -64,13 +66,42 @@ width: 140px;
 height: 40px;
 border-radius: 0;
 border: 1px solid #00fff4;
-color: #00fff4;
-background-color: rgba(0,0,0,0);
+color: rgba(0,0,0,.9);
+background-color: #00fff4;
 float: left;
 text-decoration: none;
 font-size: 1rem;
 padding: 0;
 line-height: 40px;
+padding-bottom: 3px;
+cursor: pointer;
+`;
+
+const StyledSwitchLink = styled.div`
+float: right;
+width: 140px;
+height: 40px;
+border-radius: 0;
+border: 1px solid #00fff4;
+color: #00fff4;
+background-color: rgba(0,0,0,0);
+float: right;
+text-decoration: none;
+font-size: 1rem;
+padding: 0;
+line-height: 40px;
+padding-bottom: 3px;
+cursor: pointer;
+`;
+
+const StyledFieldset = styled.fieldset`
+border: 0;
+`;
+
+const ErrorMessage = styled.div`
+font-size: .8rem;
+margin-bottom: 20px;
+font-style: italic;
 `;
 
 
@@ -90,6 +121,24 @@ const GlobalStyle = createGlobalStyle`
     background: linear-gradient(to bottom, #171717 0%,#29282d 50%,#1c2529 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#171717', endColorstr='#1c2529',GradientType=0 );
     overflow: hidden;
+  }
+
+  input:-webkit-autofill {
+    background-color: rgba(0,0,0,0) !important;
+    border: 0;
+    text-align: center;
+    color: white;
+  }
+
+  input {
+    background-color: rgba(0,0,0,0);
+    border: 0;
+    font-size: 1rem;
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid white;
+    color: white;
+    margin-bottom: 20px;
   }
 `;
 
@@ -138,40 +187,40 @@ class SignUp extends Component {
         <div className="row">
           <div className="col">
             <form onSubmit={handleSubmit(this.onSubmit)}>
-              <fieldset>
+              <StyledFieldset>
                 <Field
                   name="email"
                   type="text"
                   id="email"
-                  label="Enter Your Email"
-                  placeholder="example@example.com"
+                  // label="Email: "
+                  placeholder="enter your email"
                   component={CustomInput}
                 />
-              </fieldset>
+              </StyledFieldset>
+              <StyledFieldset>
               <Field
                 name="password"
                 type="password"
                 id="password"
-                label="Enter your password"
+                // label="Password: "
                 placeholder="password"
                 component={CustomInput}
               />
-              <fieldset />
+              </StyledFieldset>
 
               {this.props.errorMessage ?
-                <div className="alert alert-danger">
+                <ErrorMessage>
                   {this.props.errorMessage}
-                </div> : null}
-
-
+                </ErrorMessage> : null}
               <StyledButton type="submit">
-              <StyledLink>Sign Up</StyledLink>
-            </StyledButton>
-            <a href="/signin"><StyledLink>Sign In</StyledLink></a>
+                <StyledLink>Sign Up</StyledLink>
+              </StyledButton>
+              <a href="/signin"><StyledSwitchLink>or Sign In</StyledSwitchLink></a>
+
             </form>
           </div>
 
-              {/* <FacebookLogin
+          {/* <FacebookLogin
                 appId="246458786048562"
                 // autoLoad={true}
                 textButon="Facebook"
@@ -179,12 +228,12 @@ class SignUp extends Component {
                 callback={this.responseFacebook}
                 cssClass="btn btn-outline-primary"
               /> */}
-              <GoogleButton
-                clientId="308330016501-kra9rvrv1fpacchgcdnabpdrk0gvv7ps.apps.googleusercontent.com"
-                buttonText="Google"
-                onSuccess={this.responseGoogle}
-                onFailure={this.responseGoogle}
-                className="btn btn-outline-danger">Login with Google</GoogleButton>
+          <GoogleButton
+            clientId="308330016501-kra9rvrv1fpacchgcdnabpdrk0gvv7ps.apps.googleusercontent.com"
+            buttonText="Google"
+            onSuccess={this.responseGoogle}
+            onFailure={this.responseGoogle}
+            className="btn btn-outline-danger">Login with Google</GoogleButton>
         </div>
       </LoginWrapper>
     );
