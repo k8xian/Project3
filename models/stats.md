@@ -3,7 +3,7 @@
 So the constistant names were used as much as possible to cover the data points that we are getting from the API. The names in brackets are data points that are unique to each respective game and cannot be used across all games.
 
 ##Fortnite 
-totalKills: String,             Kill Count
+    totalKills: String,         Kill Count
     kdRatio: String,            [kill/death ratio]
     winRate: String,            [Win Rate]
     totalWins: String,          Wins
