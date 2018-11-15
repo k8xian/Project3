@@ -68,14 +68,12 @@ module.exports = {
     return axios.get("https://fortnitestats.net/profile/"
       + req.Platform + "/" + req.UID)
       .then((response) => {
-
         //Load response data into cheerio
         let $ = cheerio.load(response.data);
         //We will return this array after pushing objects to it.
         let playerDataArr = [];
 
         $("div.panel-body").each(function (i, el) {
-
           //Val will be the value retrieved from the h3
           //Stat def will be the associated stat definition
           let val = $(this).find("h3").text().trim();
@@ -93,7 +91,6 @@ module.exports = {
             playerDataArr.push(playerData);
           }
         });
-
         let saveToDB = {
           totalKills: playerDataArr[0].val,
           kdRatio: playerDataArr[1].val,
@@ -102,8 +99,6 @@ module.exports = {
           gamesPlayed: playerDataArr[4].val,
           timePlayed: playerDataArr[5].val,
         }
-
-        console.log(saveToDB);
         return saveToDB;
       })
       .catch(err => res.status(422).json(err));

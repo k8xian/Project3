@@ -31,9 +31,9 @@ module.exports = {
           .then((dbRes) => {
             return res.json(scrapeRes);
           })
-          .catch(err => res.status(422).json(err));
+          .catch(err => res.status(426).json(err));
       })
-      .catch(err => res.status(422).json(err));
+      .catch(err => res.status(420).json(err));
   },
   getNewHalo5Data: (req, res) => {
     return scrapper.scrapeHalo5(req.body)

@@ -240,10 +240,14 @@ class Profile extends Component {
           <GamesList>
             {/* Put a refresh button for each game in the stats */}
             <AllStatButton onClick={this.showAllStats}>Show All Stats</AllStatButton>
-            <StatButtonSwitch onClick={this.showHaloStats}> <Game image="/images/games/halo.png" title="Halo 5" /></StatButtonSwitch>
-            <StatButtonSwitch onClick={this.showOverwatchStats}> <Game image="/images/games/overwatch.png" title="Overwatch" /></StatButtonSwitch>
-            <StatButtonSwitch onClick={this.showFortniteStats}><Game image="/images/games/fortnite.png" title="Fortnite" /></StatButtonSwitch>
-            <StatButtonSwitch onClick={this.showLOLStats}><Game image="/images/games/leagueof.png" title="League of Legends" /></StatButtonSwitch>
+            {!this.halodataexists && <HaloForm />}
+            {this.halodataexists && <StatButtonSwitch onClick={this.showHaloStats}> <Game image="/images/games/halo.png" title="Halo 5" /></StatButtonSwitch>}
+            {!this.overwatchdataexists && <OverwatchForm />}
+            {this.overwatchdataexists && <StatButtonSwitch onClick={this.showOverwatchStats}> <Game image="/images/games/overwatch.png" title="Overwatch" /></StatButtonSwitch>}
+            {!this.fortnitedataexists && <FortniteForm />}
+            {this.fortnitedataexists && <StatButtonSwitch onClick={this.showFortniteStats}><Game image="/images/games/fortnite.png" title="Fortnite" /></StatButtonSwitch>}
+            {!this.loldataexists && <LOLForm />}
+            {this.loldataexists && <StatButtonSwitch onClick={this.showLOLStats}><Game image="/images/games/leagueof.png" title="League of Legends" /></StatButtonSwitch>}
           </GamesList>
           <MainDetail>
             <StatsWrapper>

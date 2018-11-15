@@ -36,10 +36,10 @@ const FortniteStats = props => (
     <StatTitle>Fortnite</StatTitle>
     <StyledStatBlock>
       <Stat statname="Games Played" statvalue={props.fortniteData.gamesPlayed}/>
-      <Stat statname="Kill/Death Ratio" statvalue={`${props.fortniteData.kdRatio}%`}/>
+      <Stat statname="Kill/Death Ratio" statvalue={`${props.fortniteData.kdRatio}`}/>
       <Stat statname="Total Kills" statvalue={props.fortniteData.totalKills}/>
       <Stat statname="Total Wins" statvalue={props.fortniteData.totalWins}/>
-      <Stat statname="Win Rate" statvalue={`${props.fortniteData.winRate}%`}/>
+      <Stat statname="Win Rate" statvalue={`${props.fortniteData.winRate}`}/>
       <Stat statname="Time Played" statvalue={`${props.fortniteData.timePlayed} hours`}/>
     </StyledStatBlock>
     <StyledRefreshStats onClick={props.handleGetNewFortniteData}>Refresh Stats</StyledRefreshStats> 
