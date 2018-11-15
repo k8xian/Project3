@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components'
 import { Bio, Game, PostBlock, Photo, SocialLink } from '../../components/Profile/Detail/index'
 import { AllStats, FortniteStats, OverwatchStats, LOLStats, HaloStats } from '../../components/Stats/index'
-import { SocialForm, TwitchStreamForm, TwitterFeedForm } from '../../components/Profile/Forms/index'
+import { SocialForm, TwitchStreamForm, TwitterFeedForm, HaloForm, FortniteForm, OverwatchForm, LOLForm} from '../../components/Profile/Forms/index'
 import { ProfileHeader, StatsWrapper, MainContent, GamesList, SidebarEmbed, LinksWrapper, PostWrapper, ProfileContent, MainDetail } from '../../components/Profile/Styles/index'
 import API from "../../utils/API";
 
@@ -56,6 +56,10 @@ class Profile extends Component {
       lolStatsHidden: true,
       fortniteStatsHidden: true,
       overwatchStatsHidden: true,
+      halodataexists: false,
+      loldataexists: false,
+      fortnitedataexists: false,
+      overwatchdataexists: false
     };
 
     this.showAllStats = this.showAllStats.bind(this);
@@ -160,25 +164,25 @@ class Profile extends Component {
     if (this.state.profileInformation.Fortnite.isPopulated) {
       fortniteStats = await API.getFortniteData({ userAccountName: userAccountName });
       fortniteData = fortniteStats.data;
-      this.setState({ fortniteData });
+      this.setState({ fortniteData, fortnitedataexists: true });
     }
 
     if (this.state.profileInformation.Halo5.isPopulated) {
       halo5Stats = await API.getHalo5Data({ userAccountName: userAccountName });
       halo5Data = halo5Stats.data;
-      this.setState({ halo5Data });
+      this.setState({ halo5Data, halodataexists: true });
     }
 
     if (this.state.profileInformation.LOL.isPopulated) {
       lolStats = await API.getLOLData({ userAccountName: userAccountName });
       lolData = lolStats.data;
-      this.setState({ lolData });
+      this.setState({ lolData, loldataexists: true });
     }
 
     if (this.state.profileInformation.Overwatch.isPopulated) {
       overwatchStats = await API.getOverwatchData({ userAccountName: userAccountName });
       overwatchData = overwatchStats.data;
-      this.setState({ overwatchData });
+      this.setState({ overwatchData, overwatchdataexists: true });
     }
   }
 
@@ -199,10 +203,14 @@ class Profile extends Component {
           <GamesList>
             {/* Put a refresh button for each game in the stats */}
             <AllStatButton onClick={this.showAllStats}>Show All Stats</AllStatButton>
-            <StatButtonSwitch onClick={this.showHaloStats}> <Game image="/images/games/halo.png" title="Halo 5" /></StatButtonSwitch>
-            <StatButtonSwitch onClick={this.showOverwatchStats}> <Game image="/images/games/overwatch.png" title="Overwatch" /></StatButtonSwitch>
-            <StatButtonSwitch onClick={this.showFortniteStats}><Game image="/images/games/fortnite.png" title="Fortnite" /></StatButtonSwitch>
-            <StatButtonSwitch onClick={this.showLOLStats}><Game image="/images/games/leagueof.png" title="League of Legends" /></StatButtonSwitch>
+            {!this.halodataexists && <HaloForm/>}
+            {this.halodataexists && <StatButtonSwitch onClick={this.showHaloStats}> <Game image="/images/games/halo.png" title="Halo 5" /></StatButtonSwitch>}
+            {!this.overwatchdataexists && <OverwatchForm/>}
+            {this.overwatchdataexists && <StatButtonSwitch onClick={this.showOverwatchStats}> <Game image="/images/games/overwatch.png" title="Overwatch" /></StatButtonSwitch>}
+            {!this.fortnitedataexists && <FortniteForm/>}
+            {this.fortnitedataexists && <StatButtonSwitch onClick={this.showFortniteStats}><Game image="/images/games/fortnite.png" title="Fortnite" /></StatButtonSwitch>}
+            {!this.loldataexists && <LOLForm />}
+            {this.loldataexists && <StatButtonSwitch onClick={this.showLOLStats}><Game image="/images/games/leagueof.png" title="League of Legends" /></StatButtonSwitch>}
           </GamesList>
           <MainDetail>
             <StatsWrapper>
