@@ -1,50 +1,176 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import styled from "styled-components";
+import { createGlobalStyle } from "styled-components";
+import Logo from "../../components/Logo";
+import { Link, Redirect } from "react-router-dom";
+import { Toaster, Intent } from '@blueprintjs/core';
+import { app, facebookProvider } from "../../Base";
+import API from "../../utils/API";
+
+const TwitchButton = styled.button`
+  background-color: #6441a4;
+  color: white;
+  border: 0;
+  width: 240px;
+  height: 34px;
+  clear: both;
+  cursor: pointer;
+`;
+const GoogleButton = styled.button`
+  background-color: white;
+  color: rgba(0, 0, 0, 0.54);
+  border: 0;
+  width: 240px;
+  height: 34px;
+  border-radius: 0;
+  cursor: pointer;
+  margin: 20px auto;
+`;
+
+const LoginWrapper = styled.div`
+width 80%;
+max-width: 300px;
+margin: 80px auto 0;
+text-align: center;
+`;
+
+const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css?family=Libre+Franklin:300,800');
+  body {
+    margin: 0;
+    padding: 0;
+    color: white;
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Libre Franklin', sans-serif;
+    background-repeat: no-repeat;
+    background: #171717;
+    background: -moz-linear-gradient(top, #171717 0%, #29282d 50%, #1c2529 100%);
+    background: -webkit-linear-gradient(top, #171717 0%,#29282d 50%,#1c2529 100%); 
+    background: linear-gradient(to bottom, #171717 0%,#29282d 50%,#1c2529 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#171717', endColorstr='#1c2529',GradientType=0 );
+    overflow: hidden;
+  }
+`;
 
 class Login extends Component {
   constructor(props) {
-    this.authWithFacebook = this.authWithFacebook.bind(this)
-    this.authWithEmailPassword = this.authWithEmailPassword.bind(this)
+    super(props);
+    this.authWithFacebook = this.authWithFacebook.bind(this);
+    this.authWithEmailPassword = this.authWithEmailPassword.bind(this);
+    this.state = {
+      Redirect: false,
+    }
   }
 
   authWithFacebook() {
-    console.log("Facebook");
+    app.auth().signInWithPopup(facebookProvider)
+      .then((res, err) => {
+        if (err) {
+          this.Toaster.show({ intent: Intent.DANGER, message: "Unable to sign in with Facebook" })
+        } else {
+          this.setState({ Redirect: true })
+        }
+      })
   }
 
-  authWithEmailPassword(event){
-    event.preventDefault()
-    console.table([{
-      email:this.emailInput.value,
-      password:this.passwordInput.value,
-    }]);
+  authWithEmailPassword(event) {
+    event.preventDefault();
+    const email = this.emailInput.value;
+    const password = this.passwordInput.value;
+    const userName = this.usernameInput.value;
+
+    app.auth().fetchProvidersForEmail(email)
+      .then((providers) => {
+        //create user
+        if (providers.length === 0) {
+          return app.auth().createUserWithEmailAndPassword(email, password)
+        } else if (providers.indexOf("password") === -1) {
+          //Signed in using facebook.
+          this.loginForm.reset();
+          this.Toaster.show({ intent: Intent.WARNING, message: "Did you try signing up using an alternative?" });
+        } else {
+          //Sign in
+          return app.auth().signInWithEmailAndPassword(email, password);
+        }
+      })
+      .then((user) => {
+        if (user && user.email) {
+          this.loginForm.reset();
+          this.setState({ redirect: true });
+        }
+      })
+      .then(makeAccount => {
+        API.createUserAccount({
+          userAccountName: userName
+        })
+      })
+      .catch(err => this.Toaster.show({ intent: Intent.DANGER, message: err.message }))
   }
-  
+
+  componentWillMount() {
+    this.removeAuthListener = app.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({
+          authenticated: true
+        })
+      } else {
+        this.setState({
+          authenticated: true
+        })
+      }
+    })
+  }
+
+  componentWillUnmount() {
+    this.removeAuthListener();
+  }
+
   render() {
+    if (this.state.Redirect === true) {
+      return <Redirect to="/" />
+    }
+
     return (
-      <div>
-        <button style={{ width: "20%", }} className="login-button"
-          onClick={() => this.authWithFacebook()}>Login with Facebook </button>
 
-        <hr style={{ margin: "10px 0" }} />
+      <LoginWrapper>
 
+        <Toaster ref={(element) => { this.Toaster = element }} />
+        <GlobalStyle />
+
+        <Logo />
+        {console.log(this.state.authenticated)}
+        {/* Put submit handler in this form tag here */}
         <form onSubmit={(event) => { this.authWithEmailPassword(event) }} ref={(form) => { this.loginForm = form }}>
 
-          <div style={{ arginBottom: "10px" }} className="">
-
+          <div style={{ marginBottom: "10px" }} className="">
             <h5>Note</h5>
             If you do not have an account already, this form will create one!
-        </div>
+      </div>
           <label>
             Email
-          <input style={{ width: "100%" }} className="" name="email" type="email" ref={(input) => { this.emailInput = input }} placeholder="Email" />
+      <input style={{ width: "100%" }} className="" name="email" type="email" ref={(input) => { this.emailInput = input }} placeholder="Email" />
           </label>
           <label>
             Password
-          <input style={{ width: "100%" }} className="" name="password" type="password" ref={(input) => { this.passwordInput = input }} placeholder="Password" />
+      <input style={{ width: "100%" }} className="" name="password" type="password" ref={(input) => { this.passwordInput = input }} placeholder="Password" />
           </label>
-          <input style={{width: "25%"}} type="submit" className="" value="Log In" />
+          <label>
+            Password
+      <input style={{ width: "100%" }} className="" name="username" type="text" ref={(input) => { this.usernameInput = input }} placeholder="Password" />
+          </label>
+          <input style={{ width: "25%" }} type="submit" className="" value="Log In" />
+          <button style={{ width: "100%", }} className="login-button"
+            onClick={() => this.authWithFacebook()}>Login with Facebook </button>
         </form>
-      </div>
-    )
+        {/* <a href="/login">
+          <GoogleButton>Login</GoogleButton>
+        </a>
+        <a href="/profile">
+          <TwitchButton>Login with Twitch.tv</TwitchButton>
+        </a> */}
+      </LoginWrapper>
+    );
   }
 }
 
