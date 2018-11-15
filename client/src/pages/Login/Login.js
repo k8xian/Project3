@@ -1,18 +1,9 @@
 import React, { Component } from "react";
-import { reduxForm, Field } from "redux-form";
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import GoogleLogin from 'react-google-login';
-import FacebookLogin from 'react-facebook-login';
-
-import * as actions from '../../actions'
-import CustomInput from '../../components/CustomInput';
-
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import Logo from "../../components/Logo";
 import { Link } from "react-router-dom";
-import API from "../../utils/API";
+// import API from "../../utils/API";
 
 const TwitchButton = styled.button`
   background-color: #6441a4;
@@ -71,39 +62,9 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.responseGoogle = this.responseGoogle.bind(this);
-    this.responseFacebook = this.responseFacebook.bind(this);
-  }
-
-  async onSubmit(formData) {
-    console.log('onSubmit() got called');
-    console.log('form data', formData);
-    // We need to call some actioncreator
-    await this.props.signUp(formData);
-    if (!this.props.errorMessage) {
-      this.props.history.push('/dashboard') // sending user to dashboard when they signup
-    }
-  }
-
-  async responseGoogle(res) {
-    console.log('response Google', res);
-    await this.props.oauthGoogle(res.accessToken);
-    if (!this.props.errorMessage) {
-      this.props.history.push('/dashboard') // sending user to dashboard when they signup
-    }
-  }
-
-  async responseFacebook(res) {
-    console.log('response Facebook', res);
-    await this.props.oauthFacebook(res.accessToken);
-    if (!this.props.errorMessage) {
-      this.props.history.push('/dashboard') // sending user to dashboard when they signup
-    }
-  }
-
+  state = {
+    // book: {}
+  };
   // Add code to get the book with an _id equal to the id in the route param
   // e.g. http://localhost:3000/books/:id
   // The book id for this route can be accessed using this.props.match.params.id
@@ -116,50 +77,30 @@ class Login extends Component {
   //   }
 
   render() {
-    const { handleSubmit } = this.props;
     return (
       <LoginWrapper>
         <GlobalStyle />
         <Logo />
         {/* Put submit handler in this form tag here */}
-        <form >
-          {/* Put on change handler for email here */}
-          <input type="email"></input>
-          {/* put on change handler for password here */}
-          <input type="password"></input>
-          <input type="submit"></input>
+          <form >
+            {/* Put on change handler for email here */}
+            <input type="email"></input>
+            {/* put on change handler for password here */}
+            <input type="password"></input>
+            <input type="submit"></input>
+          </form>
 
-          {this.props.errorMessage ?
-            <div className="alert alert-danger">
-              {this.props.errorMessage}
-            </div> : null}
 
-          <button type="submit" className="btn btn-primary">
-            Sign Up
-            </button>
-        </form>
-        <GoogleButton
-          clientId="308330016501-kra9rvrv1fpacchgcdnabpdrk0gvv7ps.apps.googleusercontent.com"
-          buttonText="Google"
-          onSuccess={this.responseGoogle}
-          onFailure={this.responseGoogle}
-          className="btn btn-outline-danger"
-        />
+
+        <a href="/auth/google">
+          <GoogleButton>Login with Google</GoogleButton>
+        </a>
         <a href="/profile">
           <TwitchButton>Login with Twitch.tv</TwitchButton>
         </a>
-      </LoginWrapper >
+      </LoginWrapper>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    errorMessage: state.auth.errorMessage
-  }
-}
-
-export default compose(
-  connect(mapStateToProps, actions),
-  reduxForm({ form: "login" })
-)(Login);
+export default Login;
