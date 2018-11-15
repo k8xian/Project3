@@ -24,7 +24,7 @@ app.use(routes);
 
 // Connect to the Mongo DB
 //We need to change this db in the future.
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SocialSlayer");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SocialSlayer"), { useNewUrlParser: true };
 
 // Start the API server
 app.listen(PORT, function() {
