@@ -1,6 +1,6 @@
 import Rebase from 're-base';
 import firebase from 'firebase';
-if (process.env.NODE_ENV !== 'production') require('dotenv').config()
+// if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 
 const config = {
   apiKey: process.env.REACT_APP_Firebase_apiKey,
