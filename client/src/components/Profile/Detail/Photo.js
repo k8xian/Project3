@@ -23,7 +23,7 @@ float: left;
 `;
 
 const StyledSocialInput = styled.input`
-margin: 60px auto 0;
+margin: 0 auto;
 background-color: rgba(0,0,0,0);
 border: 0;
 color: white;
@@ -88,6 +88,11 @@ background-position: center;
 box-shadow: 0 4px 9px black;
 `
 
+const StyledInstruction = styled.p`
+text-align: center;
+margin-top: 50px;
+`
+
 class Photo extends React.Component {
   constructor(props) {
     super(props);
@@ -142,7 +147,8 @@ class Photo extends React.Component {
 
   ImageForm = () => (
     <StyledForm onSubmit={this.handleSubmit} >
-      <StyledSocialInput value={this.state.src} onChange={this.handleInputChange} placeholder={this.state.src} name="src" />
+    <StyledInstruction>enter a new profile url</StyledInstruction>
+      <StyledSocialInput value={this.state.src} onChange={this.handleInputChange} placeholder={this.state.src} name="profileImage" />
       <SocialSubmitButton type="submit" value="Save" />
     </StyledForm>
   )
