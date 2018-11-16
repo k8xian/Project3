@@ -77,8 +77,23 @@ class LOLForm extends React.Component {
 
     LOLForm = () => (
         <StyledForm onSubmit={this.handleLOLSubmit}>
-            <StyledSocialInput value={this.state.username} onChange={this.handleLOLChange} placeholder={this.state.username } />
+            <StyledSocialInput value={this.state.username} onChange={this.handleLOLChange} placeholder={this.state.username} />
             <SocialSubmitButton type="submit" value=">" />
+            <div className="dropdown">
+                <button className="dropbtn">Platform:</button>
+                <div className="dropdown-content">
+                    <a href="#" value="br">Brazil</a>
+                    <a href="#" value="eune">EU North East</a>
+                    <a href="#" value="euw">EU West</a>
+                    <a href="#" value="lan">Latin America North</a>
+                    <a href="#" value="las">Latin America South</a>
+                    <a href="#" value="na">North America</a>
+                    <a href="#" value="oce">Oceana</a>
+                    <a href="#" value="ru">Russia</a>
+                    <a href="#" value="tr">Turkey</a>
+                    <a href="#" value="jp">Japan</a>
+                </div>
+            </div>
         </StyledForm>
     )
 
@@ -94,10 +109,10 @@ class LOLForm extends React.Component {
         return (
             <div>
                 <StyledSocialAdd onClick={this.toggleLOLForm.bind(this)} >
-                   Add LoL
+                    Add LoL
                 </StyledSocialAdd>
                 {!this.state.formIsHidden && <this.LOLForm />}
-                
+
             </div>
         );
     }

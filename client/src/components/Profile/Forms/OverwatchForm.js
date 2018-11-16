@@ -79,6 +79,14 @@ class OverwatchForm extends React.Component {
         <StyledForm onSubmit={this.handleOverwatchSubmit}>
             <StyledSocialInput value={this.state.username} onChange={this.handleOverwatchChange} placeholder={this.state.username } />
             <SocialSubmitButton type="submit" value=">" />
+            <div className="dropdown">
+                <button className="dropbtn">Platform:</button>
+                <div className="dropdown-content">
+                    <a href="#" value="pc">PC</a>
+                    <a href="#" value="psn">PlayStation</a>
+                    <a href="#" value="xbl">XBox</a>
+                </div>
+            </div>
         </StyledForm>
     )
 

@@ -79,6 +79,14 @@ class FortniteForm extends React.Component {
         <StyledForm onSubmit={this.handleFortniteSubmit}>
             <StyledSocialInput value={this.state.username} onChange={this.handleFortniteChange} placeholder={this.state.username } />
             <SocialSubmitButton type="submit" value=">" />
+            <div className="dropdown">
+                <button className="dropbtn">Platform:</button>
+                <div className="dropdown-content">
+                    <a href="#" value="pc">PC</a>
+                    <a href="#" value="ps4">PlayStation</a>
+                    <a href="#" value="xbox">XBox</a>
+                </div>
+            </div>
         </StyledForm>
     )
 
