@@ -1,6 +1,6 @@
 import Rebase from 're-base';
 import firebase from 'firebase';
-var CONFIG = require('./config.json');
+var CONFIG = require('./config');
 // if (CONFIG.NODE_ENV !== 'production') require('dotenv').config()
 
 const config = {

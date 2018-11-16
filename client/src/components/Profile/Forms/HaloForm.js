@@ -16,8 +16,7 @@ border-radius: 0;
 border: 1px solid #00fff4;
 color: #00fff4;
 cursor: pointer;
-margin: 20px 0;
-float: left;
+margin: 20px auto;
 `
 
 const StyledSocialInput = styled.input`
