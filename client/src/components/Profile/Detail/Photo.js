@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from 'styled-components';
 import API from '../../../utils/API';
 
@@ -89,80 +89,82 @@ box-shadow: 0 4px 9px black;
 `
 
 class Photo extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            src: "https://www.esportsonly.com/assets/Uploads/Players/_resampled/ScaleHeightWyI1NDAiXQ/saahil-universe-arora.jpg",
-            // the real default image
-            // src: "https://via.placeholder.com/200",
-            alt: "profile picture for this user",
-            isHidden: true
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      src: "https://www.esportsonly.com/assets/Uploads/Players/_resampled/ScaleHeightWyI1NDAiXQ/saahil-universe-arora.jpg",
+      // the real default image
+      // src: "https://via.placeholder.com/200",
+      alt: "profile picture for this user",
+      isHidden: true
+    }
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-        this.handleSrcChange = this.handleSrcChange.bind(this);
-        this.handleSrcSubmit = this.handleSrcSubmit.bind(this);
+  async componentDidMount() {
+    let url = new URL(document.URL);
+    const parseURL = url.pathname.split("/");
+    let userAccountName = parseURL[2];
+
+    //This will await the data that is retrieved through the call to the backend
+    //And then it will save it to the profileInformation variable
+    //Then set state to the retrieved information, while preserving what was there
+    const getProfileInformation = await API.getProfileInformation({ userAccountName: userAccountName });
+    let profileInformation = getProfileInformation.data;
+    this.setState({
+      userAccountName: userAccountName,
+      src: profileInformation.ProfileImage,
+    });
+  }
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleSubmit(event) {
+    event.preventDefault();
+    API.updateProfileImage({
+      userAccountName: this.state.userAccountName,
+      updateProfileImage: this.state.profileImage
+    }).then(res => this.setState({
+      isHidden: !this.state.isHidden
+    }));
+  }
+
+  toggleHidden() {
+    this.setState({
+      isHidden: !this.state.isHidden
+    })
+  }
+
+  ImageForm = () => (
+    <StyledForm onSubmit={this.handleSubmit} >
+      <StyledSocialInput value={this.state.src} onChange={this.handleInputChange} placeholder={this.state.src} name="profileImage" />
+      <SocialSubmitButton type="submit" value="Save" />
+    </StyledForm>
+  )
+
+
+  render() {
+
+    const style = {
+      backgroundImage: "url(" + this.state.src + ")"
     }
 
-    async componentDidMount() {
-        let url = new URL(document.URL);
-        const parseURL = url.pathname.split("/");
-        let userAccountName = parseURL[2];
-    
-        //This will await the data that is retrieved through the call to the backend
-        //And then it will save it to the profileInformation variable
-        //Then set state to the retrieved information, while preserving what was there
-        const getProfileInformation = await API.getProfileInformation({ userAccountName: userAccountName });
-        let profileInformation = getProfileInformation.data;
-        this.setState({
-          userAccountName: userAccountName,
-          src: profileInformation.src
-        });
-      }
-    
+    return (
 
-    handleSrcChange(event) {
-        this.setState({ src: event.target.src });
-    }
-
-    handleSrcSubmit(event) {
-        event.preventDefault();
-        this.setState({
-            isHidden: !this.state.isHidden
-        })
-
-    }
-
-    toggleHidden() {
-        this.setState({
-            isHidden: !this.state.isHidden
-        })
-    }
-
-    ImageForm = () => (
-        <StyledForm onSubmit={this.handleSrcChange}>
-            <StyledSocialInput value={this.state.src} onChange={this.handleSrcChange} placeholder={this.state.src} />
-            <SocialSubmitButton type="submit" value="Save"/>
-        </StyledForm>
-    )
-
-
-    render() {
-
-        const style = {
-            backgroundImage: "url("+this.state.src+")"
-        }
-    
-        return (
-
-            <ProfilePicture>
-                {this.state.isHidden && <StyledEditButton onClick={this.toggleHidden.bind(this)} />}
-                <StyledEditButton onClick={this.toggleHidden.bind(this)} /> 
-                {!this.state.isHidden && <this.ImageForm />}
-                {/* {this.state.isHidden && <StyledImg src={this.state.src} alt={this.state.alt} />} */}
-                {this.state.isHidden && <ProfilePic style={style}/>}
-            </ProfilePicture>
-        );
-    }
+      <ProfilePicture>
+        {this.state.isHidden && <StyledEditButton onClick={this.toggleHidden.bind(this)} />}
+        <StyledEditButton onClick={this.toggleHidden.bind(this)} />
+        {!this.state.isHidden && <this.ImageForm />}
+        {/* {this.state.isHidden && <StyledImg src={this.state.src} alt={this.state.alt} />} */}
+        {this.state.isHidden && <ProfilePic style={style} />}
+      </ProfilePicture>
+    );
+  }
 
 }
 

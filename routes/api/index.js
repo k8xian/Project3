@@ -59,7 +59,6 @@ const updateBio = require("./updateProfile/updateBio.js");
 const updateInstagram = require("./updateProfile/updateInstagram.js");
 const updateProfileImage = require("./updateProfile/updateProfileImage.js");
 const updateTwitch = require("./updateProfile/updateTwitch.js");
-// const updateTwitchEmbed = require("./updateProfile/updateTwitchEmbed.js");
 const updateTwitter = require("./updateProfile/updateTwitter.js");
 
 //This route will be used for handling the updating of generic profile information
