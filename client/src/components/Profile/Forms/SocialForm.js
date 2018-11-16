@@ -20,11 +20,10 @@ color: #00fff4;
 cursor: pointer;
 margin: 20px 0;
 float: left;
-`
+`;
 
 const StyledSocialInput = styled.input`
 float: left;
-margin: 20px 0 20px 20px;
 background-color: rgba(0,0,0,0);
 border: 0;
 color: white;
@@ -33,7 +32,9 @@ height: 20px;
 border-bottom: 1px solid white;
 padding: 0 3px;
 width: 80px;
-`
+text-align: left;
+width: calc(100% - 30px);
+`;
 
 const SocialSubmitButton = styled.input`
 width: 20px;
@@ -42,16 +43,38 @@ background-color: rgba(0,0,0,0);
 border: 1px solid #00fff4;
 float: left;
 display: block;
-margin: 21px 0 -1px 0;
 cursor: pointer;
 color: #00fff4;
 text-align: center;
 line-height: 20px;
-`
+text-align: left;
+`;
 
 const StyledForm = styled.form`
 float: left;
-`
+width: 100%;
+margin: auto;
+`;
+
+const StyledEditButton = styled.button`
+    background-repeat: no-repeat;
+    background-size: contain;
+    float: right;
+    height: 18px;
+    width: 18px;
+    margin-top: 0;
+    background: rgba(0,0,0,0);
+    border: 0;
+    background-image: url('/images/icons/edit.svg');
+    cursor: pointer;
+    margin-top: -28px;
+    margin-bottom: 28px;
+`;
+
+const StyledSocial = styled.div`    
+width: 80%;
+margin: auto;
+}`
 
 //move the form outside as the hide element
 
@@ -135,7 +158,7 @@ class SocialForm extends React.Component {
         value={this.state.twitch}
         onChange={this.handleInputChange}
         name="twitch"
-        placeholder={this.state.twitch || "@"} />
+        placeholder="@yourtwitch" />
       <SocialSubmitButton
         type="submit"
         value=">"
@@ -149,7 +172,7 @@ class SocialForm extends React.Component {
         value={this.state.twitter}
         onChange={this.handleInputChange}
         name="twitter"
-        placeholder={this.state.twitter || "@"} />
+        placeholder="@yourtwitter"/>
       <SocialSubmitButton
         type="submit"
         value=">"
@@ -163,7 +186,7 @@ class SocialForm extends React.Component {
         value={this.state.instagram}
         onChange={this.handleInputChange}
         name="instagram"
-        placeholder={this.state.instagram || "@"} />
+        placeholder="@yourinstagram" />
       <SocialSubmitButton
         type="submit"
         value=">"
@@ -192,26 +215,28 @@ class SocialForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <StyledSocialAdd onClick={this.toggleTwitch.bind(this)} >
+      <StyledSocial>
+        {/* <StyledSocialAdd >
           Add Twitch
-                </StyledSocialAdd>
+                </StyledSocialAdd> */}
+      
         {!this.state.twitchIsHidden && <this.TwitchForm />}
-        {this.state.twitchIsHidden && <SocialLink site="Twitch" url={this.state.twitch} username={this.state.twitch}></SocialLink>}
-
-        <StyledSocialAdd onClick={this.toggleTwitter.bind(this)} >
+        {this.state.twitchIsHidden && <SocialLink site="Twitch" url={"https://twitch.com/" + this.state.twitch} username={this.state.twitch}></SocialLink>}
+        {this.state.twitchIsHidden &&  <StyledEditButton onClick={this.toggleTwitch.bind(this)} />}
+        {/* <StyledSocialAdd onClick={this.toggleTwitter.bind(this)} >
           Add Twitter
-                </StyledSocialAdd>
-
+                </StyledSocialAdd> */}
+        
         {!this.state.twitterIsHidden && <this.TwitterForm />}
-        {this.state.twitterIsHidden && <SocialLink site="Twitter" url={this.state.twitter} username={this.state.twitter}></SocialLink>}
-        <StyledSocialAdd onClick={this.toggleInstagram.bind(this)} >
+        {this.state.twitterIsHidden && <SocialLink site="Twitter" url={"https://twitter.com/" + this.state.twitter} username={this.state.twitter}></SocialLink>}
+        {this.state.twitterIsHidden && <StyledEditButton onClick={this.toggleTwitter.bind(this)} />}
+        {/* <StyledSocialAdd onClick={this.toggleInstagram.bind(this)} >
           Add Instagram
-                </StyledSocialAdd>
-
+                </StyledSocialAdd> */}
         {!this.state.instagramIsHidden && <this.InstagramForm />}
-        {this.state.instagramIsHidden && <SocialLink site="Instagram" url={this.state.instagram} username={this.state.instagram}></SocialLink>}
-      </div>
+        {this.state.instagramIsHidden && <SocialLink site="Instagram" url={"https://instagram.com/" + this.state.instagram} username={this.state.instagram}></SocialLink>}
+        {this.state.instagramIsHidden && <StyledEditButton onClick={this.toggleInstagram.bind(this)}  />}
+      </StyledSocial>
     );
   }
 }
