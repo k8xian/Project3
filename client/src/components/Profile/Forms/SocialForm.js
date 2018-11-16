@@ -39,15 +39,16 @@ width: calc(100% - 30px);
 const SocialSubmitButton = styled.input`
 width: 20px;
 height: 20px;
+margin-top: 1px;
 background-color: rgba(0,0,0,0);
 border: 1px solid #00fff4;
 float: left;
 display: block;
 cursor: pointer;
 color: #00fff4;
-text-align: center;
-line-height: 20px;
-text-align: left;
+line-height: 14px;
+text-align: right;
+padding-right: 15px;
 `;
 
 const StyledForm = styled.form`
