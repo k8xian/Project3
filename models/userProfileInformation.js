@@ -96,16 +96,6 @@ var userProfileInformationModel = new Schema({
         type: String,
         default: "",
     },
-    // TwitchEmbed: {
-    //     Link: {
-    //         type: String,
-    //         default: "",
-    //     },
-    //     isPopulated: {
-    //         type: Boolean,
-    //         default: false
-    //     }
-    // },
     Instagram: {
         type: String,
         default: "",

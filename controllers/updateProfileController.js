@@ -8,8 +8,6 @@ const db = require("../models");
 
 module.exports = {
   updateBio: (req, res) => {
-    console.log(req.params);
-    console.log(req.body);
     db.userProfileInformation
       .findOneAndUpdate({ "userAccountName": req.params.id },
         { $set: { "Bio": req.body.updateBio } },
@@ -52,7 +50,7 @@ module.exports = {
   updateProfileImage: (req, res) => {
     db.userProfileInformation
       .findOneAndUpdate({ "userAccountName": req.params.id },
-        { $set: { "userAccountName": req.body.ProfileImage } },
+        { $set: { "ProfileImage": req.body.updateProfileImage } },
         { new: true })
       .then(dbRes => {
         res.json(dbRes);
