@@ -142,7 +142,7 @@ class Photo extends React.Component {
 
   ImageForm = () => (
     <StyledForm onSubmit={this.handleSubmit} >
-      <StyledSocialInput value={this.state.src} onChange={this.handleInputChange} placeholder={this.state.src} name="profileImage" />
+      <StyledSocialInput value={this.state.src} onChange={this.handleInputChange} placeholder={this.state.src} name="src" />
       <SocialSubmitButton type="submit" value="Save" />
     </StyledForm>
   )

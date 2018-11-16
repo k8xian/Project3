@@ -1,24 +1,14 @@
 //react components
 import React, { Component } from "react";
-<<<<<<< HEAD
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import {Spinner} from "@blueprintjs/core";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { Spinner } from "@blueprintjs/core";
 
 //local components
-=======
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Switch, Link, Redirect, withRouter } from "react-router-dom";
-import { Spinner } from "@blueprintjs/core";
->>>>>>> 3de5454029d6248f3c8ef3ded119117455a3cc85
 import Profile from "./pages/Profile";
 import PublicProfile from "./pages/Profile/PublicProfile";
 import Login from "./pages/Login";
 import Logout from "./components/Logout";
-<<<<<<< HEAD
-import {app, base} from "./Base";
-=======
-import { app, base } from "./Base";
->>>>>>> 3de5454029d6248f3c8ef3ded119117455a3cc85
+import { app } from "./Base";
 
 
 class App extends Component {
@@ -71,9 +61,9 @@ class App extends Component {
   PrivateRoute = ({ component: Component, ...rest }) => {
     <Route {...rest} render={(props) => (
       this.state.authenticated === true
-      ? <Component {...props} />
-      : <Redirect to="/login" />
-    )}/>
+        ? <Component {...props} />
+        : <Redirect to="/login" />
+    )} />
   }
 
   render() {
@@ -92,21 +82,10 @@ class App extends Component {
             {console.log(`App.js this.state.authenticated: ${this.state.authenticated}`)}
             <Route exact path="/" component={Login} />
             <Route exact path="/logout" component={Logout} />
-<<<<<<< HEAD
-            {/* <Route exact path="/signup" component={SignUp} />
-        <Route exact path="/signin" component={SignIn} /> */}
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/PublicProfile" component={PublicProfile} />
             <Route exact path="/profile/:id" component={Profile} />
-            {/* This will be the individual view for any profile with an edit button that will show/hide forms */}
             <Route exact path="/profile/:id/edit" component={Profile} />
-=======
-            <Route exact path="/PublicProfile" component={PublicProfile} />
-            <Route exact path="/profile/:id" component={Profile} />{/* This will be public*/}
-            <Route exact path="/profile" component={Profile} />{/* This will be public*/}
-            <Route exact path="/profile/:id/edit" component={Profile} />{/*This will be protected */}
-            <Route exact path="*" component={Login} />{/*This will be protected */}
->>>>>>> 3de5454029d6248f3c8ef3ded119117455a3cc85
           </Switch>
         </div>
       </Router>
