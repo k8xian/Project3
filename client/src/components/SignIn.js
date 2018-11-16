@@ -10,7 +10,7 @@ import * as actions from '../actions'
 import CustomInput from "./CustomInput";
 
 import styled from "styled-components";
-import { createGlobalStyle } from "styled-components";
+import GlobalStyle from "../GlobalStyle";
 import Logo from "../components/Logo";
 
 const TwitchButton = styled.button`
@@ -104,44 +104,6 @@ margin-bottom: 20px;
 font-style: italic;
 `;
 
-
-
-const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Libre+Franklin:300,800');
-  body {
-    margin: 0;
-    padding: 0;
-    color: white;
-    height: 100vh;
-    width: 100vw;
-    font-family: 'Libre Franklin', sans-serif;
-    background-repeat: no-repeat;
-    background: #171717;
-    background: -moz-linear-gradient(top, #171717 0%, #29282d 50%, #1c2529 100%);
-    background: -webkit-linear-gradient(top, #171717 0%,#29282d 50%,#1c2529 100%); 
-    background: linear-gradient(to bottom, #171717 0%,#29282d 50%,#1c2529 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#171717', endColorstr='#1c2529',GradientType=0 );
-    overflow: hidden;
-  }
-
-  input:-webkit-autofill {
-    background-color: rgba(0,0,0,0) !important;
-    border: 0;
-    text-align: center;
-    color: white;
-  }
-
-  input {
-    background-color: rgba(0,0,0,0);
-    border: 0;
-    font-size: 1rem;
-    text-align: center;
-    width: 100%;
-    border-bottom: 1px solid white;
-    color: white;
-    margin-bottom: 20px;
-  }
-`;
 
 
 class SignIn extends Component {

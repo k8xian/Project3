@@ -1,34 +1,12 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
-import { createGlobalStyle } from 'styled-components'
+import GlobalStyle from '../../GlobalStyle';
 import { BioPublic, Game, PostBlock, PhotoPublic, SocialLink } from '../../components/Profile/Detail/index'
 import { AllStats, FortniteStats, OverwatchStats, LOLStats, HaloStats } from '../../components/Stats/index'
 import { SocialFormPublic, TwitchStreamForm, TwitterFeedForm } from '../../components/Profile/Forms/index'
 import { ProfileHeader, StatsWrapper, MainContent, GamesList, SidebarEmbed, LinksWrapper, PostWrapper, ProfileContent, MainDetail } from '../../components/Profile/Styles/index'
 import API from "../../utils/API";
 
-const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Libre+Franklin:300,800');
-  body {
-    margin: 0;
-    padding: 0;
-    color: white;
-    height: 100vh;
-    width: 100vw;
-    font-family: 'Libre Franklin', sans-serif;
-    background-repeat: no-repeat;
-    background: #171717;
-    background: -moz-linear-gradient(top, #171717 0%, #29282d 50%, #1c2529 100%);
-    background: -webkit-linear-gradient(top, #171717 0%,#29282d 50%,#1c2529 100%); 
-    background: linear-gradient(to bottom, #171717 0%,#29282d 50%,#1c2529 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#171717', endColorstr='#1c2529',GradientType=0 );
-    overflow: hidden;
-  }
-
-  .element::-webkit-scrollbar { 
-    width: 0 !important 
-  }
-`
 
 const StatButtonSwitch = styled.button`
 background-color: rgba(0,0,0,0);

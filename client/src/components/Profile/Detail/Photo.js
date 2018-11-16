@@ -5,7 +5,7 @@ const ProfilePicture = styled.div`
 width: 25%;
 height: 200px;
 float: left;
-`
+`;
 
 const StyledSocialAdd = styled.button`
 clear: both;
@@ -19,7 +19,7 @@ color: #00fff4;
 cursor: pointer;
 margin: 20px 0;
 float: left;
-`
+`;
 
 const StyledSocialInput = styled.input`
 float: left;
@@ -32,7 +32,7 @@ height: 20px;
 border-bottom: 1px solid white;
 padding: 0 3px;
 width: 120px;
-`
+`;
 
 const SocialSubmitButton = styled.input`
 width: 20px;
@@ -46,11 +46,12 @@ cursor: pointer;
 color: #00fff4;
 text-align: center;
 line-height: 20px;
-`
+`;
 
 const StyledForm = styled.form`
 float: left;
-`
+margin-bottom: -61px;
+`;
 const StyledEditButton = styled.button`
     background-repeat: no-repeat;
     background-size: contain;
@@ -64,7 +65,14 @@ const StyledEditButton = styled.button`
     cursor: pointer;
     position: absolute;
     left: 205px;
-`
+`;
+
+const StyledImg = styled.img`
+border-radius: 50%;
+margin: 20px;
+height: 150px;
+border: 6px solid #ffffff33;
+`;
 
 
 class Photo extends React.Component {
@@ -97,20 +105,23 @@ class Photo extends React.Component {
     ImageForm = () => (
         <StyledForm onSubmit={this.handleSrcChange}>
             <StyledSocialInput value={this.state.src} onChange={this.handleSrcChange} placeholder={this.state.src} />
-            <SocialSubmitButton type="submit" value=">" />
+            <SocialSubmitButton type="submit">
+                {/* <i class="material-icons">done
+                </i> */}
+            </SocialSubmitButton>
         </StyledForm>
     )
 
 
     render() {
         return (
-            
+
             <ProfilePicture>
                 <StyledEditButton onClick={this.toggleHidden.bind(this)} />
                 {!this.state.isHidden && <this.ImageForm />}
-                <img src={this.state.src} alt={this.state.alt} />
+                {this.state.isHidden && <StyledImg src={this.state.src} alt={this.state.alt} />}
             </ProfilePicture>
-     );
+        );
     }
 
 }
