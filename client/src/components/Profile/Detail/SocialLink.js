@@ -6,7 +6,7 @@ width: 100%;
 display: block;
 clear: both;
 align-self: flex-end;
-    border-bottom: 1px solid rgba(255,255,255,.1);
+border-bottom: 1px dotted rgba(255,255,255,.2);
 `;
 
 const StyledSocialLink = styled.a`
