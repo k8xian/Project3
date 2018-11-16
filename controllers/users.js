@@ -1,6 +1,6 @@
 const JWT = require("jsonwebtoken");
 const User = require("../models/user");
-require("dotenv").config();
+if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 
 signToken = user => {
   return JWT.sign(

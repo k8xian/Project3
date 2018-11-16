@@ -4,7 +4,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const { ExtractJwt } = require("passport-jwt");
 const GooglePlusTokenStrategy = require('passport-google-plus-token');
 const FacebookTokenStrategy = require('passport-facebook-token');
-require("dotenv").config();
+if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 const User = require("./models/user");
 
 // JSON WEB TOKENS STRATEGY
