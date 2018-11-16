@@ -214,9 +214,9 @@ class Profile extends Component {
             <Bio />
           </ProfileContent>
           {/* Commenting this out until it looks prettier */}
-          {/* <LinksWrapper>
+          <LinksWrapper>
             <SocialForm />
-          </LinksWrapper> */}
+          </LinksWrapper>
         </ProfileHeader>
         <MainContent>
           <MainDetail>
