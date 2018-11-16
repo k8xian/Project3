@@ -18,38 +18,20 @@ const StyledProfileName = styled.h1`
 `
 
 
-class Header extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            //   isToggleOn: true,
-            //   twitchIsHidden: true,
-            //   twitterIsHidden: true,
-            //   instagramIsHidden: true
-        };
-
-        // this.handleTwitchSubmit = this.handleTwitchSubmit.bind(this);
-        // this.handleTwitterSubmit = this.handleTwitterSubmit.bind(this);
-        // this.handleInstagramSubmit = this.handleInstagramSubmit.bind(this);
-    }
-
-    render() {
-        return (
-            <div>
-                <GlobalStyle />
-                <StyledNav>
-                    <StyledProfileName>ProfileName</StyledProfileName>
-                    <ul>
-                        <li>
-                            <a href="/logout">
-                                Logout
+const Header = props => (
+    <div>
+        <GlobalStyle />
+        <StyledNav>
+            <StyledProfileName>{props.id || "PLAYERNAME"}</StyledProfileName>
+            <ul>
+                <li>
+                    <a href="/logout">
+                        Logout
                             </a>
-                        </li>
-                    </ul>
-                </StyledNav>
-            </div>
-        );
-    }
-}
+                </li>
+            </ul>
+        </StyledNav>
+    </div >
+);
 
 export default Header;

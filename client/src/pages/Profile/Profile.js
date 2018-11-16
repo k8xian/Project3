@@ -207,7 +207,7 @@ class Profile extends Component {
     return (
       <div>
         <GlobalStyle />
-        <Header />
+        <Header id={this.props.match.params.id}/>
         <ProfileHeader>
           <Photo />
           <ProfileContent>
