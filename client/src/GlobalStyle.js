@@ -53,18 +53,24 @@ const GlobalStyle = createGlobalStyle`
   }
 
   nav ul li a {
-    padding: 0.25em 1em;
-    text-decoration: none; /* no underline */
-    background-color: #EBF5FF; /* pale bluish white */
-    color: #4312AE; /* dark blue */
-    border: 2px solid black;
-    border-top-left-radius: 1em 1em; /* rounded corner! */
-    border-top-right-radius: 1em 1em; /* another rounded corner! */
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 3px;
+    margin: 0 20px;
+    font-size: .6rem;
+    display: block;
+    line-height: 9px;
+    cursor: pointer;
+    transition-property: color, font-size;
+    transition-timing-function: ease-in-out;
+    transition-duration: 500ms;
   }
 
   nav ul li a:hover, nav ul li a:focus {
-    color: black;
-    background-color: white;
+    color: rgba(255,255,255,.8);
+    font-size: .7rem;
     font-weight: bold;
   }
 
