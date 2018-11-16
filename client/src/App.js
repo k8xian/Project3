@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {Spinner} from "@blueprintjs/core";
-import Books from "./pages/Books";
-import Detail from "./pages/Detail";
 import Profile from "./pages/Profile";
 import PublicProfile from "./pages/Profile/PublicProfile";
 import Login from "./pages/Login";
@@ -87,9 +85,6 @@ class App extends Component {
             <Route exact path="/logout" component={Logout} />
             {/* <Route exact path="/signup" component={SignUp} />
         <Route exact path="/signin" component={SignIn} /> */}
-            <Route exact path="/old-home" component={Books} />
-            <Route exact path="/books" component={Books} />
-            <Route exact path="/books/:id" component={Detail} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/PublicProfile" component={PublicProfile} />
             <Route exact path="/profile/:id" component={Profile} />
@@ -104,3 +99,10 @@ class App extends Component {
 };
 
 export default App;
+
+/* Notes:
+
+path does a prefix matcj
+
+
+*/
