@@ -41,7 +41,7 @@ class Header extends React.Component {
                     <StyledProfileName>ProfileName</StyledProfileName>
                     <ul>
                         <li>
-                            <a>
+                            <a href="/logout">
                                 Logout
                             </a>
                         </li>

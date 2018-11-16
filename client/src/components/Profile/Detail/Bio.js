@@ -9,7 +9,6 @@ const ProfileInfo = styled.div`
     height: 200px;
     float: left;
     padding-right: 20px;
-    padding-top: 25px;
     width: 88%;
     text-align: justify;
     margin: auto;
