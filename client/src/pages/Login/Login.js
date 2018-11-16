@@ -79,7 +79,10 @@ class Login extends Component {
       .then((user) => {
         if (user && user.email) {
           this.loginForm.reset();
-          this.setState({ redirect: true });
+          this.setState({ 
+            redirect: true,
+            redirectRoute: `/profile/${userName}/edit`,
+          });
         }
       })
       .then(makeAccount => {
@@ -110,7 +113,8 @@ class Login extends Component {
 
   render() {
     if (this.state.Redirect === true) {
-      return <Redirect to="/" />
+      console.log(this.state.redirectRoute);
+      return <Redirect to={this.state.redirectRoute} />
     }
 
     return (
@@ -138,8 +142,8 @@ class Login extends Component {
       <input style={{ width: "100%" }} className="" name="password" type="password" ref={(input) => { this.passwordInput = input }} placeholder="Password" />
           </label>
           <label>
-            Password
-      <input style={{ width: "100%" }} className="" name="username" type="text" ref={(input) => { this.usernameInput = input }} placeholder="Password" />
+            Desired username
+      <input style={{ width: "100%" }} className="" name="username" type="text" ref={(input) => { this.usernameInput = input }} placeholder="Desired Username" />
           </label>
           <input style={{ width: "25%" }} type="submit" className="" value="Log In" />
           <button style={{ width: "100%", }} className="login-button"
