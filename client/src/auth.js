@@ -1,39 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import GlobalStyle from "../GlobalStyle";
+import GlobalStyle from "./GlobalStyle";
 import Logo from "../../components/Logo";
 import { Link, Redirect } from "react-router-dom";
 import { Toaster, Intent } from '@blueprintjs/core';
 import { app, facebookProvider } from "../../Base";
 import API from "../../utils/API";
-
-const TwitchButton = styled.button`
-  background-color: #6441a4;
-  color: white;
-  border: 0;
-  width: 240px;
-  height: 34px;
-  clear: both;
-  cursor: pointer;
-`;
-const GoogleButton = styled.button`
-  background-color: white;
-  color: rgba(0, 0, 0, 0.54);
-  border: 0;
-  width: 240px;
-  height: 34px;
-  border-radius: 0;
-  cursor: pointer;
-  margin: 20px auto;
-`;
-
-const LoginWrapper = styled.div`
-width 80%;
-max-width: 300px;
-margin: 80px auto 0;
-text-align: center;
-`;
-
 
 class Login extends Component {
   constructor(props) {
@@ -43,17 +15,6 @@ class Login extends Component {
     this.state = {
       Redirect: false,
     }
-  }
-
-  authWithFacebook() {
-    app.auth().signInWithPopup(facebookProvider)
-      .then((res, err) => {
-        if (err) {
-          this.Toaster.show({ intent: Intent.DANGER, message: "Unable to sign in with Facebook" })
-        } else {
-          this.setState({ Redirect: true })
-        }
-      })
   }
 
   authWithEmailPassword(event) {
