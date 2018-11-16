@@ -38,22 +38,10 @@ text-align: center;
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.authWithFacebook = this.authWithFacebook.bind(this);
     this.authWithEmailPassword = this.authWithEmailPassword.bind(this);
     this.state = {
       Redirect: false,
     }
-  }
-
-  authWithFacebook() {
-    app.auth().signInWithPopup(facebookProvider)
-      .then((res, err) => {
-        if (err) {
-          this.Toaster.show({ intent: Intent.DANGER, message: "Unable to sign in with Facebook" })
-        } else {
-          this.setState({ Redirect: true })
-        }
-      })
   }
 
   authWithEmailPassword(event) {
@@ -77,15 +65,20 @@ class Login extends Component {
         }
       })
       .then((user) => {
-        if (user && user.email) {
+        if (user && user.user.email) {
           this.loginForm.reset();
-          this.setState({ redirect: true });
+          this.setState({
+            Redirect: true,
+            RedirectRoute: `/profile/${userName}/edit`
+          });
         }
       })
       .then(makeAccount => {
-        API.createUserAccount({
-          userAccountName: userName
-        })
+        if (email && userName) {
+          API.createUserAccount({
+            userAccountName: userName
+          })
+        }
       })
       .catch(err => this.Toaster.show({ intent: Intent.DANGER, message: err.message }))
   }
@@ -98,7 +91,7 @@ class Login extends Component {
         })
       } else {
         this.setState({
-          authenticated: true
+          authenticated: false
         })
       }
     })
@@ -110,7 +103,7 @@ class Login extends Component {
 
   render() {
     if (this.state.Redirect === true) {
-      return <Redirect to="/" />
+      return <Redirect to={this.state.RedirectRoute} />
     }
 
     return (
@@ -121,7 +114,7 @@ class Login extends Component {
         <GlobalStyle />
 
         <Logo />
-        {console.log(this.state.authenticated)}
+        {console.log(`Login.js this.state.authenticated: ${this.state.authenticated}`)}
         {/* Put submit handler in this form tag here */}
         <form onSubmit={(event) => { this.authWithEmailPassword(event) }} ref={(form) => { this.loginForm = form }}>
 
@@ -138,19 +131,11 @@ class Login extends Component {
       <input style={{ width: "100%" }} className="" name="password" type="password" ref={(input) => { this.passwordInput = input }} placeholder="Password" />
           </label>
           <label>
-            Password
-      <input style={{ width: "100%" }} className="" name="username" type="text" ref={(input) => { this.usernameInput = input }} placeholder="Password" />
+            Desired username
+      <input style={{ width: "100%" }} className="" name="username" type="text" ref={(input) => { this.usernameInput = input }} placeholder="Desired Username" />
           </label>
           <input style={{ width: "25%" }} type="submit" className="" value="Log In" />
-          <button style={{ width: "100%", }} className="login-button"
-            onClick={() => this.authWithFacebook()}>Login with Facebook </button>
         </form>
-        {/* <a href="/login">
-          <GoogleButton>Login</GoogleButton>
-        </a>
-        <a href="/profile">
-          <TwitchButton>Login with Twitch.tv</TwitchButton>
-        </a> */}
       </LoginWrapper>
     );
   }
