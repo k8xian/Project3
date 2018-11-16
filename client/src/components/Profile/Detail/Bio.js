@@ -125,7 +125,7 @@ class Bio extends Component {
   render() {
     return (
       <ProfileInfo>
-        <StyledEditButton onClick={this.toggleHidden.bind(this)} />
+        {this.props.edit && <StyledEditButton onClick={this.toggleHidden.bind(this)} />}
         <StyledBio>
           {this.state.bio}
         </StyledBio>

@@ -38,24 +38,11 @@ text-align: center;
 class Login extends Component {
   constructor(props) {
     super(props);
-    // this.authWithFacebook = this.authWithFacebook.bind(this);
     this.authWithEmailPassword = this.authWithEmailPassword.bind(this);
     this.state = {
       Redirect: false,
     }
   }
-
-  //Auth with facebook. Kinda useless, fuck this
-  // authWithFacebook() {
-  //   app.auth().signInWithPopup(facebookProvider)
-  //     .then((res, err) => {
-  //       if (err) {
-  //         this.Toaster.show({ intent: Intent.DANGER, message: "Unable to sign in with Facebook" })
-  //       } else {
-  //         this.setState({ Redirect: true })
-  //       }
-  //     })
-  // }
 
   authWithEmailPassword(event) {
     event.preventDefault();
@@ -148,15 +135,7 @@ class Login extends Component {
       <input style={{ width: "100%" }} className="" name="username" type="text" ref={(input) => { this.usernameInput = input }} placeholder="Desired Username" />
           </label>
           <input style={{ width: "25%" }} type="submit" className="" value="Log In" />
-          {/* <button style={{ width: "100%", }} className="login-button"
-            onClick={() => this.authWithFacebook()}>Login with Facebook </button> */}
         </form>
-        {/* <a href="/login">
-          <GoogleButton>Login</GoogleButton>
-        </a>
-        <a href="/profile">
-          <TwitchButton>Login with Twitch.tv</TwitchButton>
-        </a> */}
       </LoginWrapper>
     );
   }

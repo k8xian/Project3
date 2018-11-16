@@ -81,10 +81,11 @@ class App extends Component {
             {console.log(`App.js this.state.authenticated: ${this.state.authenticated}`)}
             <Route exact path="/" component={Login} />
             <Route exact path="/logout" component={Logout} />
-            <Route exact path="/PublicProfile" component={PublicProfile} />
+            {/* <Route exact path="/PublicProfile" component={PublicProfile} /> */}
             <Route exact path="/profile/:id" component={Profile} />{/* This will be public*/}
             <Route exact path="/profile" component={Profile} />{/* This will be public*/}
-            <Route exact path="/profile/:id/edit" component={Profile} />{/*This will be protected */}
+            <Route path='/profile/:id/edit' 
+            render={(props) => <Profile {...props} edit={true} />}/>    
             <Route exact path="*" component={Login} />{/*This will be protected */}
           </Switch>
         </div>
@@ -94,3 +95,5 @@ class App extends Component {
 };
 
 export default App;
+
+
