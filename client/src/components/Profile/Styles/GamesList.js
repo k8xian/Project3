@@ -3,16 +3,12 @@ import styled from 'styled-components';
 
 
 const GamesWrapper = styled.div`
-height: 160px;
 width: 100%;
 float: left;
-display: block;
-border-bottom: 1px solid rgba(0,0,0,.2);
 display: flex;
+-webkit-box-pack: center;
 justify-content: center;
-flex-flow: row no-wrap;
-overflow-x: scroll;
-overflow-y: hidden;
+flex-direction: column;
 `
 
 const GamesList = props =>(

@@ -1,34 +1,12 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
-import { createGlobalStyle } from 'styled-components'
+import GlobalStyle from '../../GlobalStyle';
+import {Header} from '../../components/Elements/index';
 import { Bio, Game, PostBlock, Photo, SocialLink } from '../../components/Profile/Detail/index'
 import { AllStats, FortniteStats, OverwatchStats, LOLStats, HaloStats } from '../../components/Stats/index'
 import { SocialForm, TwitchStreamForm, TwitterFeedForm, HaloForm, FortniteForm, OverwatchForm, LOLForm } from '../../components/Profile/Forms/index'
 import { ProfileHeader, StatsWrapper, MainContent, GamesList, SidebarEmbed, LinksWrapper, PostWrapper, ProfileContent, MainDetail } from '../../components/Profile/Styles/index'
 import API from "../../utils/API";
-
-const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Libre+Franklin:300,800');
-  body {
-    margin: 0;
-    padding: 0;
-    color: white;
-    height: 100vh;
-    width: 100vw;
-    font-family: 'Libre Franklin', sans-serif;
-    background-repeat: no-repeat;
-    background: #171717;
-    background: -moz-linear-gradient(top, #171717 0%, #29282d 50%, #1c2529 100%);
-    background: -webkit-linear-gradient(top, #171717 0%,#29282d 50%,#1c2529 100%); 
-    background: linear-gradient(to bottom, #171717 0%,#29282d 50%,#1c2529 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#171717', endColorstr='#1c2529',GradientType=0 );
-    overflow: hidden;
-  }
-
-  .element::-webkit-scrollbar { 
-    width: 0 !important 
-  }
-`
 
 const StatButtonSwitch = styled.button`
 background-color: rgba(0,0,0,0);
@@ -38,10 +16,12 @@ cursor: pointer;
 `
 
 const AllStatButton = styled.button`
+width: 100px;
 background-color: rgba(0,0,0,0);
 color: #00fff4;
 cursor: pointer;
 border: 1px solid #00fff4;
+height: 18px;
 `
 
 //prop for edit view or not edit view
@@ -227,28 +207,18 @@ class Profile extends Component {
     return (
       <div>
         <GlobalStyle />
+        <Header />
         <ProfileHeader>
           <Photo />
           <ProfileContent>
             <Bio />
           </ProfileContent>
-          <LinksWrapper>
+          {/* Commenting this out until it looks prettier */}
+          {/* <LinksWrapper>
             <SocialForm />
-          </LinksWrapper>
+          </LinksWrapper> */}
         </ProfileHeader>
         <MainContent>
-          <GamesList>
-            {/* Put a refresh button for each game in the stats */}
-            <AllStatButton onClick={this.showAllStats}>Show All Stats</AllStatButton>
-            {!this.halodataexists && <HaloForm />}
-            {this.halodataexists && <StatButtonSwitch onClick={this.showHaloStats}> <Game image="/images/games/halo.png" title="Halo 5" /></StatButtonSwitch>}
-            {!this.overwatchdataexists && <OverwatchForm />}
-            {this.overwatchdataexists && <StatButtonSwitch onClick={this.showOverwatchStats}> <Game image="/images/games/overwatch.png" title="Overwatch" /></StatButtonSwitch>}
-            {!this.fortnitedataexists && <FortniteForm />}
-            {this.fortnitedataexists && <StatButtonSwitch onClick={this.showFortniteStats}><Game image="/images/games/fortnite.png" title="Fortnite" /></StatButtonSwitch>}
-            {!this.loldataexists && <LOLForm />}
-            {this.loldataexists && <StatButtonSwitch onClick={this.showLOLStats}><Game image="/images/games/leagueof.png" title="League of Legends" /></StatButtonSwitch>}
-          </GamesList>
           <MainDetail>
             <StatsWrapper>
               {!this.state.allStatsHidden && <AllStats />}
@@ -280,8 +250,18 @@ class Profile extends Component {
             </PostWrapper>
           </MainDetail>
           <SidebarEmbed>
-            <TwitchStreamForm />
-            <TwitterFeedForm />
+          <GamesList>
+            {/* Put a refresh button for each game in the stats */}
+            <AllStatButton onClick={this.showAllStats}>Show All Stats</AllStatButton>
+            {!this.halodataexists && <HaloForm />}
+            {this.halodataexists && <StatButtonSwitch onClick={this.showHaloStats}> <Game image="/images/games/halo.png" title="Halo 5" /></StatButtonSwitch>}
+            {!this.overwatchdataexists && <OverwatchForm />}
+            {this.overwatchdataexists && <StatButtonSwitch onClick={this.showOverwatchStats}> <Game image="/images/games/overwatch.png" title="Overwatch" /></StatButtonSwitch>}
+            {!this.fortnitedataexists && <FortniteForm />}
+            {this.fortnitedataexists && <StatButtonSwitch onClick={this.showFortniteStats}><Game image="/images/games/fortnite.png" title="Fortnite" /></StatButtonSwitch>}
+            {!this.loldataexists && <LOLForm />}
+            {this.loldataexists && <StatButtonSwitch onClick={this.showLOLStats}><Game image="/images/games/leagueof.png" title="League of Legends" /></StatButtonSwitch>}
+          </GamesList>
           </SidebarEmbed>
         </MainContent>
       </div>
