@@ -55,18 +55,18 @@ margin-bottom: -61px;
 width: 100%;
 `;
 const StyledEditButton = styled.button`
-    background-repeat: no-repeat;
-    background-size: contain;
-    float: right;
-    height: 18px;
-    width: 18px;
-    margin-top: 0;
-    background: rgba(0,0,0,0);
-    border: 0;
-    background-image: url('/images/icons/edit.svg');
-    cursor: pointer;
-    position: absolute;
-    left: 205px;
+background-repeat: no-repeat;
+background-size: contain;
+float: right;
+height: 18px;
+width: 18px;
+margin-top: 0;
+background: rgba(0,0,0,0);
+border: 0;
+background-image: url('/images/icons/edit.svg');
+cursor: pointer;
+position: absolute;
+left: 205px;
 `;
 
 const StyledImg = styled.img`
@@ -76,12 +76,25 @@ height: 150px;
 border: 6px solid #ffffff33;
 `;
 
+const ProfilePic = styled.div`
+border-radius: 50%;
+margin: 20px;
+height: 150px;
+width: 150px;
+border: 6px solid #00fff4;
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+box-shadow: 0 4px 9px black;
+`
 
 class Photo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            src: "https://via.placeholder.com/200",
+            src: "https://www.esportsonly.com/assets/Uploads/Players/_resampled/ScaleHeightWyI1NDAiXQ/saahil-universe-arora.jpg",
+            // the real default image
+            // src: "https://via.placeholder.com/200",
             alt: "profile picture for this user",
             isHidden: true
         }
@@ -134,13 +147,19 @@ class Photo extends React.Component {
 
 
     render() {
+
+        const style = {
+            backgroundImage: "url("+this.state.src+")"
+        }
+    
         return (
 
             <ProfilePicture>
                 {this.state.isHidden && <StyledEditButton onClick={this.toggleHidden.bind(this)} />}
                 <StyledEditButton onClick={this.toggleHidden.bind(this)} /> 
                 {!this.state.isHidden && <this.ImageForm />}
-                {this.state.isHidden && <StyledImg src={this.state.src} alt={this.state.alt} />}
+                {/* {this.state.isHidden && <StyledImg src={this.state.src} alt={this.state.alt} />} */}
+                {this.state.isHidden && <ProfilePic style={style}/>}
             </ProfilePicture>
         );
     }

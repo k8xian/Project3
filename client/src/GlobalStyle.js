@@ -20,12 +20,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100vh;
     width: 100vw;
     font-family: 'Libre Franklin', sans-serif;
-    background-repeat: no-repeat;
-    background: #171717;
-    background: -moz-linear-gradient(top, #171717 0%, #29282d 50%, #1c2529 100%);
-    background: -webkit-linear-gradient(top, #171717 0%,#29282d 50%,#1c2529 100%); 
-    background: linear-gradient(to bottom, #171717 0%,#29282d 50%,#1c2529 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#171717', endColorstr='#1c2529',GradientType=0 );
+    background: linear-gradient( rgba(0, 0, 0, .95), rgba(0, 0, 0, 0.9) ), url(/images/background/tiny-squares.png);
     overflow: hidden;
   }
 
