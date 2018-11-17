@@ -5,8 +5,7 @@ const Schema = mongoose.Schema;
 const userLOLDataModel = new Schema({
   userAccountName: {
     type: String,
-    // type: Schema.Types.ObjectId,
-    // ref: "user",
+    unique: true,
   },
   playerRank: String,
   playerQueue: String,

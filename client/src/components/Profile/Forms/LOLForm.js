@@ -3,6 +3,7 @@
 //pull out data from the backend
 
 import React from "react";
+import API from '../../../utils/API';
 import styled from 'styled-components';
 
 
@@ -54,68 +55,103 @@ float: left;
 //move the form outside as the hide element
 
 class LOLForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: '',
-            formIsHidden: true,
-        };
+  constructor(props) {
+    super(props);
+    this.state = {
+      formIsHidden: true,
+    };
 
-        this.handleLOLChange = this.handleLOLChange.bind(this);
-        this.handleLOLSubmit = this.handleLOLSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    let ServerSelector = document.getElementById("lol-selector");
+    let SelectedServer = ServerSelector.options[ServerSelector.selectedIndex].value;
+    
+    if (SelectedServer === "" || this.state.LOLUID === "") {
+      return //Put an error message here later
+    } else {
+      API.updateAndScrapeLOL({
+        userAccountName: this.state.userAccountName,
+        UID: this.state.LOLUID,
+        Platform: SelectedServer,
+      }).then(res => this.setState({
+        isHidden: !this.state.isHidden
+      }));
     }
+  }
 
-    handleLOLChange(event) {
-        this.setState({ username: event.target.username });
-    }
+  async componentDidMount() {
+    let url = new URL(document.URL);
+    const parseURL = url.pathname.split("/");
+    let userAccountName = parseURL[2];
 
-    handleLOLSubmit(event) {
-        //hide the form
-        event.preventDefault();
-    }
+    //This will await the data that is retrieved through the call to the backend
+    //And then it will save it to the profileInformation variable
+    //Then set state to the retrieved information, while preserving what was there
+    const getProfileInformation = await API.getProfileInformation({ userAccountName: userAccountName });
+    let profileInformation = getProfileInformation.data;
+    this.setState({
+      userAccountName: userAccountName,
+      LOLUID: profileInformation.LOL.UID,
+      Platform: profileInformation.LOL.Platform
+    });
+  }
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  LOLForm = () => (
+    <StyledForm onSubmit={this.handleSubmit}>
+      <StyledSocialInput
+        value={this.state.LOLUID}
+        onChange={this.handleInputChange}
+        placeholder={this.state.LOLUID}
+        name="LOLUID" />
+      <SocialSubmitButton type="submit" value=">" />
+      <div className="dropdown">
+        <select id="lol-selector">
+          <option value="">Choose Server</option>
+          <option value="br">Brazil</option>
+          <option value="eune">EU North East</option>
+          <option value="euw">EU West</option>
+          <option value="kr">Korea</option>
+          <option value="lan">Latin America North</option>
+          <option value="las">Latin America South</option>
+          <option value="na">North America</option>
+          <option value="oce">Oceana</option>
+          <option value="ru">Russia</option>
+          <option value="tr">Turkey</option>
+          <option value="jp">Japan</option>
+        </select>
+      </div>
+    </StyledForm>
+  )
 
 
-    LOLForm = () => (
-        <StyledForm onSubmit={this.handleLOLSubmit}>
-            <StyledSocialInput value={this.state.username} onChange={this.handleLOLChange} placeholder={this.state.username} />
-            <SocialSubmitButton type="submit" value=">" />
-            <div className="dropdown">
-                <button className="dropbtn">Platform:</button>
-                <div className="dropdown-content">
-                    <a href="#" value="br">Brazil</a>
-                    <a href="#" value="eune">EU North East</a>
-                    <a href="#" value="euw">EU West</a>
-                    <a href="#" value="lan">Latin America North</a>
-                    <a href="#" value="las">Latin America South</a>
-                    <a href="#" value="na">North America</a>
-                    <a href="#" value="oce">Oceana</a>
-                    <a href="#" value="ru">Russia</a>
-                    <a href="#" value="tr">Turkey</a>
-                    <a href="#" value="jp">Japan</a>
-                </div>
-            </div>
-        </StyledForm>
-    )
+  toggleLOLForm(event) {
+    event.preventDefault();
+    this.setState({
+      formIsHidden: !this.state.formIsHidden
+    })
+  }
 
-
-    toggleLOLForm(event) {
-        event.preventDefault();
-        this.setState({
-            formIsHidden: !this.state.formIsHidden
-        })
-    }
-
-    render() {
-        return (
-            <div>
-                <StyledSocialAdd onClick={this.toggleLOLForm.bind(this)} >
-                    Add LoL
+  render() {
+    return (
+      <div>
+        <StyledSocialAdd onClick={this.toggleLOLForm.bind(this)} >
+          Add LoL
                 </StyledSocialAdd>
-                {!this.state.formIsHidden && <this.LOLForm />}
+        {!this.state.formIsHidden && <this.LOLForm />}
 
-            </div>
-        );
-    }
+      </div>
+    );
+  }
 }
 
 export default LOLForm;

@@ -133,7 +133,7 @@ class Photo extends React.Component {
     event.preventDefault();
     API.updateProfileImage({
       userAccountName: this.state.userAccountName,
-      updateProfileImage: this.state.profileImage
+      updateProfileImage: this.state.src
     }).then(res => this.setState({
       isHidden: !this.state.isHidden
     }));
