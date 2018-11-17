@@ -5,8 +5,8 @@ const Schema = mongoose.Schema;
 const userHalo5DataModel = new Schema({
   userAccountName: {
     type: String,
-    // type: Schema.Types.ObjectId,
-    // ref: "user",
+    // ref: "userProfileInformation",
+    unique: true,
   },
   Date: {
     type: Date,

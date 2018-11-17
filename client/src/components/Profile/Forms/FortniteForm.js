@@ -4,6 +4,7 @@
 
 import React from "react";
 import styled from 'styled-components';
+import API from '../../../utils/API';
 
 
 const StyledSocialAdd = styled.button`
@@ -72,6 +73,7 @@ class FortniteForm extends React.Component {
     handleFortniteSubmit(event) {
         //hide the form
         event.preventDefault();
+        
     }
 
 

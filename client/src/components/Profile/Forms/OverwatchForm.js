@@ -3,6 +3,7 @@
 //pull out data from the backend
 
 import React from "react";
+import API from '../../../utils/API';
 import styled from 'styled-components';
 
 
@@ -53,61 +54,95 @@ float: left;
 //move the form outside as the hide element
 
 class OverwatchForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: '',
-            formIsHidden: true,
-        };
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      formIsHidden: true,
+    };
 
-        this.handleOverwatchChange = this.handleOverwatchChange.bind(this);
-        this.handleOverwatchSubmit = this.handleOverwatchSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  
+  handleSubmit(event) {
+    event.preventDefault();
+    let ServerSelector = document.getElementById("overwatch-selector");
+    let SelectedServer = ServerSelector.options[ServerSelector.selectedIndex].value;
+    console.log(this.state);
+    console.log(SelectedServer);
+    if (SelectedServer === "" || this.state.username === "") {
+      return //Put an error message here later
+    } else {
+      API.updateAndScrapeOverwatch({
+        userAccountName: this.state.userAccountName,
+        UID: this.state.username,
+        Platform: SelectedServer,
+      }).then(res => this.setState({
+        isHidden: !this.state.isHidden
+      }));
     }
+  }
 
-    handleOverwatchChange(event) {
-        this.setState({ username: event.target.username });
-    }
+  async componentDidMount() {
+    let url = new URL(document.URL);
+    const parseURL = url.pathname.split("/");
+    let userAccountName = parseURL[2];
 
-    handleOverwatchSubmit(event) {
-        //hide the form
-        event.preventDefault();
-    }
+    //This will await the data that is retrieved through the call to the backend
+    //And then it will save it to the profileInformation variable
+    //Then set state to the retrieved information, while preserving what was there
+    const getProfileInformation = await API.getProfileInformation({ userAccountName: userAccountName });
+    let profileInformation = getProfileInformation.data;
+    console.log(profileInformation.Overwatch);
+    this.setState({
+      userAccountName: userAccountName,
+      OverwatchUID: profileInformation.Overwatch.UID,
+      Platform: profileInformation.Overwatch.Platform
+    });
+  }
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
 
-    OverwatchForm = () => (
-        <StyledForm onSubmit={this.handleOverwatchSubmit}>
-            <StyledSocialInput value={this.state.username} onChange={this.handleOverwatchChange} placeholder={this.state.username } />
-            <SocialSubmitButton type="submit" value=">" />
-            <div className="dropdown">
-                <button className="dropbtn">Platform:</button>
-                <div className="dropdown-content">
-                    <a href="#" value="pc">PC</a>
-                    <a href="#" value="psn">PlayStation</a>
-                    <a href="#" value="xbl">XBox</a>
-                </div>
-            </div>
-        </StyledForm>
-    )
+  OverwatchForm = () => (
+    <StyledForm onSubmit={this.handleSubmit}>
+      <StyledSocialInput value={this.state.username} name="username" onChange={this.handleInputChange} placeholder={this.state.username} />
+      <SocialSubmitButton type="submit" value=">" />
+      <div className="dropdown">
+        <select id="overwatch-selector">
+          <option value="">Choose Server</option>
+          <option value="pc">PC</option>
+          <option value="psn">PlayStation</option>
+          <option value="xbl">XBox</option>
+        </select>
+      </div>
+    </StyledForm>
+  )
 
 
-    toggleOverwatchForm(event) {
-        event.preventDefault();
-        this.setState({
-            formIsHidden: !this.state.formIsHidden
-        })
-    }
+  toggleOverwatchForm(event) {
+    event.preventDefault();
+    this.setState({
+      formIsHidden: !this.state.formIsHidden
+    })
+  }
 
-    render() {
-        return (
-            <div>
-                <StyledSocialAdd onClick={this.toggleOverwatchForm.bind(this)} >
-                   Add Overwatch
+  render() {
+    return (
+      <div>
+        <StyledSocialAdd onClick={this.toggleOverwatchForm.bind(this)} >
+          Add Overwatch
                 </StyledSocialAdd>
-                {!this.state.formIsHidden && <this.OverwatchForm />}
-                
-            </div>
-        );
-    }
+        {!this.state.formIsHidden && <this.OverwatchForm />}
+
+      </div>
+    );
+  }
 }
 
 export default OverwatchForm;

@@ -3,6 +3,7 @@
 //pull out data from the backend
 
 import React from "react";
+import API from '../../../utils/API';
 import styled from 'styled-components';
 
 
@@ -50,56 +51,84 @@ const StyledForm = styled.form`
 float: left;
 `
 
-//move the form outside as the hide element
-
 class HaloForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: '',
-            formIsHidden: true,
-        };
+  constructor(props) {
+    super(props);
+    this.state = {
+      Halo5UID: '',
+      formIsHidden: true,
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-        this.handleHaloChange = this.handleHaloChange.bind(this);
-        this.handleHaloSubmit = this.handleHaloSubmit.bind(this);
-    }
+  async componentDidMount() {
+    let url = new URL(document.URL);
+    const parseURL = url.pathname.split("/");
+    let userAccountName = parseURL[2];
 
-    handleHaloChange(event) {
-        this.setState({ username: event.target.username });
-    }
+    //This will await the data that is retrieved through the call to the backend
+    //And then it will save it to the profileInformation variable
+    //Then set state to the retrieved information, while preserving what was there
+    const getProfileInformation = await API.getProfileInformation({ userAccountName: userAccountName });
+    let profileInformation = getProfileInformation.data;
+    this.setState({
+      userAccountName: userAccountName,
+      Halo5UID: profileInformation.Halo5.UID,
+    });
+  }
 
-    handleHaloSubmit(event) {
-        //hide the form
-        event.preventDefault();
-    }
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log(this.state);
+    API.updateAndScrapeHalo5({
+      userAccountName: this.state.userAccountName,
+      UID: this.state.Halo5UID
+    }).then(res => this.setState({
+      isHidden: !this.state.isHidden
+    }));
+  }
+
+  HaloForm = () => (
+    <StyledForm onSubmit={this.handleSubmit}>
+      <StyledSocialInput
+        value={this.state.Halo5UID}
+        onChange={this.handleInputChange}
+        placeholder={this.state.Halo5UID}
+        name="Halo5UID"
+      />
+      <SocialSubmitButton
+        type="submit"
+        value=">"
+      />
+    </StyledForm>
+  )
 
 
-    HaloForm = () => (
-        <StyledForm onSubmit={this.handleHaloSubmit}>
-            <StyledSocialInput value={this.state.username} onChange={this.handleHaloChange} placeholder={this.state.username } />
-            <SocialSubmitButton type="submit" value=">" />
-        </StyledForm>
-    )
+  toggleHaloForm(event) {
+    event.preventDefault();
+    this.setState({
+      formIsHidden: !this.state.formIsHidden
+    })
+  }
 
-
-    toggleHaloForm(event) {
-        event.preventDefault();
-        this.setState({
-            formIsHidden: !this.state.formIsHidden
-        })
-    }
-
-    render() {
-        return (
-            <div>
-                <StyledSocialAdd onClick={this.toggleHaloForm.bind(this)} >
-                    Add Halo 5
+  render() {
+    return (
+      <div>
+        <StyledSocialAdd onClick={this.toggleHaloForm.bind(this)} >
+          Add Halo 5
                 </StyledSocialAdd>
-                {!this.state.formIsHidden && <this.HaloForm />}
-                
-            </div>
-        );
-    }
+        {!this.state.formIsHidden && <this.HaloForm />}
+
+      </div>
+    );
+  }
 }
 
 export default HaloForm;

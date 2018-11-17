@@ -5,8 +5,7 @@ const Schema = mongoose.Schema;
 const userFortniteDataModel = new Schema({
   userAccountName: {
     type: String,
-    // type: Schema.Types.ObjectId,
-    // ref: "userProfileInformation",
+    unique: true,
   },
   Date: {
     type: Date,
