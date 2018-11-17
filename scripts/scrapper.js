@@ -107,13 +107,26 @@ module.exports = {
             playerDataArr.push(playerData);
           }
         });
-        let saveToDB = {
-          totalKills: playerDataArr[0].val,
-          kdRatio: playerDataArr[1].val,
-          winRate: playerDataArr[2].val,
-          totalWins: playerDataArr[3].val,
-          gamesPlayed: playerDataArr[4].val,
-          timePlayed: playerDataArr[5].val,
+
+        if (req.userAccountName) {
+          saveToDB = {
+            userAccountName: req.userAccountName,
+            totalKills: playerDataArr[0].val,
+            kdRatio: playerDataArr[1].val,
+            winRate: playerDataArr[2].val,
+            totalWins: playerDataArr[3].val,
+            gamesPlayed: playerDataArr[4].val,
+            timePlayed: playerDataArr[5].val,
+          }
+        } else {
+          saveToDB = {
+            totalKills: playerDataArr[0].val,
+            kdRatio: playerDataArr[1].val,
+            winRate: playerDataArr[2].val,
+            totalWins: playerDataArr[3].val,
+            gamesPlayed: playerDataArr[4].val,
+            timePlayed: playerDataArr[5].val,
+          }
         }
         return saveToDB;
       })

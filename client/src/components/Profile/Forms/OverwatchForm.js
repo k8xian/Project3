@@ -77,8 +77,6 @@ class OverwatchForm extends React.Component {
     event.preventDefault();
     let ServerSelector = document.getElementById("overwatch-selector");
     let SelectedServer = ServerSelector.options[ServerSelector.selectedIndex].value;
-    console.log(this.state);
-    console.log(SelectedServer);
     if (SelectedServer === "" || this.state.username === "") {
       return //Put an error message here later
     } else {
@@ -102,7 +100,6 @@ class OverwatchForm extends React.Component {
     //Then set state to the retrieved information, while preserving what was there
     const getProfileInformation = await API.getProfileInformation({ userAccountName: userAccountName });
     let profileInformation = getProfileInformation.data;
-    console.log(profileInformation.Overwatch);
     this.setState({
       userAccountName: userAccountName,
       OverwatchUID: profileInformation.Overwatch.UID,

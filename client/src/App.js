@@ -27,10 +27,9 @@ overflow: hidden;
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => {
     return rest.authenticated
-      ? <Component {...props} />
+      ? <Component {...props} edit={true}/>
       : <Redirect to="/" />
   }} />)
-
 
 class App extends Component {
   constructor() {

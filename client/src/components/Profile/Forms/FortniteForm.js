@@ -62,64 +62,92 @@ height: 50px;
 //move the form outside as the hide element
 
 class FortniteForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: '',
-            formIsHidden: true,
-        };
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      formIsHidden: true,
+    };
 
-        this.handleFortniteChange = this.handleFortniteChange.bind(this);
-        this.handleFortniteSubmit = this.handleFortniteSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    let ServerSelector = document.getElementById("fortnite-selector");
+    let SelectedServer = ServerSelector.options[ServerSelector.selectedIndex].value;
+    if (SelectedServer === "" || this.state.username === "") {
+      return //Put an error message here later
+    } else {
+      API.updateAndScrapeFortnite({
+        userAccountName: this.state.userAccountName,
+        UID: this.state.username,
+        Platform: SelectedServer,
+      }).then(res => this.setState({
+        isHidden: !this.state.isHidden
+      }));
     }
+  }
 
-    handleFortniteChange(event) {
-        this.setState({ username: event.target.username });
-    }
+  async componentDidMount() {
+    let url = new URL(document.URL);
+    const parseURL = url.pathname.split("/");
+    let userAccountName = parseURL[2];
 
-    handleFortniteSubmit(event) {
-        //hide the form
-        event.preventDefault();
+    //This will await the data that is retrieved through the call to the backend
+    //And then it will save it to the profileInformation variable
+    //Then set state to the retrieved information, while preserving what was there
+    const getProfileInformation = await API.getProfileInformation({ userAccountName: userAccountName });
+    let profileInformation = getProfileInformation.data;
+    this.setState({
+      userAccountName: userAccountName,
+      FortniteUID: profileInformation.Fortnite.UID,
+      Platform: profileInformation.Fortnite.Platform
+    });
+  }
 
-    }
-
-
-    FortniteForm = () => (
-        <StyledForm onSubmit={this.handleFortniteSubmit}>
-            <InputBlock>
-                <StyledSocialInput value={this.state.username} onChange={this.handleFortniteChange} placeholder={this.state.username} />
-                <SocialSubmitButton type="submit" value=">" />
-            </InputBlock>
-            <div className="dropdown">
-                <select id="fortnite-selector">
-                    <option value="">Choose Server</option>
-                    <option value="pc">PC</option>
-                    <option value="ps4">PlayStation</option>
-                    <option value="xbox">XBox</option>
-                </select>
-            </div>
-        </StyledForm>
-    )
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
 
-    toggleFortniteForm(event) {
-        event.preventDefault();
-        this.setState({
-            formIsHidden: !this.state.formIsHidden
-        })
-    }
+  FortniteForm = () => (
+    <StyledForm onSubmit={this.handleSubmit}>
+      <StyledSocialInput value={this.state.username} name="username" onChange={this.handleInputChange} placeholder={this.state.FortniteUID} />
+      <SocialSubmitButton type="submit" value=">" />
+      <div className="dropdown">
+        <select id="fortnite-selector">
+          <option value="">Choose Server</option>
+          <option value="pc">PC</option>
+          <option value="ps4">PlayStation</option>
+          <option value="xbox">XBox</option>
+        </select>
+      </div>
+    </StyledForm>
+  )
 
-    render() {
-        return (
-            <div>
-                <StyledSocialAdd onClick={this.toggleFortniteForm.bind(this)} >
-                    Add Fortnite
+
+  toggleFortniteForm(event) {
+    event.preventDefault();
+    this.setState({
+      formIsHidden: !this.state.formIsHidden
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <StyledSocialAdd onClick={this.toggleFortniteForm.bind(this)} >
+          Add Fortnite
                 </StyledSocialAdd>
-                {!this.state.formIsHidden && <this.FortniteForm />}
+        {!this.state.formIsHidden && <this.FortniteForm />}
 
-            </div>
-        );
-    }
+      </div>
+    );
+  }
 }
 
 export default FortniteForm;

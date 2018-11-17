@@ -109,11 +109,9 @@ export default {
       tell the user data was successfully submitted)
   ******************************************/
   updateBio: function (userData) {
-    console.log(userData);
     return axios.put(`/api/updateBio/${userData.userAccountName}`, userData);
   },
   updateInstagram: function (userData) {
-    console.log(userData);
     return axios.put(`/api/updateInstagram/${userData.userAccountName}`, userData);
   },
   updateProfileImage: function (userData) {
@@ -121,11 +119,9 @@ export default {
     return axios.put(`/api/updateProfileImage/${userData.userAccountName}`, userData);
   },
   updateTwitch: function (userData) {
-    console.log(userData);
     return axios.put(`/api/updateTwitch/${userData.userAccountName}`, userData);
   },
   updateTwitter: function (userData) {
-    console.log(userData);
     return axios.put(`/api/updateTwitter/${userData.userAccountName}`, userData);
   },
   /******************************************
@@ -198,7 +194,6 @@ export default {
     return axios.post(`/api/updateAndScrapeLOL/${userData.userAccountName}`, userData);
   },
   updateAndScrapeOverwatch: function (userData) {
-    console.log(userData);
     return axios.post(`/api/updateAndScrapeOverwatch/${userData.userAccountName}`, userData);
   },
 };
