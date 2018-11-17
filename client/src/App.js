@@ -8,6 +8,21 @@ import PublicProfile from "./pages/Profile/PublicProfile";
 import Login from "./pages/Login";
 import Logout from "./components/Logout";
 import { app, base } from "./Base";
+import MDSpinner from 'react-md-spinner';
+import styled from 'styled-components';
+
+const StyledLoading = styled.div`
+margin: 0;
+padding: 0;
+height: 100vh;
+width: 100vw;
+color: white;
+margin-top: -8px;
+margin-left: -8px;
+font-family: 'Libre Franklin', sans-serif;
+background: linear-gradient( rgba(11, 0, 33, 0.94),rgba(25, 0, 78, 0.94) ), url(/images/background/tiny-squares.png);
+overflow: hidden;
+`
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => {
@@ -65,12 +80,13 @@ class App extends Component {
 
 
   render() {
+
     if (this.state.loading === true) {
       return (
-        <div>
-          <h3>Loading</h3>
-          <Spinner />
-        </div>
+        <StyledLoading>
+          <h3 style={{ position: 'fixed', top: '25%', left: 'calc(50% - 75px', width: '150px', textAlign: 'center',  fontFamily: "'Libre Franklin', sans-serif"}}>Loading...</h3>
+          <MDSpinner className="spinner" style={{ position: 'fixed', top: '33%', left: 'calc(50% - 75px'}} size={150} duration={500}/>
+        </StyledLoading>
       )
     }
     return (
@@ -97,5 +113,3 @@ class App extends Component {
 };
 
 export default App;
-
-
