@@ -34,7 +34,34 @@ margin: 80px auto 0;
 text-align: center;
 `;
 
+const StyledNote = styled.div`
+font-size: .7rem;
+font-style: italic;
+font-weight: 300;
+`
 
+const StyledSubmit = styled.input`
+width: 100%;
+height: 30px;
+border: 1px solid  #00fff4;
+margin: 20px auto;
+color:  #00fff4;
+cursor: pointer;
+`
+
+const StyledInput = styled.input`
+width: 100%;
+margin: 10px 0 20px;
+border: 0;
+background-color: rgba(0,0,0,.54);
+line-height: 20px;
+height: 30px;
+`
+
+const StyledLabel = styled.label`
+margin-top: 20px;
+display: block;
+`
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -117,24 +144,19 @@ class Login extends Component {
         {console.log(`Login.js this.state.authenticated: ${this.state.authenticated}`)}
         {/* Put submit handler in this form tag here */}
         <form onSubmit={(event) => { this.authWithEmailPassword(event) }} ref={(form) => { this.loginForm = form }}>
-
-          <div style={{ marginBottom: "10px" }} className="">
-            <h5>Note</h5>
-            If you do not have an account already, this form will create one!
-      </div>
-          <label>
+          <StyledLabel>
             Email
-      <input style={{ width: "100%" }} className="" name="email" type="email" ref={(input) => { this.emailInput = input }} placeholder="Email" />
-          </label>
-          <label>
+      <StyledInput className="" type="email" name="email" ref={(input) => { this.emailInput = input }} />
+          </StyledLabel>
+          <StyledLabel>
             Password
-      <input style={{ width: "100%" }} className="" name="password" type="password" ref={(input) => { this.passwordInput = input }} placeholder="Password" />
-          </label>
-          <label>
+      <StyledInput className=""type="password" name="password" ref={(input) => { this.passwordInput = input }} />
+          </StyledLabel>
+          <StyledLabel>
             Desired username
-      <input style={{ width: "100%" }} className="" name="username" type="text" ref={(input) => { this.usernameInput = input }} placeholder="Desired Username" />
-          </label>
-          <input style={{ width: "25%" }} type="submit" className="" value="Log In" />
+      <StyledInput className="" type="text"  name="username" ref={(input) => { this.usernameInput = input }}  />
+          </StyledLabel>
+          <StyledSubmit type="submit" className="" value="Sign Up / Sign in" />
         </form>
       </LoginWrapper>
     );
