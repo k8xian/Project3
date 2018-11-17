@@ -82,7 +82,7 @@ class Login extends Component {
         <GlobalStyle />
 
         <Logo />
-        {console.log(this.state.authenticated)}
+        {/*console.log(this.state.authenticated)*/}
         {/* Put submit handler in this form tag here */}
         <form onSubmit={(event) => { this.authWithEmailPassword(event) }} ref={(form) => { this.loginForm = form }}>
 
@@ -106,12 +106,6 @@ class Login extends Component {
           <button style={{ width: "100%", }} className="login-button"
             onClick={() => this.authWithFacebook()}>Login with Facebook </button>
         </form>
-        {/* <a href="/login">
-          <GoogleButton>Login</GoogleButton>
-        </a>
-        <a href="/profile">
-          <TwitchButton>Login with Twitch.tv</TwitchButton>
-        </a> */}
       </LoginWrapper>
     );
   }

@@ -7,8 +7,8 @@ module.exports = {
   //req.query.NAMEHERE
   //That will return the data
   scrapeOverwatch: (req, res) => {
-    console.log("Scrapper ");
-    console.log(req);
+    //console.log("Scrapper ");
+    //console.log(req);
     //Platforms = xbl, psn, pc
     //Website www.overbuff.com
     //Kitcy -- This is a public profile -- xbl
@@ -67,8 +67,8 @@ module.exports = {
           };
         }
 
-        console.log("Scrapped Data");
-        console.log(playerData);
+        //console.log("Scrapped Data");
+        //console.log(playerData);
         //Console log and return object
         return playerData;
       })
@@ -288,7 +288,7 @@ module.exports = {
   },
   //Scrape Halo 5
   scrapeHalo5: (req, res) => {
-    console.log(req);
+    //console.log(req);
     //http://halotracker.com/h5/player/Naded
     //req.UID = username of the player
     return axios.get("http://halotracker.com/h5/player/" + req.UID)

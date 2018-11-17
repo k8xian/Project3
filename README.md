@@ -29,6 +29,9 @@ use yarn install in root, use yarn start to run
 
 ## Frontend
 
+### Styled-Components
+* [Styled components](https://www.styled-components.com/) lets you use ES6 and css to generate dynamically styled components
+
 ### Stats
 * All Stats will be compiled in "allstats", there are props listed in the comments
 * Ultimately the db needs to be set up to map to all of these. 
@@ -37,7 +40,7 @@ use yarn install in root, use yarn start to run
 joi: allows you to create blueprints or schemas for JavaScript objects (an object that stores information) to ensure validation of key information. https://github.com/hapijs/joi
 
 ### Google Spinner
-This is a Material Design spinner components for React.js. It is made of 100% inline styles, you can start using it right away!(https://tsuyoshiwada.github.io/react-md-spinner/)
+This is a Material Design spinner components for React.js. (https://tsuyoshiwada.github.io/react-md-spinner/)
 
 ### Gravatar
 [A library to generate Gravatar URLs in Node.js Based on gravatar specs](https://www.npmjs.com/package/gravatar) - Gravatar Documentation is [here](https://en.gravatar.com/)

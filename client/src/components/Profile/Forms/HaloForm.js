@@ -94,7 +94,7 @@ class HaloForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
+    //console.log(this.state);
     API.updateAndScrapeHalo5({
       userAccountName: this.state.userAccountName,
       UID: this.state.Halo5UID

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from 'styled-components';
 import GlobalStyle from '../../GlobalStyle';
 import {Header} from '../../components/Elements/index';
-import { Bio, Game, PostBlock, Photo, SocialLink } from '../../components/Profile/Detail/index'
+import { Bio, Game, Photo } from '../../components/Profile/Detail/index'
 import { AllStats, FortniteStats, OverwatchStats, LOLStats, HaloStats } from '../../components/Stats/index'
 import { SocialForm, TwitchStreamForm, TwitterFeedForm, HaloForm, FortniteForm, OverwatchForm, LOLForm } from '../../components/Profile/Forms/index'
 import { ProfileHeader, StatsWrapper, MainContent, GamesList, SidebarEmbed, LinksWrapper, PostWrapper, ProfileContent, MainDetail } from '../../components/Profile/Styles/index'
@@ -53,6 +53,8 @@ class Profile extends Component {
     this.showLOLStats = this.showLOLStats.bind(this);
     this.showFortniteStats = this.showFortniteStats.bind(this);
     this.showOverwatchStats = this.showOverwatchStats.bind(this);
+
+    // this.handleHaloChildClick = this.handleHaloChildClick.bind(this);
   }
 
   showAllStats(event) {
@@ -114,6 +116,7 @@ class Profile extends Component {
     })
   }
 
+
   async componentDidMount() {
 
     //This code is used for parsing the url.
@@ -149,7 +152,7 @@ class Profile extends Component {
     if (this.state.profileInformation.Halo5.isPopulated) {
       halo5Stats = await API.getHalo5Data({ userAccountName: userAccountName });
       halo5Data = halo5Stats.data;
-      this.setState({ halo5Data, halodataexists: true });
+      this.setState({ halo5Data});
     }
 
     if (this.state.profileInformation.LOL.isPopulated) {
@@ -166,13 +169,13 @@ class Profile extends Component {
   }
 
   handleGetNewLOLData = () => {
-    console.log(this.state.lolData);
+    //console.log(this.state.lolData);
     API.getNewLOLData({
       Platform: this.state.profileInformation.LOL.Platform,
       UID: this.state.profileInformation.LOL.UID,
       userAccountName: this.state.profileInformation.userAccountName
     }).then(res => {
-      console.log(res.data);
+      //console.log(res.data);
       this.setState({ lolData: res.data })
     });
   }
@@ -183,7 +186,7 @@ class Profile extends Component {
       UID: this.state.profileInformation.Fortnite.UID,
       userAccountName: this.state.profileInformation.userAccountName
     }).then(res => {
-      console.log(res.data);
+      //console.log(res.data);
       this.setState({ fortniteData: res.data })
     });
   }
@@ -194,7 +197,7 @@ class Profile extends Component {
       UID: this.state.profileInformation.Overwatch.UID,
       userAccountName: this.state.profileInformation.userAccountName
     }).then(res => {
-      console.log(res.data);
+      //console.log(res.data);
       this.setState({ overwatchData: res.data })
     });
   }
@@ -204,10 +207,18 @@ class Profile extends Component {
       UID: this.state.profileInformation.Halo5.UID,
       userAccountName: this.state.profileInformation.userAccountName
     }).then(res => {
-      console.log(res.data);
+      //console.log(res.data);
       this.setState({ halo5Data: res.data })
     });
   }
+
+  // handleHaloChildClick(event) {
+  //   event.preventDefault();
+  //   this.setState({
+  //     halodataexists: true
+  //   })
+  // }
+
 
   render() {
     return (
@@ -261,7 +272,7 @@ class Profile extends Component {
           <GamesList>
             {/* Put a refresh button for each game in the stats */}
             {/* <AllStatButton onClick={this.showAllStats}>Show All Stats</AllStatButton> */}
-            {!this.state.halodataexists && this.props.edit && <HaloForm />}
+            {!this.state.halodataexists && this.props.edit && <HaloForm/>}
             {this.state.halodataexists && <StatButtonSwitch onClick={this.showHaloStats}> <Game image="/images/games/halo.png" title="Halo 5" /></StatButtonSwitch>}
             {!this.state.overwatchdataexists && this.props.edit && <OverwatchForm />}
             {this.state.overwatchdataexists && <StatButtonSwitch onClick={this.showOverwatchStats}> <Game image="/images/games/overwatch.png" title="Overwatch" /></StatButtonSwitch>}

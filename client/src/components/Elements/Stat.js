@@ -5,9 +5,10 @@ const StyledStat = styled.li`
 `
 
 const StyledStatName = styled.div`
-float: left;
-clear: both;
-line-height: 30px;
+font-size: .8rem;
+font-weight: 600;
+text-transform: uppercase;
+letter-spacing: 1px;
 `
 
 const StyledStatValue = styled.div`
