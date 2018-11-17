@@ -30,7 +30,7 @@ const StyledBioForm = styled.form`
 `
 
 const StyledBio = styled.p`
-  margin-top: 32px;
+  margin-top: 54px;
   margin-bottom: 0px;
 `
 
