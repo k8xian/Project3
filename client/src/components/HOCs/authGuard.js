@@ -7,7 +7,7 @@ export default (OriginalComponent) => {
         checkAuth() {
             // Check whether the user is authenticated
             if (!this.props.isAuth && !this.props.jwtToken) {
-                console.log('Access Denied!');
+                //console.log('Access Denied!');
                 this.props.history.push('/'); // send user back to home page if not authenticated
             }
         }

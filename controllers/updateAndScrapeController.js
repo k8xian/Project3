@@ -15,7 +15,7 @@ module.exports = {
         { $set: { "Fortnite.Platform": req.body.Platform, "Fortnite.UID": req.body.UID, "Fortnite.isPopulated": true } },
         { new: true })
       .then(() => {
-        console.log("Testing this");
+        //console.log("Testing this");
       })
       .catch(err => res.status(422).json(err));
     scrape.scrapeFortnite(req.body)
@@ -28,7 +28,7 @@ module.exports = {
         { $set: { "LOL.Platform": req.body.Platform, "LOL.UID": req.body.UID, "LOL.isPopulated": true } },
         { new: true })
       .then(dbRes => {
-        console.log(dbRes);
+        //console.log(dbRes);
       })
       .catch(err => res.status(422).json(err));
     scrape.scrapeLOL(req.body)
@@ -36,13 +36,13 @@ module.exports = {
       .catch(err => res.status(450).json(err));
   },
   updateAndScrapeOverwatch: (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
     db.userProfileInformation //TODO: This "userAccountName" reference might have to switch depending on John's models
       .update({ "userAccountName": req.body.userAccountName },
         { $set: { "Overwatch.Platform": req.body.Platform, "Overwatch.UID": req.body.UID, "Overwatch.isPopulated": true } },
         { new: true })
       .then(dbRes => {
-        console.log(dbRes);
+        //console.log(dbRes);
       })
       .catch(err => res.status(422).json(err));
     scrape.scrapeOverwatch(req.body)

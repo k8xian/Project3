@@ -79,7 +79,7 @@ class OverwatchForm extends React.Component {
     let ServerSelector = document.getElementById("overwatch-selector");
     let SelectedServer = ServerSelector.options[ServerSelector.selectedIndex].value;
     let saveThisUID = this.state.username.trim();
-    console.log(this.state);
+    //console.log(this.state);
 
     if (saveThisUID.includes("#")) {
       saveThisUID = saveThisUID.split("#").join("-");

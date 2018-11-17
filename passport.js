@@ -39,19 +39,19 @@ passport.use('googleToken', new GooglePlusTokenStrategy({
   clientSecret: process.env.GOOGLE_CLIENTSECRET
 }, async (accessToken, refreshToken, profile, done) => {
   try {
-    console.log('accessToken', accessToken);
-    console.log('refreshToken', refreshToken);
-    console.log('profile', profile);
+    //console.log('accessToken', accessToken);
+    //console.log('refreshToken', refreshToken);
+    //console.log('profile', profile);
   
   
     // Check whether this current user exists in our db
     const existingUser = await User.findOne({ "google.id": profile.id })
     if (existingUser) {
-      console.log('User already exists in our DB');
+      //console.log('User already exists in our DB');
       return done(null, existingUser);
     }
   
-    console.log('User doesnt exist--creating a new one');
+    //console.log('User doesnt exist--creating a new one');
     // If new account
     const newUser = new User({
       method: 'google',
@@ -75,9 +75,9 @@ passport.use('facebookToken', new FacebookTokenStrategy({
   clientSecret: process.env.FACEBOOK_CLIENTSECRET
 }, async (accessToken, refreshToken, profile, done) => {
   try {
-    // console.log('profile', profile);
-    // console.log('accessToken', accessToken);
-    // console.log('refreshToken', refreshToken);
+    // //console.log('profile', profile);
+    // //console.log('accessToken', accessToken);
+    // //console.log('refreshToken', refreshToken);
     const existingUser = await User.findOne({ "facebook.id": profile.id });
     if (existingUser) {
       return done(null, existingUser);

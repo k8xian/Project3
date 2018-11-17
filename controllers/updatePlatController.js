@@ -31,7 +31,7 @@ module.exports = {
         { $set: { "LOL.Platform": req.body.newPlatform } },
         { new: true })
       .then(dbRes => {
-        console.log("Hello");
+        //console.log("Hello");
         res.json(dbRes);
       })
       .catch(err => res.status(422).json(err));
@@ -42,7 +42,7 @@ module.exports = {
         { $set: { "Overwatch.Platform": req.body.newPlatform } },
         { new: true })
       .then(dbRes => {
-        console.log("Hello");
+        //console.log("Hello");
         res.json(dbRes);
       })
       .catch(err => res.status(422).json(err));

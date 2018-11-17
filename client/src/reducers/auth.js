@@ -14,7 +14,7 @@ const DEFAULT_STATE = {
 export default (state = DEFAULT_STATE, action) => {
   switch (action.type) {
     case AUTH_SIGN_UP:
-      console.log("[AuthReducer] got an AUTH_SIGN_UP action!");
+      //console.log("[AuthReducer] got an AUTH_SIGN_UP action!");
       return {
         ...state,
         token: action.payload,
@@ -22,7 +22,7 @@ export default (state = DEFAULT_STATE, action) => {
         errorMessage: ""
       };
     case AUTH_SIGN_IN:
-      console.log("[AuthReducer] got an AUTH_SIGN_IN action!");
+      //console.log("[AuthReducer] got an AUTH_SIGN_IN action!");
       return {
         ...state,
         token: action.payload,
@@ -37,7 +37,7 @@ export default (state = DEFAULT_STATE, action) => {
         errorMessage: ""
       };
     case AUTH_ERROR:
-      console.log("[AuthReducer] got an AUTH_ERROR action!");
+      //console.log("[AuthReducer] got an AUTH_ERROR action!");
       return { ...state, errorMessage: action.payload };
     default:
       return state;

@@ -15,13 +15,13 @@ const db = require("../models");
 
 module.exports = {
   updateHalo5UID: (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
     db.userProfileInformation //TODO: This "userAccountName" reference might have to switch depending on John's models
       .findOneAndUpdate({ "userAccountName": req.body.userAccountName },
         { $set: { "Halo5.UID": req.body.UID } },
         { new: true })
       .then(dbRes => {
-        console.log("Hello");
+        //console.log("Hello");
         res.json(dbRes);
       })
       .catch(err => res.status(422).json(err));
@@ -52,7 +52,7 @@ module.exports = {
         { $set: { "Overwatch.UID": req.body.UID } },
         { new: true })
       .then(dbRes => {
-        console.log("Hello");
+        //console.log("Hello");
       })
       .catch(err => res.status(422).json(err));
     

@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import GlobalStyle from "../../GlobalStyle";
 import Logo from "../../components/Logo";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { Toaster, Intent } from '@blueprintjs/core';
-import { app, facebookProvider } from "../../Base";
+import { app } from "../../Base";
 import API from "../../utils/API";
 
 const TwitchButton = styled.button`
@@ -159,7 +159,7 @@ class Login extends Component {
         <Demo href="https://project3-k8xian.herokuapp.com/profile/Chaelor">Click Here for Demo Completed Profile</Demo>
 
         <Logo />
-        {console.log(`Login.js this.state.authenticated: ${this.state.authenticated}`)}
+        {/*console.log(`Login.js this.state.authenticated: ${this.state.authenticated}`)*/}
         {/* Put submit handler in this form tag here */}
         <form onSubmit={(event) => { this.authWithEmailPassword(event) }} ref={(form) => { this.loginForm = form }}>
           <StyledLabel>
