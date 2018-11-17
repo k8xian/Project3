@@ -84,9 +84,9 @@ class App extends Component {
             <Route exact path="/PublicProfile" component={PublicProfile} />
             <Route exact path="/profile/:id" component={Profile} />{/* This will be public*/}
             <Route exact path="/profile" component={Profile} />{/* This will be public*/}
-            <Route exact path="/profile/:id/edit" component={Profile} />{/*This will be protected */}
-            <PrivateRoute authenticated={this.state.authenticated} exact path="/profile/:id/edit" component={Profile} />
-            <Route exact path="*" component={Login} />{/*This will be protected */}
+            {/* <Route exact path='/profile/:id/edit' render={(props) => <Profile {...props} edit={true} />} /> */}
+            <PrivateRoute authenticated={this.state.authenticated} exact path="/profile/:id/edit" render={(props) => <Profile {...props} edit={true} />} />
+
           </Switch>
         </div>
       </Router>
