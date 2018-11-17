@@ -74,13 +74,18 @@ class LOLForm extends React.Component {
     event.preventDefault();
     let ServerSelector = document.getElementById("lol-selector");
     let SelectedServer = ServerSelector.options[ServerSelector.selectedIndex].value;
+    let saveThisUID = this.state.LOLUID.trim();
+
+    if (/\s/.test(saveThisUID)) {
+      saveThisUID = saveThisUID.split(' ').join('+');
+    }
     
     if (SelectedServer === "" || this.state.LOLUID === "") {
       return //Put an error message here later
     } else {
       API.updateAndScrapeLOL({
         userAccountName: this.state.userAccountName,
-        UID: this.state.LOLUID,
+        UID: saveThisUID,
         Platform: SelectedServer,
       }).then(res => this.setState({
         isHidden: !this.state.isHidden
@@ -114,13 +119,13 @@ class LOLForm extends React.Component {
 
   LOLForm = () => (
     <StyledForm onSubmit={this.handleSubmit}>
-    <InputBlock>
-      <StyledSocialInput
-        value={this.state.LOLUID}
-        onChange={this.handleInputChange}
-        placeholder={this.state.LOLUID}
-        name="LOLUID" />
-      <SocialSubmitButton type="submit" value=">" />
+      <InputBlock>
+        <StyledSocialInput
+          value={this.state.LOLUID}
+          onChange={this.handleInputChange}
+          placeholder={this.state.LOLUID}
+          name="LOLUID" />
+        <SocialSubmitButton type="submit" value=">" />
       </InputBlock>
       <div className="dropdown">
         <select id="lol-selector">

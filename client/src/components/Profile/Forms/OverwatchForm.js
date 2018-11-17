@@ -77,12 +77,16 @@ class OverwatchForm extends React.Component {
     event.preventDefault();
     let ServerSelector = document.getElementById("overwatch-selector");
     let SelectedServer = ServerSelector.options[ServerSelector.selectedIndex].value;
-    if (SelectedServer === "" || this.state.username === "") {
+    let saveThisUID = this.state.username.trim();
+
+    saveThisUID = saveThisUID.split("#").join("-");
+
+    if (SelectedServer === "" || saveThisUID === "") {
       return //Put an error message here later
     } else {
       API.updateAndScrapeOverwatch({
         userAccountName: this.state.userAccountName,
-        UID: this.state.username,
+        UID: this.state.saveThisUID,
         Platform: SelectedServer,
       }).then(res => this.setState({
         isHidden: !this.state.isHidden
