@@ -97,7 +97,7 @@ class Photo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      src: "https://www.esportsonly.com/assets/Uploads/Players/_resampled/ScaleHeightWyI1NDAiXQ/saahil-universe-arora.jpg",
+      src: "https://www.gravatar.com/avatar/",
       // the real default image
       // src: "https://via.placeholder.com/200",
       alt: "profile picture for this user",
