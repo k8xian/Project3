@@ -152,7 +152,7 @@ class Profile extends Component {
     if (this.state.profileInformation.Halo5.isPopulated) {
       halo5Stats = await API.getHalo5Data({ userAccountName: userAccountName });
       halo5Data = halo5Stats.data;
-      this.setState({ halo5Data});
+      this.setState({ halo5Data, halodataexists: true });
     }
 
     if (this.state.profileInformation.LOL.isPopulated) {
