@@ -68,6 +68,7 @@ class OverwatchForm extends React.Component {
     this.state = {
       username: '',
       formIsHidden: true,
+      wasUpdated: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -78,18 +79,22 @@ class OverwatchForm extends React.Component {
     let ServerSelector = document.getElementById("overwatch-selector");
     let SelectedServer = ServerSelector.options[ServerSelector.selectedIndex].value;
     let saveThisUID = this.state.username.trim();
+    console.log(this.state);
 
-    saveThisUID = saveThisUID.split("#").join("-");
+    if (saveThisUID.includes("#")) {
+      saveThisUID = saveThisUID.split("#").join("-");
+    }
 
     if (SelectedServer === "" || saveThisUID === "") {
       return //Put an error message here later
     } else {
       API.updateAndScrapeOverwatch({
         userAccountName: this.state.userAccountName,
-        UID: this.state.saveThisUID,
+        UID: saveThisUID,
         Platform: SelectedServer,
       }).then(res => this.setState({
-        isHidden: !this.state.isHidden
+        isHidden: !this.state.isHidden,
+        wasUpdated: true,
       }));
     }
   }
