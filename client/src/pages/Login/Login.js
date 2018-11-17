@@ -159,10 +159,6 @@ class Login extends Component {
         <Demo href="https://project3-k8xian.herokuapp.com/profile/Chaelor">Click Here for Demo Completed Profile</Demo>
 
         <Logo />
-<<<<<<< Updated upstream
-        {/*console.log(`Login.js this.state.authenticated: ${this.state.authenticated}`)*/}
-=======
->>>>>>> Stashed changes
         {/* Put submit handler in this form tag here */}
         <form onSubmit={(event) => { this.authWithEmailPassword(event) }} ref={(form) => { this.loginForm = form }}>
           <StyledLabel>
