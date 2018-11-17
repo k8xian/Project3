@@ -4,7 +4,7 @@ import { Stat } from '../Elements/index'
 
 
 const StyledStatBlock = styled.ul`
-columns: 4;
+columns: 3;
 width: 100%;
 margin: 20px 0;
 list-style-type: none;
