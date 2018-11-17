@@ -7,6 +7,7 @@ import { AllStats, FortniteStats, OverwatchStats, LOLStats, HaloStats } from '..
 import { SocialForm, TwitchStreamForm, TwitterFeedForm, HaloForm, FortniteForm, OverwatchForm, LOLForm } from '../../components/Profile/Forms/index'
 import { ProfileHeader, StatsWrapper, MainContent, GamesList, SidebarEmbed, LinksWrapper, PostWrapper, ProfileContent, MainDetail } from '../../components/Profile/Styles/index'
 import API from "../../utils/API";
+import Gravatar from "./Gravatar";
 
 const StatButtonSwitch = styled.button`
 background-color: rgba(0,0,0,0);
@@ -212,6 +213,7 @@ class Profile extends Component {
         
         <ProfileHeader>
           <Photo edit={this.props.edit}/>
+          <Gravatar />
           <ProfileContent>
             <Bio edit={this.props.edit}/>
           </ProfileContent>
@@ -272,4 +274,4 @@ class Profile extends Component {
 }
 
 
-export default Profile
+export default Profile;
