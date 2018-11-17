@@ -40,13 +40,13 @@ class Gravatar extends React.Component {
         })
 
         // Gravatar service currently trims and lowercases all registered emails
-        const formattedEmail = ('' + this.props.email).trim().toLowerCase();
+        const emailInput = ('' + this.props.email).trim().toLowerCase();
 
         let hash
         if (this.props.md5) {
             hash = this.props.md5
         } else if (typeof this.props.email === 'string') {
-            hash = md5(formattedEmail, { encoding: "binary" })
+            hash = md5(emailInput, { encoding: "binary" })
         } else {
             console.warn(
                 'Gravatar image can not be fetched. Either the "email" or "md5" prop must be specified.'
@@ -83,7 +83,7 @@ class Gravatar extends React.Component {
         if (!modernBrowser && isRetina()) {
             return (
                 <img
-                    alt={`Gravatar for ${formattedEmail}`}
+                    alt={`Gravatar for ${emailInput}`}
                     style={this.props.style}
                     src={retinaSrc}
                     height={this.props.size}
@@ -95,7 +95,7 @@ class Gravatar extends React.Component {
         }
         return (
             <img
-                alt={`Gravatar for ${formattedEmail}`}
+                alt={`Gravatar for ${emailInput}`}
                 style={this.props.style}
                 src={src}
                 srcSet={`${retinaSrc} 2x`}
