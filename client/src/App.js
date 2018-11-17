@@ -8,6 +8,7 @@ import PublicProfile from "./pages/Profile/PublicProfile";
 import Login from "./pages/Login";
 import Logout from "./components/Logout";
 import { app, base } from "./Base";
+import MDSpinner from 'react-md-spinner';
 
 
 class App extends Component {
@@ -66,11 +67,12 @@ class App extends Component {
   }
 
   render() {
+
     if (this.state.loading === true) {
       return (
         <div>
-          <h3>Loading</h3>
-          <Spinner />
+          <h3 style={{ position: 'fixed', top: '25%', left: '50%' }}>Loading...</h3>
+          <MDSpinner className="spinner" style={{ position: 'fixed', top: '33%', left: '47%' }} size={150} duration={500}/>
         </div>
       )
     }
