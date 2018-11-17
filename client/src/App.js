@@ -71,7 +71,7 @@ class App extends Component {
     if (this.state.loading === true) {
       return (
         <div>
-          <h3 style={{ position: 'fixed', top: '25%', left: '50%' }}>Loading...</h3>
+          <h3 style={{ position: 'fixed', top: '25%', left: '50%'}}>Loading...</h3>
           <MDSpinner className="spinner" style={{ position: 'fixed', top: '33%', left: '47%' }} size={150} duration={500}/>
         </div>
       )
