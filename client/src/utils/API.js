@@ -189,16 +189,17 @@ export default {
       tell the user data was successfully submitted)
   ******************************************/
   updateAndScrapeFortnite: function (userData) {
-    return axios.post(`/api/updateAndScrapeFortnite`, userData);
+    return axios.post(`/api/updateAndScrapeFortnite/${userData.userAccountName}`, userData);
   },
   updateAndScrapeHalo5: function (userData) {
-    return axios.post(`/api/updateAndScrapeHalo5`, userData);
+    return axios.post(`/api/updateAndScrapeHalo5/${userData.userAccountName}`, userData);
   },
   updateAndScrapeLOL: function (userData) {
-    return axios.post(`/api/updateAndScrapeLOL`, userData);
+    return axios.post(`/api/updateAndScrapeLOL/${userData.userAccountName}`, userData);
   },
   updateAndScrapeOverwatch: function (userData) {
-    return axios.post(`/api/updateAndScrapeOverwatch`, userData);
+    console.log(userData);
+    return axios.post(`/api/updateAndScrapeOverwatch/${userData.userAccountName}`, userData);
   },
 };
 

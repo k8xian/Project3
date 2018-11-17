@@ -5,8 +5,7 @@ const Schema = mongoose.Schema;
 const userOverwatchDataModel = new Schema({
   userAccountName: {
     type: String,
-    // type: Schema.Types.ObjectId,
-    // ref: "user",
+    unique: true,
   },
   playerIcon: String,
   rankIcon: String,

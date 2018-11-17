@@ -9,6 +9,13 @@ import Login from "./pages/Login";
 import Logout from "./components/Logout";
 import { app, base } from "./Base";
 
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={(props) => {
+    return rest.authenticated
+      ? <Component {...props} />
+      : <Redirect to="/" />
+  }} />)
+
 
 class App extends Component {
   constructor() {
@@ -57,13 +64,6 @@ class App extends Component {
     this.removeAuthListener();
   }
 
-  PrivateRoute = ({ component: Component, ...rest }) => {
-    <Route {...rest} render={(props) => (
-      this.state.authenticated === true
-      ? <Component {...props} />
-      : <Redirect to="/login" />
-    )}/>
-  }
 
   render() {
     if (this.state.loading === true) {
@@ -84,9 +84,12 @@ class App extends Component {
             {/* <Route exact path="/PublicProfile" component={PublicProfile} /> */}
             <Route exact path="/profile/:id" component={Profile} />{/* This will be public*/}
             <Route exact path="/profile" component={Profile} />{/* This will be public*/}
-            <Route path='/profile/:id/edit' 
+            <Route exact path='/profile/:id/edit' render={(props) => <Profile {...props} edit={true} />} />
+            {/* <PrivateRoute authenticated={this.state.authenticated} exact path="/profile/:id/edit" render={(props) => <Profile {...props} edit={true} />} /> */}
+
+            {/* <Route path='/profile/:id/edit' 
             render={(props) => <Profile {...props} edit={true} />}/>    
-            <Route exact path="*" component={Login} />{/*This will be protected */}
+            <Route exact path="*" component={Login} /> */}
           </Switch>
         </div>
       </Router>

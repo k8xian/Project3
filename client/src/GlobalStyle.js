@@ -98,7 +98,9 @@ const GlobalStyle = createGlobalStyle`
 
 .dropdown {
     position: relative;
-    display: inline-block;
+    clear: both;
+    margin: auto;
+    text-align: center;
 }
 
 .dropdown-content {
@@ -122,6 +124,15 @@ const GlobalStyle = createGlobalStyle`
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: #186f6b;}
+
+select {
+  color: #00fff4;
+  border-radius: 0 !important;
+    border: 1px solid rgba(255,255,255,.3);
+    line-height: 20px;
+    width: 146px;
+    background-color: rgba(0,0,0,0);
+}
   `
 
 export default GlobalStyle;

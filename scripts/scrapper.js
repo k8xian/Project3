@@ -7,6 +7,8 @@ module.exports = {
   //req.query.NAMEHERE
   //That will return the data
   scrapeOverwatch: (req, res) => {
+    console.log("Scrapper ");
+    console.log(req);
     //Platforms = xbl, psn, pc
     //Website www.overbuff.com
     //Kitcy -- This is a public profile -- xbl
@@ -45,14 +47,28 @@ module.exports = {
           playerCompRank = compRank[1].children[0].data
         }
 
-        //Put all of the data into an object
-        let playerData = {
-          playerIcon: masthead[0].children[0].attribs.src,
-          rankIcon: rankIcon,
-          compRank: playerCompRank,
-          displayName: displayName.text(),
-        };
 
+        let playerData = {}
+        //Put all of the data into an object
+        if (req.userAccountName) {
+          playerData = {
+            userAccountName: req.userAccountName,
+            playerIcon: masthead[0].children[0].attribs.src,
+            rankIcon: rankIcon,
+            compRank: playerCompRank,
+            displayName: displayName.text(),
+          };
+        } else {
+          playerData = {
+            playerIcon: masthead[0].children[0].attribs.src,
+            rankIcon: rankIcon,
+            compRank: playerCompRank,
+            displayName: displayName.text(),
+          };
+        }
+
+        console.log("Scrapped Data");
+        console.log(playerData);
         //Console log and return object
         return playerData;
       })
@@ -225,14 +241,27 @@ module.exports = {
               break;
           }
 
+          let playerData = {};
           //This is the object to be returned
-          let playerData = {
-            playerRank: playerRank.text(),
-            playerQueue: playerQueue.text(),
-            globalRank: playerGlobalRanking.text(),
-            leaguePoints: playerLeaguePoints.text(),
-            record: playerRecord.text(),
-            rankImg: playerRankImg
+          if (req.userAccountName) {
+            playerData = {
+              userAccountName: req.userAccountName,
+              playerRank: playerRank.text(),
+              playerQueue: playerQueue.text(),
+              globalRank: playerGlobalRanking.text(),
+              leaguePoints: playerLeaguePoints.text(),
+              record: playerRecord.text(),
+              rankImg: playerRankImg
+            }
+          } else {
+            playerData = {
+              playerRank: playerRank.text(),
+              playerQueue: playerQueue.text(),
+              globalRank: playerGlobalRanking.text(),
+              leaguePoints: playerLeaguePoints.text(),
+              record: playerRecord.text(),
+              rankImg: playerRankImg
+            }
           }
 
           //See the data in the backend, return the above created oject
@@ -246,6 +275,7 @@ module.exports = {
   },
   //Scrape Halo 5
   scrapeHalo5: (req, res) => {
+    console.log(req);
     //http://halotracker.com/h5/player/Naded
     //req.UID = username of the player
     return axios.get("http://halotracker.com/h5/player/" + req.UID)
@@ -273,14 +303,27 @@ module.exports = {
             playerDataArr.push(playerData);
           }
         });
+        let saveToDB = {}
 
-        let saveToDB = {
-          kdRatio: playerDataArr[2].val,
-          killsPerGame: playerDataArr[5].val,
-          headshotPercent: playerDataArr[7].val,
-          winRate: playerDataArr[8].val,
-          gamesPlayed: playerDataArr[9].val,
-          timePlayed: playerDataArr[12].val,
+        if (req.userAccountName) {
+          saveToDB = {
+            userAccountName: req.userAccountName,
+            kdRatio: playerDataArr[2].val,
+            killsPerGame: playerDataArr[5].val,
+            headshotPercent: playerDataArr[7].val,
+            winRate: playerDataArr[8].val,
+            gamesPlayed: playerDataArr[9].val,
+            timePlayed: playerDataArr[12].val,
+          }
+        } else {
+          saveToDB = {
+            kdRatio: playerDataArr[2].val,
+            killsPerGame: playerDataArr[5].val,
+            headshotPercent: playerDataArr[7].val,
+            winRate: playerDataArr[8].val,
+            gamesPlayed: playerDataArr[9].val,
+            timePlayed: playerDataArr[12].val,
+          }
         }
         return saveToDB;
       })

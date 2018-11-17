@@ -133,7 +133,7 @@ class Photo extends React.Component {
     event.preventDefault();
     API.updateProfileImage({
       userAccountName: this.state.userAccountName,
-      updateProfileImage: this.state.profileImage
+      updateProfileImage: this.state.src
     }).then(res => this.setState({
       isHidden: !this.state.isHidden
     }));
@@ -148,7 +148,7 @@ class Photo extends React.Component {
   ImageForm = () => (
     <StyledForm onSubmit={this.handleSubmit} >
     <StyledInstruction>enter a new profile url</StyledInstruction>
-      <StyledSocialInput value={this.state.src} onChange={this.handleInputChange} placeholder={this.state.src} name="profileImage" />
+      <StyledSocialInput type="url" onChange={this.handleInputChange} placeholder={this.state.src} name="profileImage" />
       <SocialSubmitButton type="submit" value="Save" />
     </StyledForm>
   )
