@@ -148,7 +148,7 @@ class Photo extends React.Component {
   ImageForm = () => (
     <StyledForm onSubmit={this.handleSubmit} >
     <StyledInstruction>enter a new profile url</StyledInstruction>
-      <StyledSocialInput type="url" onChange={this.handleInputChange} placeholder={this.state.src} name="profileImage" />
+      <StyledSocialInput type="url" onChange={this.handleInputChange} placeholder={this.state.src} name="src" />
       <SocialSubmitButton type="submit" value="Save" />
     </StyledForm>
   )
