@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
 import GlobalStyle from '../../GlobalStyle';
-import {Header} from '../../components/Elements/index';
+import { Header } from '../../components/Elements/index';
 import { Bio, Game, Photo } from '../../components/Profile/Detail/index'
 import { AllStats, FortniteStats, OverwatchStats, LOLStats, HaloStats } from '../../components/Stats/index'
 import { SocialForm, TwitchStreamForm, TwitterFeedForm, HaloForm, FortniteForm, OverwatchForm, LOLForm } from '../../components/Profile/Forms/index'
@@ -61,7 +61,7 @@ class Profile extends Component {
       fortnitedataexists: false,
       overwatchdataexists: false,
       loading: true,
-      gameCounter:0,
+      gameCounter: 0,
     };
 
     this.showAllStats = this.showAllStats.bind(this);
@@ -159,47 +159,69 @@ class Profile extends Component {
     let overwatchStats;
     let overwatchData;
 
-    if (this.state.profileInformation.Fortnite.isPopulated) {
-      fortniteStats = await API.getFortniteData({ userAccountName: userAccountName });
-      fortniteData = fortniteStats.data;
-      this.setState({ fortniteData, fortnitedataexists: true, gameCounter:this.state.gameCounter+1, });
-    }else{
+    if (this.state.profileInformation) {
+      if (this.state.profileInformation.Fortnite.isPopulated) {
+        fortniteStats = await API.getFortniteData({ userAccountName: userAccountName });
+        fortniteData = fortniteStats.data;
+        this.setState({ fortniteData, fortnitedataexists: true, gameCounter: this.state.gameCounter + 1, });
+      } else {
+        this.setState({
+          gameCounter: this.state.gameCounter + 1,
+        })
+      }
+    } else {
       this.setState({
-        gameCounter:this.state.gameCounter+1,
+        loading: false,
+      })
+    }
+    if (this.state.profileInformation) {
+      if (this.state.profileInformation.Halo5.isPopulated) {
+        halo5Stats = await API.getHalo5Data({ userAccountName: userAccountName });
+        halo5Data = halo5Stats.data;
+        this.setState({ halo5Data, halodataexists: true, gameCounter: this.state.gameCounter + 1, });
+      } else {
+        this.setState({
+          gameCounter: this.state.gameCounter + 1,
+        })
+      }
+    } else {
+      this.setState({
+        loading: false,
+      })
+    }
+    if (this.state.profileInformation) {
+      if (this.state.profileInformation.LOL.isPopulated) {
+        lolStats = await API.getLOLData({ userAccountName: userAccountName });
+        lolData = lolStats.data;
+        this.setState({ lolData, loldataexists: true, gameCounter: this.state.gameCounter + 1, });
+      } else {
+        this.setState({
+          gameCounter: this.state.gameCounter + 1,
+        })
+      }
+    } else {
+      this.setState({
+        loading: false,
+      })
+    }
+    if (this.state.profileInformation) {
+      if (this.state.profileInformation.Overwatch.isPopulated) {
+        overwatchStats = await API.getOverwatchData({ userAccountName: userAccountName });
+        overwatchData = overwatchStats.data;
+        this.setState({ overwatchData, overwatchdataexists: true, gameCounter: this.state.gameCounter + 1, });
+      } else {
+        this.setState({
+          gameCounter: this.state.gameCounter + 1,
+        })
+      }
+    } else {
+      this.setState({
+        loading: false,
       })
     }
 
-    if (this.state.profileInformation.Halo5.isPopulated) {
-      halo5Stats = await API.getHalo5Data({ userAccountName: userAccountName });
-      halo5Data = halo5Stats.data;
-      this.setState({ halo5Data, halodataexists: true, gameCounter:this.state.gameCounter+1, });
-    }else{
-      this.setState({
-        gameCounter:this.state.gameCounter+1,
-      })
-    }
 
-    if (this.state.profileInformation.LOL.isPopulated) {
-      lolStats = await API.getLOLData({ userAccountName: userAccountName });
-      lolData = lolStats.data;
-      this.setState({ lolData, loldataexists: true, gameCounter:this.state.gameCounter+1, });
-    }else{
-      this.setState({
-        gameCounter:this.state.gameCounter+1,
-      })
-    }
-
-    if (this.state.profileInformation.Overwatch.isPopulated) {
-      overwatchStats = await API.getOverwatchData({ userAccountName: userAccountName });
-      overwatchData = overwatchStats.data;
-      this.setState({ overwatchData, overwatchdataexists: true, gameCounter:this.state.gameCounter+1, });
-    }else{
-      this.setState({
-        gameCounter:this.state.gameCounter+1,
-      })
-    }
-
-    if(this.state.gameCounter === 4){
+    if (this.state.gameCounter === 4) {
       this.setState({
         loading: false,
       })
@@ -263,8 +285,8 @@ class Profile extends Component {
     if (this.state.loading === true) {
       return (
         <StyledLoading>
-          <h3 style={{ position: 'fixed', top: '25%', left: 'calc(50% - 75px', width: '150px', textAlign: 'center',  fontFamily: "'Libre Franklin', sans-serif"}}>Loading...</h3>
-          <MDSpinner className="spinner" style={{ position: 'fixed', top: '33%', left: 'calc(50% - 75px'}} size={150} duration={500}/>
+          <h3 style={{ position: 'fixed', top: '25%', left: 'calc(50% - 75px', width: '150px', textAlign: 'center', fontFamily: "'Libre Franklin', sans-serif" }}>Loading...</h3>
+          <MDSpinner className="spinner" style={{ position: 'fixed', top: '33%', left: 'calc(50% - 75px' }} size={150} duration={500} />
         </StyledLoading>
       )
     }
@@ -272,16 +294,16 @@ class Profile extends Component {
     return (
       <div>
         <GlobalStyle />
-        <Header id={this.props.match.params.id}/>
-        
+        <Header id={this.props.match.params.id} />
+
         <ProfileHeader>
-          <Photo edit={this.props.edit}/>
+          <Photo edit={this.props.edit} />
           <ProfileContent>
-            <Bio edit={this.props.edit}/>
+            <Bio edit={this.props.edit} />
           </ProfileContent>
           {/* Commenting this out until it looks prettier */}
           <LinksWrapper>
-            <SocialForm edit={this.props.edit}/>
+            <SocialForm edit={this.props.edit} />
           </LinksWrapper>
         </ProfileHeader>
         <MainContent>
@@ -317,18 +339,18 @@ class Profile extends Component {
             </PostWrapper> */}
           </MainDetail>
           <SidebarEmbed>
-          <GamesList>
-            {/* Put a refresh button for each game in the stats */}
-            {/* <AllStatButton onClick={this.showAllStats}>Show All Stats</AllStatButton> */}
-            {!this.state.halodataexists && this.props.edit && <HaloForm/>}
-            {this.state.halodataexists && <StatButtonSwitch onClick={this.showHaloStats}> <Game image="/images/games/halo.png" title="Halo 5" /></StatButtonSwitch>}
-            {!this.state.overwatchdataexists && this.props.edit && <OverwatchForm />}
-            {this.state.overwatchdataexists && <StatButtonSwitch onClick={this.showOverwatchStats}> <Game image="/images/games/overwatch.png" title="Overwatch" /></StatButtonSwitch>}
-            {!this.state.fortnitedataexists && this.props.edit && <FortniteForm />}
-            {this.state.fortnitedataexists && <StatButtonSwitch onClick={this.showFortniteStats}><Game image="/images/games/fortnite.png" title="Fortnite" /></StatButtonSwitch>}
-            {!this.state.loldataexists && this.props.edit && <LOLForm />}
-            {this.state.loldataexists && <StatButtonSwitch onClick={this.showLOLStats}><Game image="/images/games/leagueof.png" title="LoL" /></StatButtonSwitch>}
-          </GamesList>
+            <GamesList>
+              {/* Put a refresh button for each game in the stats */}
+              {/* <AllStatButton onClick={this.showAllStats}>Show All Stats</AllStatButton> */}
+              {!this.state.halodataexists && this.props.edit && <HaloForm />}
+              {this.state.halodataexists && <StatButtonSwitch onClick={this.showHaloStats}> <Game image="/images/games/halo.png" title="Halo 5" /></StatButtonSwitch>}
+              {!this.state.overwatchdataexists && this.props.edit && <OverwatchForm />}
+              {this.state.overwatchdataexists && <StatButtonSwitch onClick={this.showOverwatchStats}> <Game image="/images/games/overwatch.png" title="Overwatch" /></StatButtonSwitch>}
+              {!this.state.fortnitedataexists && this.props.edit && <FortniteForm />}
+              {this.state.fortnitedataexists && <StatButtonSwitch onClick={this.showFortniteStats}><Game image="/images/games/fortnite.png" title="Fortnite" /></StatButtonSwitch>}
+              {!this.state.loldataexists && this.props.edit && <LOLForm />}
+              {this.state.loldataexists && <StatButtonSwitch onClick={this.showLOLStats}><Game image="/images/games/leagueof.png" title="LoL" /></StatButtonSwitch>}
+            </GamesList>
           </SidebarEmbed>
         </MainContent>
       </div>
