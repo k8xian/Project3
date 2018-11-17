@@ -48,8 +48,15 @@ line-height: 20px;
 `
 
 const StyledForm = styled.form`
-float: left;
+margin: auto;
+`
 
+const InputBlock = styled.div`
+margin: auto;
+text-align: center;
+display: block;
+width: 173px;
+height: 50px;
 `
 
 //move the form outside as the hide element
@@ -73,21 +80,23 @@ class FortniteForm extends React.Component {
     handleFortniteSubmit(event) {
         //hide the form
         event.preventDefault();
-        
+
     }
 
 
     FortniteForm = () => (
         <StyledForm onSubmit={this.handleFortniteSubmit}>
-            <StyledSocialInput value={this.state.username} onChange={this.handleFortniteChange} placeholder={this.state.username } />
-            <SocialSubmitButton type="submit" value=">" />
+            <InputBlock>
+                <StyledSocialInput value={this.state.username} onChange={this.handleFortniteChange} placeholder={this.state.username} />
+                <SocialSubmitButton type="submit" value=">" />
+            </InputBlock>
             <div className="dropdown">
-                <button className="dropbtn">Platform:</button>
-                <div className="dropdown-content">
-                    <a href="#" value="pc">PC</a>
-                    <a href="#" value="ps4">PlayStation</a>
-                    <a href="#" value="xbox">XBox</a>
-                </div>
+                <select id="fortnite-selector">
+                    <option value="">Choose Server</option>
+                    <option value="pc">PC</option>
+                    <option value="ps4">PlayStation</option>
+                    <option value="xbox">XBox</option>
+                </select>
             </div>
         </StyledForm>
     )
@@ -107,7 +116,7 @@ class FortniteForm extends React.Component {
                     Add Fortnite
                 </StyledSocialAdd>
                 {!this.state.formIsHidden && <this.FortniteForm />}
-                
+
             </div>
         );
     }

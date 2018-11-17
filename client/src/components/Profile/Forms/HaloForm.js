@@ -48,7 +48,15 @@ line-height: 20px;
 `
 
 const StyledForm = styled.form`
-float: left;
+margin: auto;
+`
+
+const InputBlock = styled.div`
+margin: auto;
+text-align: center;
+display: block;
+width: 173px;
+height: 50px;
 `
 
 class HaloForm extends React.Component {
@@ -97,16 +105,18 @@ class HaloForm extends React.Component {
 
   HaloForm = () => (
     <StyledForm onSubmit={this.handleSubmit}>
-      <StyledSocialInput
-        value={this.state.Halo5UID}
-        onChange={this.handleInputChange}
-        placeholder={this.state.Halo5UID}
-        name="Halo5UID"
-      />
-      <SocialSubmitButton
-        type="submit"
-        value=">"
-      />
+      <InputBlock>
+        <StyledSocialInput
+          value={this.state.Halo5UID}
+          onChange={this.handleInputChange}
+          placeholder={this.state.Halo5UID}
+          name="Halo5UID"
+        />
+        <SocialSubmitButton
+          type="submit"
+          value=">"
+        />
+      </InputBlock>
     </StyledForm>
   )
 

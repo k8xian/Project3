@@ -127,7 +127,7 @@ class Bio extends Component {
       <ProfileInfo>
         {this.props.edit && <StyledEditButton onClick={this.toggleHidden.bind(this)} />}
         <StyledBio>
-          {this.state.bio}
+          {this.state.bio || "Enter your bio here..."}
         </StyledBio>
         {!this.state.isHidden && <this.BioForm />}
       </ProfileInfo>

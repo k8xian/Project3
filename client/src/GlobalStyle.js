@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100vh;
     width: 100vw;
     font-family: 'Libre Franklin', sans-serif;
-    background: linear-gradient( rgba(0, 0, 0, .95), rgba(0, 0, 0, 0.9) ), url(/images/background/tiny-squares.png);
+    background: linear-gradient( rgba(11, 0, 33, 0.94),rgba(19, 9, 40, 0.93) ), url(/images/background/tiny-squares.png);
     overflow: hidden;
   }
 
@@ -98,7 +98,9 @@ const GlobalStyle = createGlobalStyle`
 
 .dropdown {
     position: relative;
-    display: inline-block;
+    clear: both;
+    margin: auto;
+    text-align: center;
 }
 
 .dropdown-content {
@@ -122,6 +124,15 @@ const GlobalStyle = createGlobalStyle`
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: #186f6b;}
+
+select {
+  color: #00fff4;
+  border-radius: 0 !important;
+    border: 1px solid rgba(255,255,255,.3);
+    line-height: 20px;
+    width: 146px;
+    background-color: rgba(0,0,0,0);
+}
   `
 
 export default GlobalStyle;

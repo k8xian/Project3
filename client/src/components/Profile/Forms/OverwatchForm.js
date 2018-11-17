@@ -5,6 +5,7 @@
 import React from "react";
 import API from '../../../utils/API';
 import styled from 'styled-components';
+import GlobalStyle from '../../../GlobalStyle';
 
 
 const StyledSocialAdd = styled.button`
@@ -48,7 +49,15 @@ line-height: 20px;
 `
 
 const StyledForm = styled.form`
-float: left;
+margin: auto;
+`
+
+const InputBlock = styled.div`
+margin: auto;
+text-align: center;
+display: block;
+width: 173px;
+height: 50px;
 `
 
 //move the form outside as the hide element
@@ -63,7 +72,7 @@ class OverwatchForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
+
   handleSubmit(event) {
     event.preventDefault();
     let ServerSelector = document.getElementById("overwatch-selector");
@@ -111,8 +120,10 @@ class OverwatchForm extends React.Component {
 
   OverwatchForm = () => (
     <StyledForm onSubmit={this.handleSubmit}>
-      <StyledSocialInput value={this.state.username} name="username" onChange={this.handleInputChange} placeholder={this.state.username} />
-      <SocialSubmitButton type="submit" value=">" />
+      <InputBlock>
+        <StyledSocialInput value={this.state.username} name="username" onChange={this.handleInputChange} placeholder={this.state.username} />
+        <SocialSubmitButton type="submit" value=">" />
+      </InputBlock>
       <div className="dropdown">
         <select id="overwatch-selector">
           <option value="">Choose Server</option>
@@ -135,6 +146,7 @@ class OverwatchForm extends React.Component {
   render() {
     return (
       <div>
+        <GlobalStyle />
         <StyledSocialAdd onClick={this.toggleOverwatchForm.bind(this)} >
           Add Overwatch
                 </StyledSocialAdd>

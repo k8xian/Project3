@@ -48,9 +48,16 @@ line-height: 20px;
 `
 
 const StyledForm = styled.form`
-float: left;
+margin: auto;
 `
 
+const InputBlock = styled.div`
+margin: auto;
+text-align: center;
+display: block;
+width: 173px;
+height: 50px;
+`
 //move the form outside as the hide element
 
 class LOLForm extends React.Component {
@@ -107,12 +114,14 @@ class LOLForm extends React.Component {
 
   LOLForm = () => (
     <StyledForm onSubmit={this.handleSubmit}>
+    <InputBlock>
       <StyledSocialInput
         value={this.state.LOLUID}
         onChange={this.handleInputChange}
         placeholder={this.state.LOLUID}
         name="LOLUID" />
       <SocialSubmitButton type="submit" value=">" />
+      </InputBlock>
       <div className="dropdown">
         <select id="lol-selector">
           <option value="">Choose Server</option>

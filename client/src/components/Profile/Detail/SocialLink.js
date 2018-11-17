@@ -6,7 +6,10 @@ width: 100%;
 display: block;
 clear: both;
 align-self: flex-end;
-border-bottom: 1px dotted rgba(255,255,255,.2);
+font-size: .7rem;
+text-transform: uppercase;
+font-weight: 500;
+letter-spacing: 1px;
 `;
 
 const StyledSocialLink = styled.a`
@@ -16,6 +19,7 @@ margin-left: 4px;
 font-weight: 500;
 font-size: 1.1rem;
 cursor: pointer;
+text-transform: lowercase;
 `;
 
 const SocialLink = props =>(

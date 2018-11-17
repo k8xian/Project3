@@ -13,15 +13,20 @@ background-color: rgba(0,0,0,0);
 border: 0;
 color: white;
 cursor: pointer;
+width: 114px;
+margin: 10px auto;
 `
 
 const AllStatButton = styled.button`
 width: 100px;
-background-color: rgba(0,0,0,0);
-color: #00fff4;
+background-color: #00fff4;
+border: 0;
+color: rgba(11,0,33);
 cursor: pointer;
-border: 1px solid #00fff4;
 height: 18px;
+cursor: pointer;
+height: 60px;
+margin: 10px auto 20px;
 `
 
 //prop for edit view or not edit view
@@ -223,7 +228,7 @@ class Profile extends Component {
         <MainContent>
           <MainDetail>
             <StatsWrapper>
-              {!this.state.allStatsHidden && <AllStats />}
+              {/* {!this.state.allStatsHidden && <AllStats />} */}
               {!this.state.lolStatsHidden &&
                 <LOLStats
                   handleGetNewLOLData={this.handleGetNewLOLData}
@@ -254,15 +259,15 @@ class Profile extends Component {
           <SidebarEmbed>
           <GamesList>
             {/* Put a refresh button for each game in the stats */}
-            <AllStatButton onClick={this.showAllStats}>Show All Stats</AllStatButton>
-            {!this.halodataexists && this.props.edit && <HaloForm />}
-            {this.halodataexists && <StatButtonSwitch onClick={this.showHaloStats}> <Game image="/images/games/halo.png" title="Halo 5" /></StatButtonSwitch>}
-            {!this.overwatchdataexists && this.props.edit && <OverwatchForm />}
-            {this.overwatchdataexists && <StatButtonSwitch onClick={this.showOverwatchStats}> <Game image="/images/games/overwatch.png" title="Overwatch" /></StatButtonSwitch>}
-            {!this.fortnitedataexists && this.props.edit && <FortniteForm />}
-            {this.fortnitedataexists && <StatButtonSwitch onClick={this.showFortniteStats}><Game image="/images/games/fortnite.png" title="Fortnite" /></StatButtonSwitch>}
-            {!this.loldataexists && this.props.edit && <LOLForm />}
-            {this.loldataexists && <StatButtonSwitch onClick={this.showLOLStats}><Game image="/images/games/leagueof.png" title="League of Legends" /></StatButtonSwitch>}
+            {/* <AllStatButton onClick={this.showAllStats}>Show All Stats</AllStatButton> */}
+            {!this.state.halodataexists && this.props.edit && <HaloForm />}
+            {this.state.halodataexists && <StatButtonSwitch onClick={this.showHaloStats}> <Game image="/images/games/halo.png" title="Halo 5" /></StatButtonSwitch>}
+            {!this.state.overwatchdataexists && this.props.edit && <OverwatchForm />}
+            {this.state.overwatchdataexists && <StatButtonSwitch onClick={this.showOverwatchStats}> <Game image="/images/games/overwatch.png" title="Overwatch" /></StatButtonSwitch>}
+            {!this.state.fortnitedataexists && this.props.edit && <FortniteForm />}
+            {this.state.fortnitedataexists && <StatButtonSwitch onClick={this.showFortniteStats}><Game image="/images/games/fortnite.png" title="Fortnite" /></StatButtonSwitch>}
+            {!this.state.loldataexists && this.props.edit && <LOLForm />}
+            {this.state.loldataexists && <StatButtonSwitch onClick={this.showLOLStats}><Game image="/images/games/leagueof.png" title="LoL" /></StatButtonSwitch>}
           </GamesList>
           </SidebarEmbed>
         </MainContent>
