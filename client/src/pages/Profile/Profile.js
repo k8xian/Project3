@@ -51,7 +51,7 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      allStatsHidden: false,
+      allStatsHidden: true,
       haloStatsHidden: true,
       lolStatsHidden: true,
       fortniteStatsHidden: true,

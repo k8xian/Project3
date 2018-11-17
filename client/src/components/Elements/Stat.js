@@ -2,26 +2,31 @@ import React from "react";
 import styled from 'styled-components';
 
 const StyledStat = styled.li`
+display: flex;
+flex-direction: row;
+margin-bottom: 50px;
+justify-content: center;
 `
 
 const StyledStatName = styled.div`
 font-size: .8rem;
-font-weight: 600;
+line-height: 1.5rem;
+font-weight: 300;
 text-transform: uppercase;
 letter-spacing: 1px;
+width: 30%;
 `
 
 const StyledStatValue = styled.div`
-float: left;
 margin-left: 10px;
 color: #00fff4;
-line-height: 30px;
+width: 70%;
 `
 
 const Stat = props =>(
     <StyledStat>
-        <StyledStatName>{props.statname || "Kill Count"}: </StyledStatName>
-        <StyledStatValue> {props.statvalue || " 20"}</StyledStatValue>
+        <StyledStatName>{props.statname || "Kill Count Long"}&nbsp;: </StyledStatName>
+        <StyledStatValue> {props.statvalue || " 20 Long Long Long"}</StyledStatValue>
     </StyledStat>
 );
 
