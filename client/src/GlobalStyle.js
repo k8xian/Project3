@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100vh;
     width: 100vw;
     font-family: 'Libre Franklin', sans-serif;
-    background: linear-gradient( rgba(0, 0, 0, .95), rgba(0, 0, 0, 0.9) ), url(/images/background/tiny-squares.png);
+    background: linear-gradient( rgba(11, 0, 33, 0.94),rgba(19, 9, 40, 0.93) ), url(/images/background/tiny-squares.png);
     overflow: hidden;
   }
 
