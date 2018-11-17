@@ -54,7 +54,7 @@ class Profile extends Component {
     this.showFortniteStats = this.showFortniteStats.bind(this);
     this.showOverwatchStats = this.showOverwatchStats.bind(this);
 
-    this.handleHaloChildClick = this.handleHaloChildClick.bind(this);
+    // this.handleHaloChildClick = this.handleHaloChildClick.bind(this);
   }
 
   showAllStats(event) {
@@ -212,12 +212,12 @@ class Profile extends Component {
     });
   }
 
-  handleHaloChildClick(event) {
-    event.preventDefault();
-    this.setState({
-      halodataexists: true
-    })
-  }
+  // handleHaloChildClick(event) {
+  //   event.preventDefault();
+  //   this.setState({
+  //     halodataexists: true
+  //   })
+  // }
 
 
   render() {
@@ -272,7 +272,7 @@ class Profile extends Component {
           <GamesList>
             {/* Put a refresh button for each game in the stats */}
             {/* <AllStatButton onClick={this.showAllStats}>Show All Stats</AllStatButton> */}
-            {!this.state.halodataexists && this.props.edit && <HaloForm onSubmit={this.handleHaloChildClick}/>}
+            {!this.state.halodataexists && this.props.edit && <HaloForm/>}
             {this.state.halodataexists && <StatButtonSwitch onClick={this.showHaloStats}> <Game image="/images/games/halo.png" title="Halo 5" /></StatButtonSwitch>}
             {!this.state.overwatchdataexists && this.props.edit && <OverwatchForm />}
             {this.state.overwatchdataexists && <StatButtonSwitch onClick={this.showOverwatchStats}> <Game image="/images/games/overwatch.png" title="Overwatch" /></StatButtonSwitch>}
