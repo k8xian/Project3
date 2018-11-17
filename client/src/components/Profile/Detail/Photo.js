@@ -161,12 +161,10 @@ class Photo extends React.Component {
     }
 
     return (
-
       <ProfilePicture>
         {this.state.isHidden && <StyledEditButton onClick={this.toggleHidden.bind(this)} />}
-        <StyledEditButton onClick={this.toggleHidden.bind(this)} />
+        {this.props.edit && <StyledEditButton onClick={this.toggleHidden.bind(this)} />}
         {!this.state.isHidden && <this.ImageForm />}
-        {/* {this.state.isHidden && <StyledImg src={this.state.src} alt={this.state.alt} />} */}
         {this.state.isHidden && <ProfilePic style={style} />}
       </ProfilePicture>
     );

@@ -8,6 +8,7 @@ float: left;
 display: block;
 margin: 10px;
 cursor: pointer;
+margin: auto;
 `
 const GameTitle = styled.h3`
 text-align: center;

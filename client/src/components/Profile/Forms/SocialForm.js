@@ -223,20 +223,22 @@ class SocialForm extends React.Component {
       
         {!this.state.twitchIsHidden && <this.TwitchForm />}
         {this.state.twitchIsHidden && <SocialLink site="Twitch" url={"https://twitch.com/" + this.state.twitch} username={this.state.twitch}></SocialLink>}
-        {this.state.twitchIsHidden &&  <StyledEditButton onClick={this.toggleTwitch.bind(this)} />}
+        {this.state.twitchIsHidden && this.props.edit && <StyledEditButton onClick={this.toggleTwitch.bind(this)} />}
         {/* <StyledSocialAdd onClick={this.toggleTwitter.bind(this)} >
           Add Twitter
                 </StyledSocialAdd> */}
+
+                
         
         {!this.state.twitterIsHidden && <this.TwitterForm />}
         {this.state.twitterIsHidden && <SocialLink site="Twitter" url={"https://twitter.com/" + this.state.twitter} username={this.state.twitter}></SocialLink>}
-        {this.state.twitterIsHidden && <StyledEditButton onClick={this.toggleTwitter.bind(this)} />}
+        {this.state.twitterIsHidden && this.props.edit && <StyledEditButton onClick={this.toggleTwitter.bind(this)} />}
         {/* <StyledSocialAdd onClick={this.toggleInstagram.bind(this)} >
           Add Instagram
                 </StyledSocialAdd> */}
         {!this.state.instagramIsHidden && <this.InstagramForm />}
         {this.state.instagramIsHidden && <SocialLink site="Instagram" url={"https://instagram.com/" + this.state.instagram} username={this.state.instagram}></SocialLink>}
-        {this.state.instagramIsHidden && <StyledEditButton onClick={this.toggleInstagram.bind(this)}  />}
+        {this.state.instagramIsHidden && this.props.edit && <StyledEditButton onClick={this.toggleInstagram.bind(this)}  />}
       </StyledSocial>
     );
   }

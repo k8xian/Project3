@@ -1,7 +1,6 @@
 const path = require("path");
 const router = require("express").Router();
 const apiRoutes = require("./api");
-const user = require('./users');
 // require path to createUserAccount
 const createUserAccount = require('./createUserAccount')
 const getProfileInfo = require("./getProfileInfo.js");
@@ -17,9 +16,6 @@ router.use("/createUserAccount", createUserAccount);
 //This will match: backendURL/getProfileInfo
 router.use("/getProfileInfo", getProfileInfo);
 
-//This is John's route to authenticate a user
-//This will match: backendurl/users
-router.use("/users", user);
 
 // If no API routes are hit, send the React app
 router.use(function(req, res) {
