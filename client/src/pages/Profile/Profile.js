@@ -7,6 +7,7 @@ import { AllStats, FortniteStats, OverwatchStats, LOLStats, HaloStats } from '..
 import { SocialForm, TwitchStreamForm, TwitterFeedForm, HaloForm, FortniteForm, OverwatchForm, LOLForm } from '../../components/Profile/Forms/index'
 import { ProfileHeader, StatsWrapper, MainContent, GamesList, SidebarEmbed, LinksWrapper, PostWrapper, ProfileContent, MainDetail } from '../../components/Profile/Styles/index'
 import API from "../../utils/API";
+import MDSpinner from 'react-md-spinner';
 
 const StatButtonSwitch = styled.button`
 background-color: rgba(0,0,0,0);
@@ -29,6 +30,19 @@ height: 60px;
 margin: 10px auto 20px;
 `
 
+const StyledLoading = styled.div`
+margin: 0;
+padding: 0;
+height: 100vh;
+width: 100vw;
+color: white;
+margin-top: -8px;
+margin-left: -8px;
+font-family: 'Libre Franklin', sans-serif;
+background: linear-gradient( rgba(11, 0, 33, 0.94),rgba(25, 0, 78, 0.94) ), url(/images/background/tiny-squares.png);
+overflow: hidden;
+`
+
 //prop for edit view or not edit view
 // for edit state, this.props.edit
 
@@ -45,7 +59,9 @@ class Profile extends Component {
       halodataexists: false,
       loldataexists: false,
       fortnitedataexists: false,
-      overwatchdataexists: false
+      overwatchdataexists: false,
+      loading: true,
+      gameCounter:0,
     };
 
     this.showAllStats = this.showAllStats.bind(this);
@@ -146,25 +162,47 @@ class Profile extends Component {
     if (this.state.profileInformation.Fortnite.isPopulated) {
       fortniteStats = await API.getFortniteData({ userAccountName: userAccountName });
       fortniteData = fortniteStats.data;
-      this.setState({ fortniteData, fortnitedataexists: true });
+      this.setState({ fortniteData, fortnitedataexists: true, gameCounter:this.state.gameCounter+1, });
+    }else{
+      this.setState({
+        gameCounter:this.state.gameCounter+1,
+      })
     }
 
     if (this.state.profileInformation.Halo5.isPopulated) {
       halo5Stats = await API.getHalo5Data({ userAccountName: userAccountName });
       halo5Data = halo5Stats.data;
-      this.setState({ halo5Data, halodataexists: true });
+      this.setState({ halo5Data, halodataexists: true, gameCounter:this.state.gameCounter+1, });
+    }else{
+      this.setState({
+        gameCounter:this.state.gameCounter+1,
+      })
     }
 
     if (this.state.profileInformation.LOL.isPopulated) {
       lolStats = await API.getLOLData({ userAccountName: userAccountName });
       lolData = lolStats.data;
-      this.setState({ lolData, loldataexists: true });
+      this.setState({ lolData, loldataexists: true, gameCounter:this.state.gameCounter+1, });
+    }else{
+      this.setState({
+        gameCounter:this.state.gameCounter+1,
+      })
     }
 
     if (this.state.profileInformation.Overwatch.isPopulated) {
       overwatchStats = await API.getOverwatchData({ userAccountName: userAccountName });
       overwatchData = overwatchStats.data;
-      this.setState({ overwatchData, overwatchdataexists: true });
+      this.setState({ overwatchData, overwatchdataexists: true, gameCounter:this.state.gameCounter+1, });
+    }else{
+      this.setState({
+        gameCounter:this.state.gameCounter+1,
+      })
+    }
+
+    if(this.state.gameCounter === 4){
+      this.setState({
+        loading: false,
+      })
     }
   }
 
@@ -221,6 +259,16 @@ class Profile extends Component {
 
 
   render() {
+
+    if (this.state.loading === true) {
+      return (
+        <StyledLoading>
+          <h3 style={{ position: 'fixed', top: '25%', left: 'calc(50% - 75px', width: '150px', textAlign: 'center',  fontFamily: "'Libre Franklin', sans-serif"}}>Loading...</h3>
+          <MDSpinner className="spinner" style={{ position: 'fixed', top: '33%', left: 'calc(50% - 75px'}} size={150} duration={500}/>
+        </StyledLoading>
+      )
+    }
+
     return (
       <div>
         <GlobalStyle />

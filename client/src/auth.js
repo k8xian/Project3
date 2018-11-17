@@ -82,7 +82,6 @@ class Login extends Component {
         <GlobalStyle />
 
         <Logo />
-        {/*console.log(this.state.authenticated)*/}
         {/* Put submit handler in this form tag here */}
         <form onSubmit={(event) => { this.authWithEmailPassword(event) }} ref={(form) => { this.loginForm = form }}>
 

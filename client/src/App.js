@@ -86,11 +86,15 @@ class App extends Component {
         </StyledLoading>
       )
     }
+    
     return (
       <Router>
         <div>
           <Switch>
+<<<<<<< Updated upstream
             {/*//console.log(`App.js this.state.authenticated: ${this.state.authenticated}`)*/}
+=======
+>>>>>>> Stashed changes
             <Route exact path="/" component={Login} />
             <Route exact path="/logout" component={Logout} />
             <Route exact path="/profile/:id" component={Profile} />{/* This will be public*/}
