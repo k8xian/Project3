@@ -250,11 +250,12 @@ class Profile extends Component {
                   halo5Data={this.state.halo5Data}
                 />}
             </StatsWrapper>
-            <PostWrapper>
+            {/* saving posts for later */}
+            {/* <PostWrapper>
               <PostBlock />
               <PostBlock />
               <PostBlock />
-            </PostWrapper>
+            </PostWrapper> */}
           </MainDetail>
           <SidebarEmbed>
           <GamesList>

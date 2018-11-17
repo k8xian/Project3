@@ -116,8 +116,10 @@ class FortniteForm extends React.Component {
 
   FortniteForm = () => (
     <StyledForm onSubmit={this.handleSubmit}>
-      <StyledSocialInput value={this.state.username} name="username" onChange={this.handleInputChange} placeholder={this.state.FortniteUID} />
-      <SocialSubmitButton type="submit" value=">" />
+      <InputBlock>
+        <StyledSocialInput value={this.state.username} name="username" onChange={this.handleInputChange} placeholder={this.state.FortniteUID} />
+        <SocialSubmitButton type="submit" value=">" />
+      </InputBlock>
       <div className="dropdown">
         <select id="fortnite-selector">
           <option value="">Choose Server</option>

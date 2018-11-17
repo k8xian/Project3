@@ -62,6 +62,23 @@ const StyledLabel = styled.label`
 margin-top: 20px;
 display: block;
 `
+
+const Demo = styled.a`
+bottom: 20px;
+left: 50px;
+text-decoration: none;
+color: white;
+background-color: #673AB7;
+position: absolute;
+padding: 10px 20px;
+border-radius: 5px;
+box-shadow: 0 0 5px rgba(0,0,0,1);
+cursor: pointer;
+
+a:hover {
+background-color: #4f2d8c; 
+}
+`
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -139,6 +156,7 @@ class Login extends Component {
 
         <Toaster ref={(element) => { this.Toaster = element }} />
         <GlobalStyle />
+        <Demo href="https://project3-k8xian.herokuapp.com/profile/Chaelor">Click Here for Demo Completed Profile</Demo>
 
         <Logo />
         {console.log(`Login.js this.state.authenticated: ${this.state.authenticated}`)}
