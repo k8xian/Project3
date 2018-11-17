@@ -48,19 +48,15 @@ export default {
       tell the user data was successfully submitted)
   ******************************************/
   updateFortniteUID: function (userData) {
-    //console.log(userData);
     return axios.put(`/api/updateForniteUID/${userData.userAccountName}`, userData);
   },
   updateHalo5UID: function (userData) {
-    //console.log(userData);
     return axios.put(`/api/updateHalo5UID/${userData.userAccountName}`, userData);
   },
   updateLOLUID: function (userData) {
-    //console.log(userData);
     return axios.put(`/api/updateLOLUID/${userData.userAccountName}`, userData);
   },
   updateOverwatchUID: function (userData) {
-    //console.log(userData);
     return axios.put(`/api/updateOverwatchUID/${userData.userAccountName}`, userData);
   },
   /******************************************
@@ -78,8 +74,6 @@ export default {
       tell the user data was successfully submitted)
   ******************************************/
   updateFortnitePlatform: function (userData) {
-    //console.log("Update fortnite platform")
-    //console.log(userData);
     return axios.put(`/api/updateFortnitePlatform/${userData.userAccountName}`, userData);
   },
   updateLOLPlatform: function (userData) {

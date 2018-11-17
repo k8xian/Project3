@@ -86,6 +86,7 @@ class App extends Component {
         </StyledLoading>
       )
     }
+    
     return (
       <Router>
         <div>
